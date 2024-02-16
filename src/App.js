@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { AppContextProvider } from "./context/AppContext";
+import { LoginPage } from "./pages/login/LoginPage";
+import ReactDOM from "react-dom/client";
+import { Routes, Route } from "react-router-dom";
+import NotFoundPage from "./pages/notfound/NotFoundPage";
+import HomePage from "./pages/home/HomePage";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContextProvider>
+      <Routes>
+        <Route exact path="/" element={<LoginPage />} />
+
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </AppContextProvider>
   );
 }
 
