@@ -1,30 +1,39 @@
 import "./App.css";
-import { AppContextProvider } from "./context/AppContext";
-import { LoginPage } from "./pages/login/LoginPage";
-import ReactDOM from "react-dom/client";
-import { Routes, Route } from "react-router-dom";
-import NotFoundPage from "./pages/notfound/NotFoundPage";
-import HomePage from "./pages/home/HomePage";
+
+import { Route, createBrowserRouter, createRoutesFromElements, defer } from "react-router-dom";
+import { AuthLayout } from "./components/AuthLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-function App() {
-  return (
-    <AppContextProvider>
-      <Routes>
-        <Route exact path="/" element={<LoginPage />} />
+import HomePage from "./pages/home/HomePage";
+import { LoginPage } from "./pages/login/LoginPage";
+import NotFoundPage from "./pages/notfound/NotFoundPage";
 
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </AppContextProvider>
+const getUserData = () =>
+  new Promise((resolve) =>
+    setTimeout(() => {
+     // const user = window.localStorage.getItem("user");
+      resolve('resolved');
+    }, 3000)
   );
-}
 
-export default App;
+ 
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      element={<AuthLayout />}
+      loader={() => defer({ userPromise: getUserData() })}
+    >
+      <Route exact path="/" element={<LoginPage />} />
+
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <HomePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Route>
+  )
+);

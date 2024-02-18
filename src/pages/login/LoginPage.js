@@ -5,60 +5,30 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import green from "@mui/material/colors/green";
 
 import { useContext } from "react";
 import { appContext } from "../../context/AppContext";
-import { createTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const { setLoggedInState } = useContext(appContext);
-
-  const { palette } = createTheme();
-  const { augmentColor } = palette;
-  const createColor = (mainColor) =>
-    augmentColor({ color: { main: mainColor } });
-  const theme = createTheme({
-    palette: {
-      basecolor: createColor("rgb(233, 79, 28)"),
-    },
-  });
+  const navigate = useNavigate();
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+
     const data = new FormData(e.currentTarget);
 
     setLoggedInState({
       email: data.get("email"),
       password: data.get("password"),
     });
+    navigate("/home");
   };
 
   return (
-    // <div>
-    //   <form onSubmit={handleLogin}>
-    //     <div>
-    //       <label htmlFor="username">Username:</label>
-    //       <input
-    //         id="username"
-    //         type="text"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="password">Password:</label>
-    //       <input
-    //         id="password"
-    //         type="password"
-    //         value={password}
-    //         onChange={(e) => setPassword(e.target.value)}
-    //       />
-    //     </div>
-    //     <button type="submit">Login</button>
-    //   </form>
-    // </div>
+    
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -66,6 +36,9 @@ export const LoginPage = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          border:" 1px solid rgb(233, 79, 28)",
+          borderRadius:"15px",
+          padding:"10px"
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "rgb(233, 79, 28)" }}>

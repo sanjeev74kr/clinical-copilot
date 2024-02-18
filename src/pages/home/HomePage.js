@@ -1,12 +1,25 @@
-import React, { useContext, useEffect } from 'react'
-import { appContext } from '../../context/AppContext';
+import React, { useContext, useEffect, useState } from "react";
+import { appContext } from "../../context/AppContext";
+import SearchBar from "../../components/SearchBar";
 
 const HomePage = () => {
-  const { isLoggedIn } = useContext(appContext);
-  
-  return (
-    <div>HomePage</div>
-  )
-}
+  const [searchQuery, setSearchQuery] = useState("");
 
-export default HomePage
+  const filterData = (query, data) => {
+    if (!query) {
+      return data;
+    } else {
+      return data.filter((d) => d.toLowerCase().includes(query));
+    }
+  };
+  const dataFiltered = filterData(searchQuery, data);
+
+  return (
+    <div>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      
+    </div>
+  );
+};
+
+export default HomePage;

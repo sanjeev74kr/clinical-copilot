@@ -1,16 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import { router } from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { AppContextProvider } from "./context/AppContext";
+import { RouterProvider } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const theme = createTheme({
+  palette: {
+    primary: { main: "rgb(233, 79, 28)" }
+  }
+});
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <AppContextProvider>
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+      </ThemeProvider>
+    </AppContextProvider>
   </React.StrictMode>
 );
 
