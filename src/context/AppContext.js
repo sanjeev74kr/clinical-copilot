@@ -2,10 +2,12 @@ import React, { useMemo, useReducer } from "react";
 
 import { AppReducer } from "./AppReducer";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const initialState = {
   loading: true,
   isLoggedIn: false,
+  docs: [],
   error: false,
 };
 export const appContext = React.createContext(initialState);
@@ -13,14 +15,15 @@ export const appContext = React.createContext(initialState);
 export const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  // const getImages = async (keyword) => {
-  //   const url = `https://pixabay.com/api/?key=22557617-9be25417ac6dadfd2a8808c0c&q=${keyword}`;
-  //   const res = await axios.get(url);
-  //   const result = await res.data.hits;
-  //   let images = [];
-  //   images = result.map((item) => item);
-  //   dispatch({ type: "GET_IMAGES", payload: images });
-  // };
+  const getPdfDocuments = async () => {
+    const url = `http://localhost:3000/documents`;
+    const res = await axios.get(url);
+    const result = await res.data;
+   
+    let docs = [];
+    docs = result.map((item) => item);
+    dispatch({ type: "GET_DOCUMENTS", payload: docs });
+  };
 
   const setLoggedInState = (credentials) => {
     if (credentials.email === "user" && credentials.password === "password") {
@@ -38,8 +41,10 @@ export const AppContextProvider = ({ children }) => {
       value={{
         isLoggedIn: state.isLoggedIn,
         error: state.error,
+        docs:state.docs,
         loading: state.loading,
         setLoggedInState,
+        getPdfDocuments,
         dispatch,
       }}
     >
