@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+  --border-color:rgb(185, 184, 184);
+  --brand-color:rgb(233, 79, 28);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button{
+  padding:0.25rem;
+  text-align: center;
+  border-radius: 0.25rem;
+}

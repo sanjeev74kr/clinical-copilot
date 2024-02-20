@@ -41,6 +41,9 @@ export const LoginPage = () => {
           padding:"10px"
         }}
       >
+        <div>
+          <h2>EXL</h2>
+        </div>
         <Avatar sx={{ m: 1, bgcolor: "rgb(233, 79, 28)" }}>
           <LockOutlinedIcon />
         </Avatar>
@@ -75,7 +78,7 @@ export const LoginPage = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Login In
+            Login
           </Button>
         </Box>
       </Box>

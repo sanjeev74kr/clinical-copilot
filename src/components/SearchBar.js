@@ -3,12 +3,11 @@ import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 
 const SearchBar = ({ setSearchQuery }) => (
-  <form className="search-bar">
+  <form className="search-bar" >
     <Typography
       variant="h6"
-      noWrap
-      component="div"
-      sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+      noWrap  
+      sx={{ mr: 2, border:0, display: { xs: "none", md: "flex" } }}
     >
       Search:
     </Typography>

@@ -5,7 +5,9 @@ import { AuthLayout } from "./components/AuthLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import HomePage from "./pages/home/HomePage";
 import { LoginPage } from "./pages/login/LoginPage";
+import MedicalChartReview from './pages/medicalChartReview'
 import NotFoundPage from "./pages/notfound/NotFoundPage";
+
 
 const getUserData = () =>
   new Promise((resolve) =>
@@ -32,6 +34,15 @@ export const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+
+      <Route 
+      path='/medicalChartReview'
+      element={
+        <ProtectedRoute>
+          <MedicalChartReview />
+        </ProtectedRoute>
+      }
+     />
 
       <Route path="*" element={<NotFoundPage />} />
     </Route>

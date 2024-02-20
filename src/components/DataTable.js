@@ -28,29 +28,40 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const DataTable = ({ rows }) => {
+const DataTable = (props) => {
+  const {rows,handleIdentifierClick,handleFilePathClick}=props;
   console.log(rows,'rows')
+
+
+  const identifierClickHandler=()=>{
+     handleIdentifierClick();
+  }
+
+  const filePathClickHandler=()=>{
+    handleFilePathClick();
+  }
   return (
     <div>
-      <TableContainer  sx={{padding:"24px", width:"96%" }}>
+      <TableContainer  sx={{padding:"24px", width:"100%" }}>
         <Table sx={{ width: "100%",  border:"1px solid #ccc", borderRadius:"2px" }} aria-label="simple table">
           <TableHead>
             <StyledTableRow>
-              <StyledTableCell>Document Identifier</StyledTableCell>
+              <StyledTableCell >Document Identifier</StyledTableCell>
               <StyledTableCell >File Path</StyledTableCell>
               <StyledTableCell align="right">Review Status</StyledTableCell>
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows?.map((row) => (
               <StyledTableRow
                 key={row.identifier}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                
               >
-                <StyledTableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="row" onClick={identifierClickHandler}>
                   {row.document_name}
                 </StyledTableCell>
-                <StyledTableCell >{row.document_path}</StyledTableCell>
+                <StyledTableCell  onClick={filePathClickHandler}>{row.document_path}</StyledTableCell>
                 <StyledTableCell align="right">
                   {row.document_review_status}
                 </StyledTableCell>

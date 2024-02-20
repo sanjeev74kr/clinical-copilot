@@ -1,0 +1,23 @@
+.select-box-container{
+    border: 0.01rem solid var(--brand-color);
+    min-width:fit-content;
+    width:20%;
+    height:1rem;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    display: flex;
+    align-items: center;
+}
+
+.select-options{
+    margin-left: 0.8rem;
+    outline: none;
+    border: none;
+}
+
+/* .options{
+    border-radius: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+} */
