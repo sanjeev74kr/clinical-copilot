@@ -5,10 +5,17 @@
 .search-bar {
   display: flex;
   width: auto;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  padding: 14px;
-  border: 1px solid lightgrey;
-  margin: 25px;
+  padding: 10px;
+ 
+  margin: 10px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  color: rgb(233, 79, 28);
 }

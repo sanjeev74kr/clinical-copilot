@@ -45,39 +45,26 @@ const HomePage = () => {
 
   useEffect(()=>setTableData(docs),[docs]);
 
-  // useEffect(()=>
-  // setTableData(handleSearch),[searchQuery]);
-
-  // const filterData = (query, data) => {
-  //   if (!query) {
-  //     return data;
-  //   }
-  //   // } else {
-  //   console.log("data:",data);
-  //   return data?.filter((data) => data.toLowerCase().includes(query));
-  // //return handleSearch();
-  //   }
-  // };
-
+  
   function handleIdentifierClick() {
     navigate('/medicalChartReview');
   }
 
   function openModal() {
-    setIsOpen(true);
+  //  setIsOpen(true);
   }
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
+    //subtitle.style.color = '#f00';
   }
 
   function closeModal() {
-    setIsOpen(false);
+    //setIsOpen(false);
   }
 
   function handleFilePathClick(){
-    openModal();
+    //openModal();
   }
 
 
@@ -85,15 +72,15 @@ const HomePage = () => {
     <div>
       {/* // searchQuery={searchQuery} */}
       <SearchBar setSearchQuery={handleSearch} />
-      <Modal
+     {/*<Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
-      ></Modal>
+  ></Modal>*/}
 
-      {/* filterData(searchQuery, docs) */}
+      
       {docs.length > 0 && <DataTable rows={tableData} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
     </div>
   );

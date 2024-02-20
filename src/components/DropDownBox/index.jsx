@@ -12,7 +12,6 @@ function DropDownBox(props) {
             <label>
                 {label}
                 <select className='select-options' onChange={handleSelectionChange}>
-                    <option  value='--'>--</option>
                     {dropDownBoxData?.map((item, index) => (
                         <option  key={`select${index}`} value={item[index]} >{item[index]}</option>
 

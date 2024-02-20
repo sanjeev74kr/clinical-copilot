@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Box } from "@mui/material";
+import '../../src/components/Header/header.css'
 
 
 import { useNavigate } from "react-router-dom";

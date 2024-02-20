@@ -32,10 +32,10 @@ function PdfViewer(props) {
         setSearchTerm(e.target.value);
     }
 
-    
 
-    function handleReferenceText(){
-       // setReferenceText({...referenceTextInput});
+
+    function handleReferenceText() {
+        // setReferenceText({...referenceTextInput});
     }
 
     function highlightPattern(text, patterns) {
@@ -45,7 +45,7 @@ function PdfViewer(props) {
     }
 
     const textRenderer = useCallback(
-    
+
         (textItem) => highlightPattern(textItem.str, searchTerm),
         [searchTerm]
     );
@@ -78,10 +78,12 @@ function PdfViewer(props) {
     return (
         <div className="pdfViewer-container">
             <div className="pdfViewer-function-container">
-                <button onClick={handleZoomIn}>zoom in</button>
-                <button onClick={handleZoomOut}>zoom out</button>
-                <button onClick={handlePdfWidth}>fit to width</button>
-                <input type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} />
+                <div className="pdf-viewer-title">Concept</div>
+                <div> <button onClick={handleZoomIn}>zoom in</button>
+                    <button onClick={handleZoomOut}>zoom out</button>
+                    <button onClick={handlePdfWidth}>fit to width</button>
+                    <input type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} />
+                </div>
             </div>
             <div className="pdf-container">
                 <Document file={pdfurl} onLoadSuccess={handleDocumentLoadSuccess}>
