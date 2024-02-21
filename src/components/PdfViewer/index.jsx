@@ -1,6 +1,9 @@
 import { useState, useCallback } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle,faMinusCircle,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faPlusCircle,faMinusCircle,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import {FaArrowsAltH} from 'react-icons/fa'
+import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
+import { MdZoomIn,MdZoomOut } from "react-icons/md";
 import './pdfViewer.css'
 import { Document, Outline, Page, pdfjs } from "react-pdf";
 //import worker for react-pdf to work
@@ -82,13 +85,14 @@ function PdfViewer(props) {
     return (
         <div className="pdfViewer-container">
             <div className="pdfViewer-function-container">
-            <div className="pdf-viewer-title">Concept</div>
-                <FontAwesomeIcon icon={faPlusCircle} className="fa-inverse" onClick={handleZoomIn}/>
-                <FontAwesomeIcon icon={faMinusCircle} className="fa-inverse" onClick={handleZoomOut}/>
-                {/* <button onClick={handleZoomIn}>zoom in</button>
-                <button onClick={handleZoomOut}>zoom out</button> */}
-                <button onClick={handlePdfWidth}>fit to width</button>
-                <input type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} />
+            <div className="pdf-viewer-title">sample.pdf</div>
+            <p className="page-number">{pageNumber || (numPages ? 1 : '__')}/{numPages || '__'}</p>
+                <div className="pdf-icons-container">
+                <MdZoomIn  className="pdf-icons" tooltip={'zoom in'} onClick={handleZoomIn}/>
+                <MdZoomOut className="pdf-icons" tooltip='zoom out' onClick={handleZoomOut}/>
+                <FaArrowsAltH className="pdf-icons" onClick={handlePdfWidth}/>
+                <input className='search-box' type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} />
+                </div>
             </div>
             <div className="pdf-container">
                 <Document file={pdfurl} onLoadSuccess={handleDocumentLoadSuccess}>
@@ -100,16 +104,18 @@ function PdfViewer(props) {
                 </Document>
             </div>
             <div className="page-count-container">
-                <FontAwesomeIcon icon={faAngleLeft} disabled={pageNumber <= 1}
-                    onClick={previousPage}/>
+                {/* <FontAwesomeIcon icon={faAngleLeft} disabled={pageNumber <= 1}
+                    onClick={previousPage}/> */}
                 <button
                     type="button"
                     disabled={pageNumber <= 1}
-                    onClick={previousPage}>prev</button>
-                <p>Page {pageNumber || (numPages ? 1 : '__')} of {numPages || '__'}</p>
+                    onClick={previousPage}><CiCircleChevLeft />
+                    
+                    </button>
+                
                 <button type="button"
                     disabled={pageNumber >= numPages}
-                    onClick={nextPage}>next</button>
+                    onClick={nextPage}><CiCircleChevRight/></button>
             </div>
         </div>
     )

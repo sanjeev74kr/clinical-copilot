@@ -3,7 +3,7 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Box } from "@mui/material";
+import { CgProfile } from "react-icons/cg";
 import '../../src/components/Header/header.css'
 
 
@@ -50,7 +50,10 @@ export const AppBar = () => {
           <div className="main-container">
             <h1 className="brand-name">EXL</h1>
             <h2 className='project-title'>Clinician-CoPilot</h2>
-            <img className='profile-icon' src=''/>
+            <div className="profile-icon-container">
+            <CgProfile  className='profile-icon'/>
+            </div>         
+            {/* <img className='profile-icon' src='<CgProfile />' alt='profile-pic'/> */}
             </div>
         {/* </div> */}
         </Toolbar>
