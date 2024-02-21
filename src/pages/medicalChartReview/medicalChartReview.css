@@ -1,75 +1,171 @@
-.page-main-container{
-    display: flex;
-    max-width: 100%;
-    max-height: 100%;
-    overflow: auto;
-    flex-direction: column;
-    gap: 1rem;
-}
-.card-container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding-left:1rem;
-    padding-right: 1rem;
+.page-main-container {
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  flex-direction: column;
+  gap: 1rem;
+  background: #ccc;
+  opacity: 0.7;
 }
 
-.pdfViewer-and-operations-container{
-    display: flex;
-    flex-direction: row;
-    /* padding-left:1.5rem;
+.operation-title {
+  color: black;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 3% 1%;
+  background: white;
+  border-radius: 1.25rem;
+}
+
+.pdfViewer-and-operations-container {
+  display: flex;
+  flex-direction: row;
+  /* padding-left:1.5rem;
     padding-right: 1.5rem; */
-    margin-left:2.5rem;
-    margin-right:2.5rem ;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 
-.operation-container{
-    display: flex;
-    flex-direction: column;
-    width:40%;
-    gap:1rem;
-    /* border: 0.01rem solid var(--border-color); */
-    margin-top:0.5rem;
-    margin-left: 2.5rem;
+.operation-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 40%;
+  gap: 1rem;
+  background: white;
+  margin-left: 2.5rem;
+  border-radius: 0.8rem;
 }
 
-.select-concept-container{
-display: flex;
+.title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+
+  gap: 1rem;
+}
+.para-container {
+  display: flex;
+  padding: 14px;
+  font-size: 14px;
+}
+.llm-box-container {
+  border: 1px solid #ccf;
+  width: 94%;
+  margin-left: 14px;
+  border-radius: 5px;
+}
+.btn-container{
+  display: flex;
+    justify-content: flex-end;
+    margin: 10px 10px;
+}
+.text-field-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  width: 96%;
+  margin-left: 14px;
+  border-radius: 5px;
+  height: 7rem;
+}
+.save-btn-container{
+  display: flex;
+    justify-content: flex-end;
+    margin: 0px 10px;
+}
+.user-box-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 7px;
+  padding: 12px;
+}
+.icon-container {
+  display: flex;
+  gap: 10px;
+  padding: 1px 14px;
+  color: #ccc;
+}
+.username {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.checkbox-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
+.time {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  margin-top: 4px;
+  color: #ccf;
+}
+.person-icon {
+  border: 0.01rem solid white;
+  border-radius: 50%;
+  background: #ccc;
+  width: 2rem;
+  height: 2rem;
+}
+.subtitle-container {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 12px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-
-.llmAnswer_container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap:1rem;
+.select-concept-container {
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 5px;
 }
 
-.functional-button-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap:1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
 }
 
-.edit-container{
-    display: flex;
-    flex-direction: column;
+.llmAnswer_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
 }
-.editable-text{
-    width: 100%;
+
+.functional-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
-.save-button{
-    align-self: flex-end;
-    margin-top:0.5rem;
-    margin-bottom: 0.5rem;
+
+.edit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.editable-text {
+  width: 100%;
+}
+
+.save-button {
+  align-self: flex-end;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }

@@ -36,10 +36,10 @@ function PdfViewer(props) {
         setSearchTerm(e.target.value);
     }
 
-    
 
-    function handleReferenceText(){
-       // setReferenceText({...referenceTextInput});
+
+    function handleReferenceText() {
+        // setReferenceText({...referenceTextInput});
     }
 
     function highlightPattern(text, patterns) {
@@ -49,7 +49,7 @@ function PdfViewer(props) {
     }
 
     const textRenderer = useCallback(
-    
+
         (textItem) => highlightPattern(textItem.str, searchTerm),
         [searchTerm]
     );
@@ -82,6 +82,7 @@ function PdfViewer(props) {
     return (
         <div className="pdfViewer-container">
             <div className="pdfViewer-function-container">
+            <div className="pdf-viewer-title">Concept</div>
                 <FontAwesomeIcon icon={faPlusCircle} className="fa-inverse" onClick={handleZoomIn}/>
                 <FontAwesomeIcon icon={faMinusCircle} className="fa-inverse" onClick={handleZoomOut}/>
                 {/* <button onClick={handleZoomIn}>zoom in</button>

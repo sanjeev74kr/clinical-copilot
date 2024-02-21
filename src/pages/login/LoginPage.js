@@ -30,9 +30,12 @@ export const LoginPage = () => {
   return (
     
     <Container component="main" maxWidth="xs">
+      <div className="logo">
+          <h1>EXL</h1>
+        </div>
       <Box
         sx={{
-          marginTop: 8,
+          
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -48,7 +51,7 @@ export const LoginPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Log In
+         
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
