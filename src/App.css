@@ -14,16 +14,7 @@
   border:0px;
 }
 
-
-
-.login-header{
-  color:var(--brand-color)
-}
-
-
-
-
-.text{
+text{
   z-index: 0;
 }
 

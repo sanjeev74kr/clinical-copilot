@@ -72,7 +72,7 @@ const HomePage = () => {
   }
 
   function openModal() {
-  //  setIsOpen(true);
+   setIsOpen(true);
   }
 
   function afterOpenModal() {
@@ -82,11 +82,11 @@ const HomePage = () => {
   }
 
   function closeModal() {
-    //setIsOpen(false);
+    setIsOpen(false);
   }
 
   function handleFilePathClick(){
-    //openModal();
+    openModal();
   }
 
 
@@ -99,8 +99,7 @@ const HomePage = () => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={Modal.defaultStyles}
-        contentLabel="Example"
-      
+        contentLabel="Pdf File"      
       >
 
         <PdfViewer pdfurl={pdfFile}/>
