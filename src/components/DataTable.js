@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#8EA9DB",
+    backgroundColor: "#515151",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -56,11 +56,12 @@ const DataTable = (props) => {
               <StyledTableRow
                 key={row.identifier}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                
               >
-                <StyledTableCell component="th" scope="row" onClick={identifierClickHandler}>
-                  {row.document_name}
+            
+                <StyledTableCell  component="th" scope="row" onClick={identifierClickHandler}>
+                  {row.identifier}
                 </StyledTableCell>
+                
                 <StyledTableCell  onClick={filePathClickHandler}>{row.document_path}</StyledTableCell>
                 <StyledTableCell align="right">
                   {row.document_review_status}

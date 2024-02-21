@@ -1,4 +1,6 @@
 import { useState, useCallback } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle,faMinusCircle,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import './pdfViewer.css'
 import { Document, Outline, Page, pdfjs } from "react-pdf";
 //import worker for react-pdf to work
@@ -6,6 +8,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     "pdfjs-dist/build/pdf.worker.min.js",
     import.meta.url
 ).toString();
+
+
 
 function PdfViewer(props) {
     const [numPages, setNumPages] = useState();
@@ -78,8 +82,10 @@ function PdfViewer(props) {
     return (
         <div className="pdfViewer-container">
             <div className="pdfViewer-function-container">
-                <button onClick={handleZoomIn}>zoom in</button>
-                <button onClick={handleZoomOut}>zoom out</button>
+                <FontAwesomeIcon icon={faPlusCircle} className="fa-inverse" onClick={handleZoomIn}/>
+                <FontAwesomeIcon icon={faMinusCircle} className="fa-inverse" onClick={handleZoomOut}/>
+                {/* <button onClick={handleZoomIn}>zoom in</button>
+                <button onClick={handleZoomOut}>zoom out</button> */}
                 <button onClick={handlePdfWidth}>fit to width</button>
                 <input type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} />
             </div>
@@ -93,6 +99,8 @@ function PdfViewer(props) {
                 </Document>
             </div>
             <div className="page-count-container">
+                <FontAwesomeIcon icon={faAngleLeft} disabled={pageNumber <= 1}
+                    onClick={previousPage}/>
                 <button
                     type="button"
                     disabled={pageNumber <= 1}

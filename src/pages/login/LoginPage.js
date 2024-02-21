@@ -42,7 +42,7 @@ export const LoginPage = () => {
         }}
       >
         <div>
-          <h2>EXL</h2>
+          <h2 className="login-header">EXL</h2>
         </div>
         <Avatar sx={{ m: 1, bgcolor: "rgb(233, 79, 28)" }}>
           <LockOutlinedIcon />

@@ -4,10 +4,30 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/DataTable";
 import Modal from 'react-modal';
+import PdfViewer from '../../components/PdfViewer'
+import pdfFile from '../../assets/sample_file.pdf'
+
+// const customStyles = {
+//   content: {
+//     positon:'absolute',
+//     top: '45%',
+//     left: '50%',
+//     right: 'auto',
+//     bottom: '2.5%',
+//    // marginRight: '-50%',
+//     transform: 'translate(-50%, -50%)',
+//     overflow:'auto'
+//   },
+  
+// };
+
+Modal.setAppElement('body');
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [tableData, setTableData] = useState([]);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
 
   const navigate = useNavigate();
 
@@ -60,6 +80,7 @@ const HomePage = () => {
   // };
 
   function handleIdentifierClick() {
+    
     navigate('/medicalChartReview');
   }
 
@@ -69,7 +90,7 @@ const HomePage = () => {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
+    //subtitle.style.color = '#f00';
   }
 
   function closeModal() {
@@ -89,9 +110,13 @@ const HomePage = () => {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      ></Modal>
+        style={Modal.defaultStyles}
+        contentLabel="Example"
+      
+      >
+
+        <PdfViewer pdfurl={pdfFile}/>
+      </Modal>
 
       {/* filterData(searchQuery, docs) */}
       {docs.length > 0 && <DataTable rows={tableData} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}

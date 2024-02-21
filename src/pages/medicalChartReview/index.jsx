@@ -40,6 +40,7 @@ function MedicalChartReview() {
                 <DetailsCard cardHeader={'Document Details'} />
             </div>
             <div className='pdfViewer-and-operations-container'>
+                
                 <PdfViewer pdfurl={pdfFile} referenceTextInput={referenceText} />
                 <div className='operation-container'>
                     <div className='select-concept-container'>
