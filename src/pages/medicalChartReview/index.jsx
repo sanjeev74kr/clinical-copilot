@@ -11,7 +11,7 @@ import DetailsStatus from "../../components/DetailsStatus";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { FaThumbsDown, FaThumbsUp, FaCopy } from "react-icons/fa";
+import { FaThumbsDown, FaThumbsUp, FaCopy, FaPaste } from "react-icons/fa";
 
 function MedicalChartReview() {
   const [referenceText, setReferenceText] = useState(["lorem"]);
@@ -66,21 +66,12 @@ function MedicalChartReview() {
             </div>
           </div>
           <div className="subtitle-container">Concept1</div>
-          <div className="para-container">
-            img elements must have an alt prop, either with meaningful text, or
-            an empty string for decorative images, img elements must have an alt
-            prop, either with meaningful text, or an empty string for decorative
-            images
-          </div>
-          <div className="llm-box-container">
-            <div className="user-box-container">
-              <div className="person-icon"></div>
-              <div className="username"> Jane Doe</div>
-              <div className="time">5 min ago</div>
-            </div>
+          <div>
             <div className="para-container">
               img elements must have an alt prop, either with meaningful text,
-              or an empty string for decorative
+              or an empty string for decorative images, img elements must have
+              an alt prop, either with meaningful text, or an empty string for
+              decorative images
             </div>
             <div className="icon-container">
               <span>
@@ -94,13 +85,18 @@ function MedicalChartReview() {
               </span>
             </div>
           </div>
-          <div>
+          <div className="llm-box-container">
+            <div className="user-box-container">
+              <div className="person-icon"></div>
+              <div className="username"> Jane Doe</div>
+              <div className="time">5 min ago</div>
+            </div>
             <div className="text-field-container">
               <div>
                 <TextField
                   variant="standard"
                   disableUnderline={false}
-                  sx={{ width: "100%", padding: "10px" }}
+                  sx={{ width: "100%", padding: "10px 5px" }}
                   multiline
                   maxRows={4}
                   placeholder="Type anything…"
@@ -110,6 +106,9 @@ function MedicalChartReview() {
                 />
               </div>
               <div className="btn-container">
+                <div className="paste-icon">
+                  <FaPaste />
+                </div>
                 <div className="select-concept-container">
                   <DropDownBox
                     label={""}
@@ -121,7 +120,8 @@ function MedicalChartReview() {
                 </div>
               </div>
             </div>
-
+          </div>
+          <div>
             <div className="save-btn-container">
               <Button
                 type="button"

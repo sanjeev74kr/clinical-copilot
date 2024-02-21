@@ -11,7 +11,7 @@
 
 .card-header-status{
     padding: 8% 0%;
-    color: #515151;
+    color: #333333;
     width: 100%;
 }
 
@@ -19,7 +19,7 @@
     padding: 9px;
     width: 100%;
     display: flex;
-    background: orange;
+    background: #fbeae4;
     justify-content: center;
     border-radius: .5rem;
 }
