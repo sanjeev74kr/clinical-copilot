@@ -73,6 +73,25 @@ function MedicalChartReview() {
               an alt prop, either with meaningful text, or an empty string for
               decorative images
             </div>
+            <div className="ref-container">
+              <div className="ref-item">
+                <span>Diabeties on Page 1</span>
+              </div>
+              <div className="ref-item">
+                <span>Blood Sugar on Page 2</span>
+              </div>
+              <div className="ref-item">
+                <span>Hypertension on Page 3</span>
+                <span></span>
+              </div>
+            </div>
+            <div className="note-container">
+              <ul>
+                <li className="list-style-none">
+                  <div><span className="heading">Condition: </span><span>Lipid panel complete blood count(hemogram) panel - Blood by Automatedcount </span></div>
+                </li>
+              </ul>
+            </div>
             <div className="icon-container">
               <span>
                 <FaCopy />
