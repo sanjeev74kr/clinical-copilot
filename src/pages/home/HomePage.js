@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/DataTable";
 import Modal from 'react-modal';
-import PdfViewer from '../../components/PdfViewer'
-import pdfFile from '../../assets/sample_file.pdf'
+import PdfViewer from '../../components/PdfViewer';
+import pdfFile from '../../assets/sample_file.pdf';
+
+import './homePage.css';
 
 // const customStyles = {
 //   content: {
@@ -91,23 +93,23 @@ const HomePage = () => {
 
 
   return (
-    <div>
+    <div className="homepage-main-container">
+    <div classNamel="searchbar-and-table">
       {/* // searchQuery={searchQuery} */}
       <SearchBar setSearchQuery={handleSearch} />
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={Modal.defaultStyles}
-        contentLabel="Pdf File"      
-      >
-
-        <PdfViewer pdfurl={pdfFile}/>
-      </Modal>
-
       {/* filterData(searchQuery, docs) */}
       {docs.length > 0 && <DataTable rows={tableData} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
     </div>
+     <Modal
+     isOpen={modalIsOpen}
+     onAfterOpen={afterOpenModal}
+     onRequestClose={closeModal}
+     style={Modal.defaultStyles}
+     contentLabel="Pdf File"      
+   >
+     <PdfViewer pdfurl={pdfFile}/>
+   </Modal>
+   </div>
   );
 };
 

@@ -1,0 +1,12 @@
+.homepage-main-container{
+background-color: #FAFAFA;
+}
+
+.searchbar-and-table{
+   background-color:white ; 
+   margin: 2rem;
+   border-radius: 0.8rem;
+   border:5px solid black;
+   box-shadow: inset;
+}
+
