@@ -47,8 +47,11 @@ const DataTable = (props) => {
           <TableHead>
             <StyledTableRow>
               <StyledTableCell >Document Identifier</StyledTableCell>
-              <StyledTableCell >File Path</StyledTableCell>
+              <StyledTableCell align="center">Document Name</StyledTableCell>
+              {/* <StyledTableCell align="center">File Path</StyledTableCell> */}
+              <StyledTableCell align="center">Evaluation Date</StyledTableCell>
               <StyledTableCell align="right">Review Status</StyledTableCell>
+           
             </StyledTableRow>
           </TableHead>
           <TableBody>
@@ -59,12 +62,13 @@ const DataTable = (props) => {
               >
             
                 <StyledTableCell  component="th" scope="row" onClick={identifierClickHandler}>
-                  {row.identifier}
+                  {row.Identifier}
                 </StyledTableCell>
-                
-                <StyledTableCell  onClick={filePathClickHandler}>{row.document_path}</StyledTableCell>
+                <StyledTableCell align="center" onClick={filePathClickHandler}>{row.Document_Name}</StyledTableCell>
+                {/* <StyledTableCell align="center" >{row.Document_Path}</StyledTableCell> */}
+                <StyledTableCell align="center">{row.Document_Evaluation_dts}</StyledTableCell>
                 <StyledTableCell align="right">
-                  {row.document_review_status}
+                  {row.Document_Review_Status}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

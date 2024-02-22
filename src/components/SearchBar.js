@@ -9,7 +9,7 @@ const SearchBar = ({ setSearchQuery }) => (
       // noWrap  
       sx={{ mr: 2,  display: { xs: "none", md: "flex" } }}
     >
-      Search:
+      Search
     </Typography>
     <TextField
       id="document"

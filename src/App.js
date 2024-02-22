@@ -8,6 +8,11 @@ import { LoginPage } from "./pages/login/LoginPage";
 import MedicalChartReview from './pages/medicalChartReview'
 import NotFoundPage from "./pages/notfound/NotFoundPage";
 
+//import dotenv from 'dotenv';
+import { getDocuments } from "./services/apiConsume";
+//dotenv.config();
+
+getDocuments();
 
 const getUserData = () =>
   new Promise((resolve) =>

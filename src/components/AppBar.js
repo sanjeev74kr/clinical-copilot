@@ -3,7 +3,9 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+
 import { CgProfile } from "react-icons/cg";
+import exlLogo from '../assets/EXL_logo.png'
 import '../../src/components/Header/header.css'
 
 
@@ -48,7 +50,7 @@ export const AppBar = () => {
 
           {/* <div className='main-container'> */}
           <div className="main-container">
-            <h1 className="brand-name">EXL</h1>
+            <img className='brand-logo' src={exlLogo} alt='exl'/>
             <h2 className='project-title'>Clinician-CoPilot</h2>
             <div className="profile-icon-container">
             <CgProfile  className='profile-icon'/>

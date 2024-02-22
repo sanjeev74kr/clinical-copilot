@@ -39,7 +39,7 @@ const HomePage = () => {
     switch (type) {
       case "document":
         const docData = docs?.filter((d) =>
-          d?.document_name?.toLowerCase().includes(query.toLowerCase())
+          d?.Document_Name?.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(docData);
 
@@ -48,7 +48,7 @@ const HomePage = () => {
 
       case "review":
         const reviewData = docs.filter((d) =>
-          d.document_review_status.toLowerCase().includes(query.toLowerCase())
+          d.Document_Review_Status.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(reviewData);
 

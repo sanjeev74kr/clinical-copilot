@@ -4,6 +4,8 @@ import { AppReducer } from "./AppReducer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import {getDocuments} from '../services/apiConsume'
+
 const initialState = {
   loading: true,
   isLoggedIn: false,
@@ -16,10 +18,10 @@ export const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   const getPdfDocuments = async () => {
-    const url = `http://localhost:3000/documents`;
-    const res = await axios.get(url);
-    const result = await res.data;
-   
+    // const url = `http://localhost:3000/documents`;
+    // const res = await axios.get(url);
+    // const result = await res.data;
+   const result=await getDocuments();
     let docs = [];
     docs = result.map((item) => item);
     dispatch({ type: "GET_DOCUMENTS", payload: docs });

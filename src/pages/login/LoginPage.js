@@ -10,6 +10,9 @@ import { useContext } from "react";
 import { appContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
+import loginCoverImage from '../../assets/Ai cover pic.jpg'
+import exlLogo from '../../assets/EXL_logo.png'
+
 export const LoginPage = () => {
   const { setLoggedInState } = useContext(appContext);
   const navigate = useNavigate();
@@ -29,19 +32,28 @@ export const LoginPage = () => {
 
   return (
     
-    <Container component="main" maxWidth="xs">
+    <div className="login-main-container">
+     <div>
+      <img className="login-image" src={loginCoverImage} alt='login image'/>
+      </div>
+
+    
+      <Container className="login-input-container" component="main" maxWidth="xs">
+      
       <div className="logo">
-          <h1>EXL</h1>
+          <img src={exlLogo} alt='exl'/>
         </div>
+     <h4 style={{marginBottom:'5%'}}>Nice to see you again</h4>
       <Box
-        sx={{
-          
+        sx={{   
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           border:" 1px solid rgb(233, 79, 28)",
-          borderRadius:"15px",
-          padding:"10px"
+          borderRadius:"0.8rem",
+          padding:"0.65rem",
+          minHeight:'fit-content',
+          
         }}
       >
         
@@ -84,5 +96,6 @@ export const LoginPage = () => {
         </Box>
       </Box>
     </Container>
+    </div>
   );
 };
