@@ -61,10 +61,41 @@
   font-size: 14px;
 }
 .llm-box-container {
-  border: 1px solid #ccf;
+  border: 1px solid #cecece;
   width: 94%;
   margin-left: 14px;
   border-radius: 5px;
+}
+
+.ref-item {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #cecece;
+  border-radius: 5rem;
+  padding: 3px 9px;
+  font-weight: 700;
+}
+.ref-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 7px;
+  font-size: 11px;
+  margin-left: 14px;
+  padding-bottom: 10px;
+}
+.note-container {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+  margin-left: 1.4rem;
+  padding-bottom: 7px;
+}
+
+.list-style-none{
+  list-style: none;
+}
+.heading {
+  font-weight: 700;
 }
 .btn-container {
   display: flex;
@@ -77,9 +108,9 @@
   width: 100%;
   height: 7rem;
 }
-.paste-icon{
+.paste-icon {
   color: #ccc;
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 .save-btn-container {
   display: flex;
@@ -94,7 +125,7 @@
 }
 .icon-container {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   padding: 1px 14px;
   color: #ccc;
   font-size: 1.25rem;
