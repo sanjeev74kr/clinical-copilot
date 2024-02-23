@@ -43,7 +43,7 @@ export const LoginPage = () => {
       <div className="logo">
           <img src={exlLogo} alt='exl'/>
         </div>
-     <h4 style={{marginBottom:'5%'}}>Nice to see you again</h4>
+    
       <Box
         sx={{   
           display: "flex",

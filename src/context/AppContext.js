@@ -23,7 +23,7 @@ export const AppContextProvider = ({ children }) => {
     // const result = await res.data;
    const result=await getDocuments();
     let docs = [];
-    docs = result.map((item) => item);
+    docs = result?.map((item) => item);
     dispatch({ type: "GET_DOCUMENTS", payload: docs });
   };
 

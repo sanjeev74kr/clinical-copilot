@@ -7,9 +7,6 @@ import HomePage from "./pages/home/HomePage";
 import { LoginPage } from "./pages/login/LoginPage";
 import MedicalChartReview from './pages/medicalChartReview'
 import NotFoundPage from "./pages/notfound/NotFoundPage";
-import { getDocuments } from "./services/apiConsume";
-
-getDocuments();
 
 const getUserData = () =>
   new Promise((resolve) =>

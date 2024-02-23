@@ -8,11 +8,9 @@
   width: auto;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
-  padding: 14px;
-  /* border: 1px solid lightgrey; */
-  margin: 25px;
-  border:0px;
+  gap: 1.25rem;
+  padding-top: 2rem;
+  padding-left:2rem;
 }
 
 .text{

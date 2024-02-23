@@ -1,11 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { appContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+
 import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/DataTable";
-import Modal from 'react-modal';
 import PdfViewer from '../../components/PdfViewer';
 import pdfFile from '../../assets/sample_file.pdf';
+
+import Modal from 'react-modal';
+import Pagination from '@mui/material/Pagination';
 
 import './homePage.css';
 
@@ -20,7 +23,7 @@ import './homePage.css';
 //     transform: 'translate(-50%, -50%)',
 //     overflow:'auto'
 //   },
-  
+
 // };
 
 Modal.setAppElement('body');
@@ -30,10 +33,19 @@ const HomePage = () => {
   const [tableData, setTableData] = useState([]);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
+  const [page, setPage] = React.useState(1);
 
-  const navigate = useNavigate();
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
 
   const { docs, getPdfDocuments } = useContext(appContext);
+  const dataLength = docs?.length;
+  const rowsPerPage = 10;
+  const pageCount = Math.ceil(dataLength / rowsPerPage);
+
+  const navigate = useNavigate();
 
   const handleSearch = (query, type) => {
     setSearchQuery(query);
@@ -49,8 +61,8 @@ const HomePage = () => {
         break;
 
       case "review":
-        const reviewData = docs.filter((d) =>
-          d.Document_Review_Status.toLowerCase().includes(query.toLowerCase())
+        const reviewData = docs?.filter((d) =>
+          d?.Document_Review_Status?.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(reviewData);
 
@@ -62,19 +74,19 @@ const HomePage = () => {
 
   useEffect(() => {
     getPdfDocuments();
-  
+
   }, []);
 
-  useEffect(()=>setTableData(docs),[docs]);
+  useEffect(() => setTableData(docs), [docs]);
 
-  
+
   function handleIdentifierClick() {
-    
+
     navigate('/medicalChartReview');
   }
 
   function openModal() {
-   setIsOpen(true);
+    setIsOpen(true);
   }
 
   function afterOpenModal() {
@@ -87,29 +99,43 @@ const HomePage = () => {
     setIsOpen(false);
   }
 
-  function handleFilePathClick(){
+  function handleFilePathClick() {
     openModal();
   }
 
 
   return (
     <div className="homepage-main-container">
-    <div classNamel="searchbar-and-table">
-      {/* // searchQuery={searchQuery} */}
-      <SearchBar setSearchQuery={handleSearch} />
-      {/* filterData(searchQuery, docs) */}
-      {docs.length > 0 && <DataTable rows={tableData} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
+      <div className="searchbar-and-table">
+        {/* // searchQuery={searchQuery} */}
+        <SearchBar setSearchQuery={handleSearch} />
+        {/* filterData(searchQuery, docs) */}
+        {docs?.length > 0 && <DataTable rows={tableData} page={page} rowsPerPage={rowsPerPage} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
+        {dataLength > 0 ?
+          <div className="pagination-container">
+
+            <h5 className="pagination-info">showing data {(page - 1) * rowsPerPage + 1} to {Math.min((page - 1) * rowsPerPage + rowsPerPage, dataLength)} of {dataLength | 0} entries</h5>
+
+            <Pagination count={pageCount} shape="rounded" color="secondary" page={page} onChange={handleChange} />
+
+          </div>
+          :
+          <h5 className="no-data-msg">No data found</h5>
+
+        }
+
+      </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={Modal.defaultStyles}
+        contentLabel="Pdf File"
+      >
+        <PdfViewer pdfurl={pdfFile} />
+      </Modal>
     </div>
-     <Modal
-     isOpen={modalIsOpen}
-     onAfterOpen={afterOpenModal}
-     onRequestClose={closeModal}
-     style={Modal.defaultStyles}
-     contentLabel="Pdf File"      
-   >
-     <PdfViewer pdfurl={pdfFile}/>
-   </Modal>
-   </div>
   );
 };
 

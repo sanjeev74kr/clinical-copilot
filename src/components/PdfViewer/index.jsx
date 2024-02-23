@@ -1,9 +1,7 @@
 import { useState, useCallback } from "react";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPlusCircle,faMinusCircle,faAngleLeft,faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import {FaArrowsAltH} from 'react-icons/fa'
+import { FaArrowsAltH } from 'react-icons/fa'
 import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
-import { MdZoomIn,MdZoomOut } from "react-icons/md";
+import { MdZoomIn, MdZoomOut } from "react-icons/md";
 import './pdfViewer.css'
 import { Document, Outline, Page, Thumbnail, pdfjs } from "react-pdf";
 //import worker for react-pdf to work
@@ -85,40 +83,37 @@ function PdfViewer(props) {
     return (
         <div className="pdfViewer-container">
             <div className="pdfViewer-function-container">
-            <div className="pdf-viewer-title">sample.pdf</div>
-            <p className="page-number">{pageNumber || (numPages ? 1 : '__')}/{numPages || '__'}</p>
+                <div className="pdf-viewer-title">sample.pdf</div>
+                <p className="page-number">{pageNumber || (numPages ? 1 : '__')}/{numPages || '__'}</p>
                 <div className="pdf-icons-container">
-                <MdZoomIn  className="pdf-icons" tooltip={'zoom in'} onClick={handleZoomIn}/>
-                <MdZoomOut className="pdf-icons" tooltip='zoom out' onClick={handleZoomOut}/>
-                <FaArrowsAltH className="pdf-icons" onClick={handlePdfWidth}/>
-                {/* <input className='search-box' type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} /> */}
+                    <MdZoomIn className="pdf-icons" tooltip={'zoom in'} onClick={handleZoomIn} />
+                    <MdZoomOut className="pdf-icons" tooltip='zoom out' onClick={handleZoomOut} />
+                    <FaArrowsAltH className="pdf-icons" onClick={handlePdfWidth} />
+                    {/* <input className='search-box' type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} /> */}
                 </div>
             </div>
             <div className="pdf-container">
                 <Document file={pdfurl} onLoadSuccess={handleDocumentLoadSuccess}>
                     <Outline onItemClick={onItemClick} />
                     <div>
-                    <Thumbnail pageIndex={2}/>
-                    <Page pageNumber={pageNumber}
-                        customTextRenderer={textRenderer}
-                        scale={scale}
-                        width={pdfWidth} />
-                        </div>
+                        <Page pageNumber={pageNumber}
+                            customTextRenderer={textRenderer}
+                            scale={scale}
+                            width={pdfWidth} />
+                    </div>
                 </Document>
             </div>
             <div className="page-count-container">
-                {/* <FontAwesomeIcon icon={faAngleLeft} disabled={pageNumber <= 1}
-                    onClick={previousPage}/> */}
                 <button
                     type="button"
                     disabled={pageNumber <= 1}
                     onClick={previousPage}><CiCircleChevLeft />
-                    
-                    </button>
-                
+
+                </button>
+
                 <button type="button"
                     disabled={pageNumber >= numPages}
-                    onClick={nextPage}><CiCircleChevRight/></button>
+                    onClick={nextPage}><CiCircleChevRight /></button>
             </div>
         </div>
     )

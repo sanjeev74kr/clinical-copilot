@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 const SearchBar = ({ setSearchQuery }) => (
   <form className="search-bar" >
     <Typography
-      variant="h6"
+      variant="h7"
       // noWrap  
       sx={{ mr: 2,  display: { xs: "none", md: "flex" } }}
     >
@@ -21,6 +21,7 @@ const SearchBar = ({ setSearchQuery }) => (
       variant="outlined"
       placeholder="Search..."
       size="small"
+    
     />
 
     <TextField
