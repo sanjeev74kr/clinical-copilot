@@ -18,13 +18,18 @@ export const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   const getPdfDocuments = async () => {
-     const url = `http://localhost:3000/documents`;
-    const res = await axios.get(url);
-    const result = await res.data;
-   // const result=await getDocuments();
-    let docs = [];
-    docs = result?.map((item) => item);
-    dispatch({ type: "GET_DOCUMENTS", payload: docs });
+    //  const url = `http://localhost:3000/documents`;
+    // const res = await axios.get(url);
+    // const result = await res.data;
+    try {
+      const result=await getDocuments();
+      let docs = [];
+      docs = result?.map((item) => item);
+      dispatch({ type: "GET_DOCUMENTS", payload: docs });  
+    } catch (error) {
+      console.log("error occured while fetching documents in context");
+    }
+    
   };
 
   const setLoggedInState = (credentials) => {
