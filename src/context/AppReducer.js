@@ -14,6 +14,12 @@ export const AppReducer = (state, action) => {
         docs: action.payload,
       };
 
+    case "GET_IDENTFIER_DOCUMENTS":
+      return {
+        ...state,
+        loading: false,
+      };
+
     default:
       return state;
   }

@@ -10,10 +10,10 @@ export const status = [{0:'Not Started'}, {1:'In Progress'}, {2:'Complete'}];
 
 export const concept={
     identifier:[
-        {0:'diarehea'},
-        {1:'fever'},
-        {2:'cough'},
-        {3:'sinus'}
+        {0:'Heart-Cardiac Conditions'},
+        {1:'Blood Sugar Conditions'},
+        {2:'Hyper Tension Condition'}
+        
 ]
 }
 

@@ -1,14 +1,14 @@
 import './dropDownBox.css'
 function DropDownBox(props) {
     
-    const { label, dropDownBoxData,onSelect } = props;
+    const { label, cssName, dropDownBoxData,onSelect } = props;
     const handleSelectionChange=(e)=>{
      const  value=e.target.value;
      onSelect(value);
     }
 
     return (
-        <div className="select-box-container">
+        <div className={cssName}>
             <label>
                 {label}
                 <select className='select-options' onChange={handleSelectionChange}>
