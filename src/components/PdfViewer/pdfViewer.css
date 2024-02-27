@@ -1,7 +1,6 @@
 .pdfViewer-container {
     display: flex;
     flex-direction: column;
-    width:60%;
     width: 60%;
     max-height: 100vh;
     border: 0.01rem solid var(--border-color);
@@ -13,34 +12,22 @@
 
 .pdfViewer-function-container{
     width: 100%;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     min-width: -moz-fit-content;
-
     background-color: black;
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
-    padding: 11px;}
-
-.pdf-container {
-    max-height: 86%;
-    overflow: auto;
+    padding: 11px;
 }
+
 
 .pdf-viewer-title {
     color: white;
     font-weight: 600;
-}
-.pdf-container {
-    max-height: 86%;
-    overflow: auto;
-}
-.pdf-viewer-title{
-    color: white;
 }
 
 .page-number{
@@ -53,24 +40,24 @@ justify-content: space-around;
 gap:1rem;
 
 }
+
 .pdf-icons{
     width:1.5rem;
     height:1.5rem;
-    color:white
+    color:white;
+    cursor:pointer;
 }
 
 .search-box{
     margin-left: 0.25rem;
 }
 
-.pdf-viewer-title {
-    color: white;
-    font-weight: 600;
-}
+
 .pdf-container {
     width:100%;
     max-height: 86%;
     overflow: auto;
+    padding:2%;
     border:0.1rem solid var(--border-color)
 }
 
@@ -78,10 +65,19 @@ gap:1rem;
     display: flex;
     flex-direction: row;
      justify-content: center;
-     gap:1rem;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-    height: 2rem;
-    min-width: fit-content;
+     gap: 1rem;
+     align-items: center;
+    /* height: 2rem;
+    min-width: fit-content; */
+}
+
+.page-controller-btn{
+    width:1.5rem;
+    height:1.5rem;
+    text-align: center;
+    color:white;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+
 }

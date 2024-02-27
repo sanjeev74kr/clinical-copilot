@@ -9,22 +9,26 @@ import pdfFile from '../../assets/sample_file.pdf';
 
 import Modal from 'react-modal';
 import Pagination from '@mui/material/Pagination';
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import './homePage.css';
 
-// const customStyles = {
-//   content: {
-//     positon:'absolute',
-//     top: '45%',
-//     left: '50%',
-//     right: 'auto',
-//     bottom: '2.5%',
-//    // marginRight: '-50%',
-//     transform: 'translate(-50%, -50%)',
-//     overflow:'auto'
-//   },
+const customStyles = {
+  content: {
+    position:'absolute',
+    top: '40%',
+    left: '50%',
+    right: '2%',
+    bottom: '1%',
+   // marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',  
+    zindex:'100',
+    // width:'fit-content',
+    // height:'fit-content',
+    // overflow:'none'
+  },
 
-// };
+};
 
 Modal.setAppElement('body');
 
@@ -56,8 +60,12 @@ const HomePage = () => {
           d?.Document_Name?.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(docData);
+      break;
 
       case "time":
+        const timestampData=docs?.filter((d)=>
+        query?new Date(d?.Document_Evaluation_dts)>=new Date(query) :d);
+        setTableData(timestampData);
         break;
 
       case "review":
@@ -65,6 +73,7 @@ const HomePage = () => {
           d?.Document_Review_Status?.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(reviewData);
+      break;
 
       default:
         break;
@@ -113,7 +122,6 @@ const HomePage = () => {
         {docs?.length > 0 && <DataTable rows={tableData} page={page} rowsPerPage={rowsPerPage} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
         {dataLength > 0 ?
           <div className="pagination-container">
-
             <h5 className="pagination-info">showing data {(page - 1) * rowsPerPage + 1} to {Math.min((page - 1) * rowsPerPage + rowsPerPage, dataLength)} of {dataLength | 0} entries</h5>
 
             <Pagination count={pageCount} shape="rounded" color="secondary" page={page} onChange={handleChange} />
@@ -125,17 +133,18 @@ const HomePage = () => {
         }
 
       </div>
-
+      
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={Modal.defaultStyles}
+        style={customStyles}
         contentLabel="Pdf File"
       >
+        <IoIosCloseCircleOutline className="close-button" onClick={closeModal}/>
         <PdfViewer pdfurl={pdfFile} />
       </Modal>
-    </div>
+      </div>
   );
 };
 

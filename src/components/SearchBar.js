@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 
 const SearchBar = ({ setSearchQuery }) => (
-  <form className="search-bar" >
+<form className="search-bar" >
     <Typography
       variant="h7"
       // noWrap  
@@ -28,12 +28,13 @@ const SearchBar = ({ setSearchQuery }) => (
       id="timestamp"
       className="text"
       onInput={(e) => {
-        setSearchQuery(e.target.value, "time");
+        setSearchQuery(e.target.value,"time");
       }}
-      label="Enter a timestamp"
+      // label="Enter a timestamp"
       variant="outlined"
       placeholder="Search..."
       size="small"
+      type="Date"
     />
     <TextField
       id="Review"
@@ -48,5 +49,6 @@ const SearchBar = ({ setSearchQuery }) => (
     />
   </form>
 );
+    
 
 export default SearchBar;

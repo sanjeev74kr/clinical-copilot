@@ -23,9 +23,3 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
-
-button{
-  padding:0.25rem;
-  text-align: center;
-  border-radius: 0.25rem;
-}

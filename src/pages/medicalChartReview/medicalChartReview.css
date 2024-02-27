@@ -18,7 +18,7 @@
 .card-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap:no-wrap;
   justify-content: space-evenly;
   padding-left: 1rem;
   padding-right: 1rem;

@@ -57,7 +57,7 @@ const DataTable = (props) => {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {rows?.slice(rowsPerPage*(page-1),rowsPerPage*page+rowsPerPage)
+            {rows?.slice(rowsPerPage*(page-1),(rowsPerPage*(page-1))+rowsPerPage)
             .map((row) => (
               <StyledTableRow
                 key={row.identifier}

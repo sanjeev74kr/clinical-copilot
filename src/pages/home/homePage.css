@@ -33,3 +33,9 @@ padding: 0.5rem;
    padding: 2rem;
    color:red;
 }
+
+.close-button{
+   width:1.5rem;
+   height:1.5rem;
+   align-self: center;
+}

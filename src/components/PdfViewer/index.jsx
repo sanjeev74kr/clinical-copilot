@@ -1,4 +1,6 @@
 import { useState, useCallback } from "react";
+
+import Tooltip from '@mui/material/Tooltip';
 import { FaArrowsAltH } from 'react-icons/fa'
 import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
 import { MdZoomIn, MdZoomOut } from "react-icons/md";
@@ -50,7 +52,6 @@ function PdfViewer(props) {
     }
 
     const textRenderer = useCallback(
-
         (textItem) => highlightPattern(textItem.str, searchTerm),
         [searchTerm]
     );
@@ -84,17 +85,32 @@ function PdfViewer(props) {
         <div className="pdfViewer-container">
             <div className="pdfViewer-function-container">
                 <div className="pdf-viewer-title">sample.pdf</div>
-                <p className="page-number">{pageNumber || (numPages ? 1 : '__')}/{numPages || '__'}</p>
+                <div className="page-count-container">
+                    <button className="page-controller-btn"
+                        type="button"
+                        disabled={pageNumber <= 1}
+                        onClick={previousPage}><CiCircleChevLeft className="page-controller-btn"/>
+                    </button>
+                    <p className="page-number">{pageNumber || (numPages ? 1 : '__')}/{numPages || '__'}</p>
+                    <button 
+                    type="button" className="page-controller-btn"
+                        disabled={pageNumber >= numPages}
+                        onClick={nextPage}><CiCircleChevRight className="page-controller-btn" /></button>
+                </div>
                 <div className="pdf-icons-container">
-                    <MdZoomIn className="pdf-icons" tooltip={'zoom in'} onClick={handleZoomIn} />
-                    <MdZoomOut className="pdf-icons" tooltip='zoom out' onClick={handleZoomOut} />
+                    <Tooltip title='zoom in'>
+                    <MdZoomIn className="pdf-icons" onClick={handleZoomIn} />
+                    </Tooltip>
+                    <Tooltip title='zoom out'>
+                    <MdZoomOut className="pdf-icons" onClick={handleZoomOut} />
+                    </Tooltip>
                     <FaArrowsAltH className="pdf-icons" onClick={handlePdfWidth} />
                     {/* <input className='search-box' type="search" value={searchTerm} onChange={(e) => handleInputChange(e)} /> */}
                 </div>
             </div>
             <div className="pdf-container">
                 <Document file={pdfurl} onLoadSuccess={handleDocumentLoadSuccess}>
-                    <Outline onItemClick={onItemClick} />
+                    {/* <Outline onItemClick={onItemClick} /> */}
                     <div>
                         <Page pageNumber={pageNumber}
                             customTextRenderer={textRenderer}
@@ -103,18 +119,10 @@ function PdfViewer(props) {
                     </div>
                 </Document>
             </div>
-            <div className="page-count-container">
-                <button
-                    type="button"
-                    disabled={pageNumber <= 1}
-                    onClick={previousPage}><CiCircleChevLeft />
 
-                </button>
 
-                <button type="button"
-                    disabled={pageNumber >= numPages}
-                    onClick={nextPage}><CiCircleChevRight /></button>
-            </div>
+
+
         </div>
     )
 }
