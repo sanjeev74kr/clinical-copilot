@@ -1,32 +1,45 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./medicalChartReview.css";
 import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
 import pdfFile from "../../assets/sample_file.pdf";
 import DropDownBox from "../../components/DropDownBox";
-import { concept } from "../../utils/sampleData";
 import { status } from "../../utils/sampleData";
-import DetailsStatus from "../../components/DetailsStatus";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { FaTimes, FaCopy, FaPaste, FaCheck } from "react-icons/fa";
 import { appContext } from "../../context/AppContext";
+import { useLocation } from "react-router-dom";
 
 function MedicalChartReview() {
-  const { identifierDetails, getDocumentDataPerIdentifier } = useContext(appContext);
+  const { identifierDetails, getDocumentDataPerIdentifier, loading } =
+    useContext(appContext);
 
   const [referenceText, setReferenceText] = useState(["lorem"]);
   const [selectedConcept, setSelectedConcept] = useState("");
 
   const [selectedReviewStatus, setSelectedReviewStatus] = useState("");
-  const [expandFeedbackAccordion, setExpandFeedbackAccordian] = useState(false);
+  const [patient, setPatient] = useState([]);
+  const [provider, setProvider] = useState([]);
+  const [clinicalDocument, setClinicalDocument] = useState([]);
+  const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
+
+  const location = useLocation();
+  const documentIdentifier = location.state.identifier;
 
   useEffect(() => {
-    getDocumentDataPerIdentifier();
-   
-  }, [identifierDetails]);
+    getDocumentDataPerIdentifier(documentIdentifier);
+  }, []);
+
+  useEffect(() => {
+    setPatient(identifierDetails.patient);
+    setProvider(identifierDetails.provider);
+    setClinicalDocument(identifierDetails.clinical_document);
+
+    setclinicalDocumentSummary(identifierDetails.clinical_document_summary);
+  }, [loading]);
 
   function handleDropDownSelection(value, field) {
     if (field === "concept") {
@@ -38,34 +51,70 @@ function MedicalChartReview() {
     }
   }
 
-  function handleFeedbackAccordion() {
-    setExpandFeedbackAccordian(!expandFeedbackAccordion);
-  }
-
   return (
     <div className="page-main-container">
       {/* <Header /> */}
       <div className="card-container">
-        <DetailsCard cardHeader={"Prior Auth Request Details"} />
-        <DetailsCard cardHeader={"Patient Details"} />
-        <DetailsCard cardHeader={"Provider  Details"} />
-        <DetailsCard cardHeader={"Document Details"} />
-        <DetailsStatus cardHeader={"Status"} />
+        {clinicalDocument && (
+          <DetailsCard
+            cardHeader={"Prior Auth Request Details"}
+            cardData={clinicalDocument}
+            type={"Auth"}
+          />
+        )}
+        {patient && (
+          <DetailsCard
+            cardHeader={"Patient Details"}
+            cardData={patient}
+            type={"Patient"}
+          />
+        )}
+        {provider && (
+          <DetailsCard
+            cardHeader={"Provider  Details"}
+            cardData={provider}
+            type={"Provider"}
+          />
+        )}
+        {clinicalDocument && (
+          <DetailsCard
+            cardHeader={"Document Details"}
+            cardData={clinicalDocument}
+            type={"document"}
+          />
+        )}
+        {clinicalDocument && (
+          <DetailsCard
+            cardHeader={"Status"}
+            cardData={clinicalDocument}
+            type={"status"}
+          />
+        )}
       </div>
       <div className="pdfViewer-and-operations-container">
-        <PdfViewer className={'pdfViewer-container'} pdfurl={pdfFile} referenceTextInput={referenceText} />
+        <PdfViewer
+          className={"pdfViewer-container"}
+          pdfurl={pdfFile}
+          referenceTextInput={referenceText}
+        />
         <div className="operation-container">
           <div className="title-container">
             <div className="select-concept-container">
-              <DropDownBox
-                label={""}
-                cssName={"select-box-container-concept"}
-                dropDownBoxData={concept.identifier}
-                onSelect={(value) => handleDropDownSelection(value, "concept")}
-              />
+              {clinicalDocumentSummary && (
+                <DropDownBox
+                  label={""}
+                  cssName={"select-box-container-concept"}
+                  dropDownBoxData={clinicalDocumentSummary}
+                  type={"concept"}
+                  onSelect={(value) =>
+                    handleDropDownSelection(value, "concept")
+                  }
+                />
+              )}
               <DropDownBox
                 label={""}
                 cssName={"select-box-container-review"}
+                type={"status"}
                 dropDownBoxData={status}
                 onSelect={(value) =>
                   handleDropDownSelection(value, "review_status")
@@ -127,7 +176,7 @@ function MedicalChartReview() {
             <div className="note-container">
               <ul>
                 <li className="list-style-none">
-                <div className="notes-container">
+                  <div className="notes-container">
                     <span className="heading">Condition: </span>
                     <div className="condition-line"></div>
                     <span>
@@ -175,13 +224,13 @@ function MedicalChartReview() {
                   <FaPaste />
                 </div>
                 <div className="select-concept-container">
-                  <DropDownBox
+                  {/*  <DropDownBox
                     label={""}
                     dropDownBoxData={status}
                     onSelect={(value) =>
                       handleDropDownSelection(value, "concept")
                     }
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

@@ -11,27 +11,25 @@ import Modal from "react-modal";
 import Pagination from "@mui/material/Pagination";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-import './homePage.css';
-
+import "./homePage.css";
 
 const customStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.75)', // This will give a semi-transparent dark background
+    backgroundColor: "rgba(0, 0, 0, 0.75)", // This will give a semi-transparent dark background
   },
   content: {
-    position:'absolute',
-    top: '40%',
-    left: '50%',
-    right: '2%',
-    bottom: '1%',
-   // marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',  
-    zindex:'100',
+    position: "absolute",
+    top: "40%",
+    left: "50%",
+    right: "2%",
+    bottom: "1%",
+    // marginRight: '-50%',
+    transform: "translate(-50%, -50%)",
+    zindex: "100",
     // width:'fit-content',
     // height:'fit-content',
     // overflow:'none'
   },
-
 };
 
 Modal.setAppElement("body");
@@ -90,8 +88,8 @@ const HomePage = () => {
 
   useEffect(() => setTableData(docs), [docs]);
 
-  function handleIdentifierClick() {
-    navigate("/medicalChartReview");
+  function handleIdentifierClick(id) {
+    navigate("/medicalChartReview", { state: { identifier: id } });
   }
 
   function openModal() {
@@ -117,7 +115,7 @@ const HomePage = () => {
       <div className="searchbar-and-table">
         {/* // searchQuery={searchQuery} */}
         <SearchBar setSearchQuery={handleSearch} />
-        
+
         {/* filterData(searchQuery, docs) */}
         {docs?.length > 0 && (
           <DataTable
@@ -156,7 +154,10 @@ const HomePage = () => {
         style={customStyles}
         contentLabel="Pdf File"
       >
-        <IoIosCloseCircleOutline className="close-button" onClick={closeModal}/>
+        <IoIosCloseCircleOutline
+          className="close-button"
+          onClick={closeModal}
+        />
         <PdfViewer pdfurl={pdfFile} />
       </Modal>
     </div>

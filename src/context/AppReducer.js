@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 export const AppReducer = (state, action) => {
   switch (action.type) {
     case "SET_LOGIN":
@@ -15,9 +17,17 @@ export const AppReducer = (state, action) => {
       };
 
     case "GET_IDENTFIER_DOCUMENTS":
+      console.log(action.payload)
       return {
         ...state,
         loading: false,
+        identifierDetails: action.payload,
+      };
+
+    case "GET_IDENTFIER_DOCUMENTS_START":
+      return {
+        ...state,
+        loading: action.payload,
       };
 
     default:

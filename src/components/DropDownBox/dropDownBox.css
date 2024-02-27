@@ -28,6 +28,16 @@
     border: none;
     background: #f0f0f0;
     font-weight: 600;
+    padding-right: 68%;
+}
+
+.select-options-status{
+    margin-left: 0.8rem;
+    outline: none;
+    border: none;
+    background: #f0f0f0;
+    font-weight: 600;
+    padding-right: 30%;
 }
 
 /* .options{

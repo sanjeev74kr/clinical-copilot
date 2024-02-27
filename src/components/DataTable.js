@@ -34,8 +34,8 @@ const DataTable = (props) => {
   const {rows,page,rowsPerPage,handleIdentifierClick,handleFilePathClick}=props;
   
 
-  const identifierClickHandler=()=>{
-     handleIdentifierClick();
+  const identifierClickHandler=(id)=>{
+     handleIdentifierClick(id);
   }
 
   const filePathClickHandler=()=>{
@@ -64,7 +64,7 @@ const DataTable = (props) => {
                 sx={{ "&:last-child td, &:last-child th": {borderBottom:"0.01rem solid #cccccc"} }}
               >
             
-                <StyledTableCell sx={{color:'blue', cursor:'pointer'}} component="th" scope="row" onClick={identifierClickHandler}>
+                <StyledTableCell sx={{color:'blue', cursor:'pointer'}} component="th" scope="row" onClick={()=>identifierClickHandler(row.Identifier)}>
                   {row.Identifier}
                 </StyledTableCell>
                 <StyledTableCell sx={{color:'blue', cursor:'pointer'}} align="center" onClick={filePathClickHandler}>{row.Document_Name}</StyledTableCell>
