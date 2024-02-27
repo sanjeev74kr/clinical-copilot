@@ -45,7 +45,7 @@ function MedicalChartReview() {
         <DetailsStatus cardHeader={"Status"} />
       </div>
       <div className="pdfViewer-and-operations-container">
-        <PdfViewer pdfurl={pdfFile} referenceTextInput={referenceText} />
+        <PdfViewer className={'pdfViewer-container'} pdfurl={pdfFile} referenceTextInput={referenceText} />
         <div className="operation-container">
           <div className="title-container">
             <div className="operation-title">Concept</div>

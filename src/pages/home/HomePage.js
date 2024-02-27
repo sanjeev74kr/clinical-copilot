@@ -13,21 +13,25 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import './homePage.css';
 
-const customStyles = {
-  content: {
-    position:'absolute',
-    top: '40%',
-    left: '50%',
-    right: '2%',
-    bottom: '1%',
-   // marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',  
-    zindex:'100',
-    // width:'fit-content',
-    // height:'fit-content',
-    // overflow:'none'
-  },
 
+const customStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.75)', // This will give a semi-transparent dark background
+  },
+  content: {
+    position: 'absolute',
+    top: '10%',
+    left: '15%',
+    right: '15%',
+    bottom: '5%',
+    border: '1px solid #ccc', // This will give a thin border to the modal
+    background: '#fff', // This will give a white background to the modal
+    overflow: 'none',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px', // This will give rounded corners to the modal
+    outline: 'none',
+    paddingTop:'0'
+  }
 };
 
 Modal.setAppElement('body');
@@ -118,6 +122,7 @@ const HomePage = () => {
       <div className="searchbar-and-table">
         {/* // searchQuery={searchQuery} */}
         <SearchBar setSearchQuery={handleSearch} />
+        
         {/* filterData(searchQuery, docs) */}
         {docs?.length > 0 && <DataTable rows={tableData} page={page} rowsPerPage={rowsPerPage} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
         {dataLength > 0 ?
@@ -141,8 +146,10 @@ const HomePage = () => {
         style={customStyles}
         contentLabel="Pdf File"
       >
-        <IoIosCloseCircleOutline className="close-button" onClick={closeModal}/>
-        <PdfViewer pdfurl={pdfFile} />
+        <div className="modal-pdf-viewer-container">
+        <IoIosCloseCircleOutline className="close-button" title='close' onClick={closeModal}/>
+        <PdfViewer className='modal-pdf-viewer' pdfurl={pdfFile} />
+        </div>
       </Modal>
       </div>
   );
