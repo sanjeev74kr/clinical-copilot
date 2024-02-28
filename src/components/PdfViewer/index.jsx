@@ -107,12 +107,11 @@ function PdfViewer(props) {
             <div className="pdf-container">
                 <Document file={pdfurl} onLoadSuccess={handleDocumentLoadSuccess}>
                   
-                    <div>
                         <Page pageNumber={pageNumber}
                             customTextRenderer={textRenderer}
                             scale={scale}
                             width={pdfWidth} />
-                    </div>
+                    
                 </Document>
             </div>
 

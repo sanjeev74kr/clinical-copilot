@@ -9,6 +9,8 @@ import {
   getEvidenceURL,
 } from "../services/api";
 
+import {getDocuments} from '../services/apiConsume'
+
 const initialState = {
   loading: true,
   isLoggedIn: false,
@@ -26,9 +28,10 @@ export const AppContextProvider = ({ children }) => {
     const url = getDocumentsUrl;
     try {
       //`http://localhost:3000/documents`;
-      const res = await axios.get(url);
-      const result = await res.data.res;
-
+      
+      // const res = await axios.get(url);
+      // const result = await res.data.res;
+      const result=await getDocuments();
       let docs = [];
       docs = result?.map((item) => item);
       dispatch({ type: "GET_DOCUMENTS", payload: docs });
