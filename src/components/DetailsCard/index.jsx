@@ -4,7 +4,7 @@ function DetailsCard(props) {
   const { cardHeader, cardData, type } = props;
   const renderComponent = (type) => {
     const pageData = cardData[0];
-    console.log(pageData);
+   
     switch (type) {
       case "Provider":
         return (

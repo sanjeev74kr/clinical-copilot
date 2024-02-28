@@ -141,11 +141,15 @@
 .cross {
   color: red;
 }
-
+.evidence-container{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
 .box-container {
   background-color: #e4e2e2;
   margin: 0 15px;
-  border-bottom: groove;
+  padding: 8px 5px;
 }
 .save-btn-container {
   display: flex;

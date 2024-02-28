@@ -17,7 +17,6 @@ export const AppReducer = (state, action) => {
       };
 
     case "GET_IDENTFIER_DOCUMENTS":
-      console.log(action.payload)
       return {
         ...state,
         loading: false,
@@ -28,6 +27,17 @@ export const AppReducer = (state, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    case "GET_EVIDENCE_START":
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case "GET_EVIDENCE":
+      return {
+        ...state,
+        loading: false,
+        evidenceResult: action.payload,
       };
 
     default:

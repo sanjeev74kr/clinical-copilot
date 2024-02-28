@@ -9,13 +9,19 @@ import { status } from "../../utils/sampleData";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { FaTimes, FaCopy, FaPaste, FaCheck } from "react-icons/fa";
+import { FaPaste } from "react-icons/fa";
 import { appContext } from "../../context/AppContext";
 import { useLocation } from "react-router-dom";
+import Evidence from "../../components/Evidence/evidence";
 
 function MedicalChartReview() {
-  const { identifierDetails, getDocumentDataPerIdentifier, loading } =
-    useContext(appContext);
+  const {
+    identifierDetails,
+    getDocumentDataPerIdentifier,
+    getConceptEvidence,
+    evidenceResult,
+    loading,
+  } = useContext(appContext);
 
   const [referenceText, setReferenceText] = useState(["lorem"]);
   const [selectedConcept, setSelectedConcept] = useState("");
@@ -37,17 +43,31 @@ function MedicalChartReview() {
     setPatient(identifierDetails.patient);
     setProvider(identifierDetails.provider);
     setClinicalDocument(identifierDetails.clinical_document);
-
     setclinicalDocumentSummary(identifierDetails.clinical_document_summary);
-  }, [loading]);
+    if (identifierDetails?.clinical_document_summary !== undefined) {
+      const cdsid =
+        identifierDetails?.clinical_document_summary[0].CDS_Identifier;
+
+      initConceptEvidence(cdsid, "NOT-STARTED");
+    }
+  }, [identifierDetails]);
+
+  const initConceptEvidence = (cds_identifier, reviewStatus) => {
+    getConceptEvidence(cds_identifier, reviewStatus);
+  };
 
   function handleDropDownSelection(value, field) {
     if (field === "concept") {
       setSelectedConcept(value);
-      console.log("concept:", selectedConcept);
+      console.log("concept:", value);
     } else if (field === "review_status") {
       setSelectedReviewStatus(value);
-      console.log("review_status", selectedReviewStatus);
+      console.log("review_status", value);
+    }
+
+    console.log(selectedConcept, selectedReviewStatus)
+    if (selectedConcept !== undefined && selectedReviewStatus !== undefined) {
+      getConceptEvidence(selectedConcept, selectedReviewStatus);
     }
   }
 
@@ -122,83 +142,7 @@ function MedicalChartReview() {
               />
             </div>
           </div>
-
-          <div className="box-container">
-            <div className="ref-text-container">
-              Lipid panel complete blood count (hemogram) blood by Automated'
-              count
-            </div>
-            <div className="para-container">
-              img elements must have an alt prop, either with meaningful text,
-              or an empty string for decorative images, img elements must have
-              an alt prop, either with meaningful text, or an empty string for
-              decorative images
-            </div>
-
-            <div className="note-container">
-              <ul>
-                <li className="list-style-none">
-                  <div className="notes-container">
-                    <span className="heading">Condition: </span>
-                    <div className="condition-line"></div>
-                    <span>
-                      Lipid panel complete blood count(hemogram) panel - Blood
-                      by Automatedcount{" "}
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="icon-container">
-              <span>
-                <FaCopy />
-              </span>
-              <span className="cross">
-                <FaTimes />
-              </span>
-              <span className="check">
-                <FaCheck />
-              </span>
-            </div>
-          </div>
-          <div className="box-container">
-            <div className="ref-text-container">
-              Lipid panel complete blood count (hemogram) blood by Automated
-              count
-            </div>
-            <div className="para-container">
-              img elements must have an alt prop, either with meaningful text,
-              or an empty string for decorative images, img elements must have
-              an alt prop, either with meaningful text, or an empty string for
-              decorative images
-            </div>
-
-            <div className="note-container">
-              <ul>
-                <li className="list-style-none">
-                  <div className="notes-container">
-                    <span className="heading">Condition: </span>
-                    <div className="condition-line"></div>
-                    <span>
-                      Lipid panel complete blood count(hemogram) panel - Blood
-                      by Automatedcount{" "}
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div className="icon-container">
-              <span>
-                <FaCopy />
-              </span>
-              <span className="cross">
-                <FaTimes />
-              </span>
-              <span className="check">
-                <FaCheck />
-              </span>
-            </div>
-          </div>
+          <Evidence data={evidenceResult} />
           <div className="llm-box-container">
             <div className="user-box-container">
               <div className="person-icon"></div>

@@ -9,7 +9,7 @@ function DropDownBox(props) {
             {label}
             <select className="select-options" onChange={handleSelectionChange}>
               {dropDownBoxData?.map((item, index) => ( 
-                <option key={`select${index}`} value={item.Concept_Name}>
+                <option key={`select${index}`} value={item.CDS_Identifier}>
                   {item.Concept_Name}
                 </option>
               ))}
