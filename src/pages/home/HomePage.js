@@ -4,37 +4,35 @@ import { useNavigate } from "react-router-dom";
 
 import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/DataTable";
-import PdfViewer from '../../components/PdfViewer';
-import pdfFile from '../../assets/sample_file.pdf';
+import PdfViewer from "../../components/PdfViewer";
+import pdfFile from "../../assets/sample_file.pdf";
 
-import Modal from 'react-modal';
-import Pagination from '@mui/material/Pagination';
+import Modal from "react-modal";
+import Pagination from "@mui/material/Pagination";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-import './homePage.css';
-
+import "./homePage.css";
 
 const customStyles = {
   overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.75)', // This will give a semi-transparent dark background
+    backgroundColor: "rgba(0, 0, 0, 0.75)", // This will give a semi-transparent dark background
   },
   content: {
-    position: 'absolute',
-    top: '10%',
-    left: '15%',
-    right: '15%',
-    bottom: '5%',
-    border: '1px solid #ccc', // This will give a thin border to the modal
-    background: '#fff', // This will give a white background to the modal
-    overflow: 'none',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '4px', // This will give rounded corners to the modal
-    outline: 'none',
-    paddingTop:'0'
-  }
+    position: "absolute",
+    top: "40%",
+    left: "50%",
+    right: "2%",
+    bottom: "1%",
+    // marginRight: '-50%',
+    transform: "translate(-50%, -50%)",
+    zindex: "100",
+    // width:'fit-content',
+    // height:'fit-content',
+    // overflow:'none'
+  },
 };
 
-Modal.setAppElement('body');
+Modal.setAppElement("body");
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,7 +44,6 @@ const HomePage = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
-
 
   const { docs, getPdfDocuments } = useContext(appContext);
   const dataLength = docs?.length;
@@ -64,11 +61,12 @@ const HomePage = () => {
           d?.Document_Name?.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(docData);
-      break;
+        break;
 
       case "time":
-        const timestampData=docs?.filter((d)=>
-        query?new Date(d?.Document_Evaluation_dts)>=new Date(query) :d);
+        const timestampData = docs?.filter((d) =>
+          query ? new Date(d?.Document_Evaluation_dts) >= new Date(query) : d
+        );
         setTableData(timestampData);
         break;
 
@@ -77,25 +75,21 @@ const HomePage = () => {
           d?.Document_Review_Status?.toLowerCase().includes(query.toLowerCase())
         );
         setTableData(reviewData);
-      break;
+        break;
 
       default:
         break;
-
     }
   };
 
   useEffect(() => {
     getPdfDocuments();
-
   }, []);
 
   useEffect(() => setTableData(docs), [docs]);
 
-
-  function handleIdentifierClick() {
-
-    navigate('/medicalChartReview');
+  function handleIdentifierClick(id) {
+    navigate("/medicalChartReview", { state: { identifier: id } });
   }
 
   function openModal() {
@@ -116,29 +110,43 @@ const HomePage = () => {
     openModal();
   }
 
-
   return (
     <div className="homepage-main-container">
       <div className="searchbar-and-table">
         {/* // searchQuery={searchQuery} */}
         <SearchBar setSearchQuery={handleSearch} />
-        
+
         {/* filterData(searchQuery, docs) */}
-        {docs?.length > 0 && <DataTable rows={tableData} page={page} rowsPerPage={rowsPerPage} handleIdentifierClick={handleIdentifierClick} handleFilePathClick={handleFilePathClick} />}
-        {dataLength > 0 ?
+        {docs?.length > 0 && (
+          <DataTable
+            rows={tableData}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            handleIdentifierClick={handleIdentifierClick}
+            handleFilePathClick={handleFilePathClick}
+          />
+        )}
+        {dataLength > 0 ? (
           <div className="pagination-container">
-            <h5 className="pagination-info">showing data {(page - 1) * rowsPerPage + 1} to {Math.min((page - 1) * rowsPerPage + rowsPerPage, dataLength)} of {dataLength | 0} entries</h5>
+            <h5 className="pagination-info">
+              showing data {(page - 1) * rowsPerPage + 1} to{" "}
+              {Math.min((page - 1) * rowsPerPage + rowsPerPage, dataLength)} of{" "}
+              {dataLength | 0} entries
+            </h5>
 
-            <Pagination count={pageCount} shape="rounded" color="secondary" page={page} onChange={handleChange} />
-
+            <Pagination
+              count={pageCount}
+              shape="rounded"
+              color="secondary"
+              page={page}
+              onChange={handleChange}
+            />
           </div>
-          :
+        ) : (
           <h5 className="no-data-msg">No data found</h5>
-
-        }
-
+        )}
       </div>
-      
+
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -151,7 +159,7 @@ const HomePage = () => {
         <PdfViewer className='modal-pdf-viewer' pdfurl={'https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T09:28:51Z&se=2024-02-28T17:28:51Z&spr=https&sv=2022-11-02&sr=b&sig=i7vxJ6qYmIXR15VXAF%2BfMeJh99fXhEcBK7HN9%2BTZfSw%3D'} />
         </div>
       </Modal>
-      </div>
+    </div>
   );
 };
 

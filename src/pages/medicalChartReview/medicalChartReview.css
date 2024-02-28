@@ -18,7 +18,7 @@
 .card-container {
   display: flex;
   flex-direction: row;
-  flex-wrap:no-wrap;
+  flex-wrap: no-wrap;
   justify-content: space-evenly;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -41,7 +41,7 @@
   flex-direction: column;
 
   width: 40%;
-  gap: 1rem;
+  /*gap: 1rem;*/
   background: #fafafa;
   margin-left: 2.5rem;
   border-radius: 0.8rem;
@@ -60,10 +60,33 @@
   padding: 14px;
   font-size: 14px;
 }
+.condition-line {
+  border-left: 1px solid #cecece;
+  height: 3rem;
+  margin: 0% 2% 1% 2%;
+}
+.notes-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ccc;
+  background: white;
+  margin: 5px 5px;
+  border-radius: 0.5rem;
+  padding: 5px;
+}
+.ref-text-container {
+  display: flex;
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  margin: 12px;
+  background: navajowhite;
+}
 .llm-box-container {
   border: 1px solid #cecece;
   width: 94%;
-  margin-left: 14px;
+  margin: 18px 14px;
   border-radius: 5px;
 }
 
@@ -87,11 +110,11 @@
   display: flex;
   justify-content: flex-start;
   font-size: 0.8rem;
-  margin-left: 1.4rem;
+  margin-left: .4rem;
   padding-bottom: 7px;
 }
 
-.list-style-none{
+.list-style-none {
   list-style: none;
 }
 .heading {
@@ -111,6 +134,22 @@
 .paste-icon {
   color: #ccc;
   font-size: 1.5rem;
+}
+.check {
+  color: green;
+}
+.cross {
+  color: red;
+}
+.evidence-container{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.box-container {
+  background-color: #e4e2e2;
+  margin: 0 15px;
+  padding: 8px 5px;
 }
 .save-btn-container {
   display: flex;
@@ -152,15 +191,16 @@
   height: 2rem;
 }
 .subtitle-container {
-  display: flex;
+  display: none;
   justify-content: flex-start;
-  padding-left: 12px;
+  padding: 12px 16px;
   font-size: 14px;
   font-weight: 600;
 }
 
 .select-concept-container {
   display: flex;
+  width: 100%;
   font-size: 12px;
   font-weight: 700;
   gap: 5px;

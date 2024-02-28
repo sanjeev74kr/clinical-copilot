@@ -1,15 +1,20 @@
-import React, { useMemo, useReducer } from "react";
+import React, { useReducer } from "react";
 
 import { AppReducer } from "./AppReducer";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import {getDocuments} from '../services/apiConsume'
+import {
+  getDocumentIdentifierURL,
+  getDocumentsUrl,
+  getEvidenceURL,
+} from "../services/api";
 
 const initialState = {
   loading: true,
   isLoggedIn: false,
   docs: [],
+  identifierDetails: {},
+  evidenceResult: [],
   error: false,
 };
 export const appContext = React.createContext(initialState);
@@ -18,18 +23,18 @@ export const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   const getPdfDocuments = async () => {
-    //  const url = `http://localhost:3000/documents`;
-    // const res = await axios.get(url);
-    // const result = await res.data;
+    const url = getDocumentsUrl;
     try {
-      const result=await getDocuments();
+      //`http://localhost:3000/documents`;
+      const res = await axios.get(url);
+      const result = await res.data.res;
+
       let docs = [];
       docs = result?.map((item) => item);
-      dispatch({ type: "GET_DOCUMENTS", payload: docs });  
+      dispatch({ type: "GET_DOCUMENTS", payload: docs });
     } catch (error) {
-      console.log("error occured while fetching documents in context");
+      console.log(error);
     }
-    
   };
 
   const setLoggedInState = (credentials) => {
@@ -43,15 +48,52 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  const getDocumentDataPerIdentifier = async (identifier) => {
+    const identifierURL = getDocumentIdentifierURL + `/${identifier}`;
+    dispatch({ type: "GET_IDENTFIER_DOCUMENTS_START", payload: true });
+    try {
+      const res = await axios.get(identifierURL);
+      const result = await res.data.res;
+
+      let identifierDetails = result;
+      // identifierDetails = result?.map((item) => item);
+      dispatch({ type: "GET_IDENTFIER_DOCUMENTS", payload: identifierDetails });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getConceptEvidence = async (cds_identifier, reviewStatus) => {
+    const evidencURL = getEvidenceURL + `${cds_identifier}`;
+    dispatch({ type: "GET_EVIDENCE_START", payload: true });
+    try {
+      const res = await axios.get(evidencURL);
+      const result = await res.data.res.clinical_evidence_summary;
+
+      let evidenceDetails;
+      evidenceDetails = result?.filter(
+        (item) => item.CDS_Identifier === cds_identifier
+      );
+
+      dispatch({ type: "GET_EVIDENCE", payload: evidenceDetails });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <appContext.Provider
       value={{
         isLoggedIn: state.isLoggedIn,
         error: state.error,
-        docs:state.docs,
+        docs: state.docs,
         loading: state.loading,
+        identifierDetails: state.identifierDetails,
+        evidenceResult: state.evidenceResult,
         setLoggedInState,
         getPdfDocuments,
+        getDocumentDataPerIdentifier,
+        getConceptEvidence,
         dispatch,
       }}
     >
