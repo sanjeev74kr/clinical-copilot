@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#FAFAFA",
-    color:'#cccccc'
+    color:'#535252'
     // color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -60,7 +60,7 @@ const DataTable = (props) => {
             {rows?.slice(rowsPerPage*(page-1),(rowsPerPage*(page-1))+rowsPerPage)
             .map((row) => (
               <StyledTableRow
-                key={row.identifier}
+                key={row.Identifier}
                 sx={{ "&:last-child td, &:last-child th": {borderBottom:"0.01rem solid #cccccc"} }}
               >
             

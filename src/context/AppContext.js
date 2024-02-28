@@ -33,7 +33,7 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const setLoggedInState = (credentials) => {
-    if (credentials.email === "user" && credentials.password === "password") {
+    if (credentials.email === "exl@exlservice.com" && credentials.password === "password@123") {
       dispatch({
         type: "SET_LOGIN",
         payload: true,
