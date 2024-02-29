@@ -1,27 +1,43 @@
 import "./dropDownBox.css";
+
+import Multiselect from "multiselect-react-dropdown";
+
 function DropDownBox(props) {
   const { label, cssName, dropDownBoxData, onSelect, type } = props;
+
+  const buildDropDownData = dropDownBoxData.map((item, index) => {
+   
+    return { id: (index+1), name: item[Object.keys(item)] };
+  });
+
+  
   const renderComponent = (type) => {
     switch (type) {
       case "concept":
         return (
-          <label>
+         
+           <label>
             {label}
             <select className="select-options" onChange={handleSelectionChange}>
-              {dropDownBoxData?.map((item, index) => ( 
+              {dropDownBoxData?.map((item, index) => (
                 <option key={`select${index}`} value={item.CDS_Identifier}>
                   {item.Concept_Name}
                 </option>
               ))}
             </select>
-          </label>
+          </label> 
         );
-        
+
       case "status":
         return (
+          
           <label>
             {label}
-            <select className="select-options-status" onChange={handleSelectionChange}>
+            <select
+              className="select-options-status"
+              onChange={handleSelectionChange}
+              multiple
+            >
               {dropDownBoxData?.map((item, index) => (
                 <option key={`select${index}`} value={item[index]}>
                   {item[index]}
@@ -30,8 +46,23 @@ function DropDownBox(props) {
             </select>
           </label>
         );
-        
+
       default:
+        return (
+          <label>
+            {label}
+            <select
+              className="select-options-normal"
+              onChange={handleSelectionChange}
+            >
+              {dropDownBoxData?.map((item, index) => (
+                <option key={`select${index}`} value={item[index]}>
+                  {item[index]}
+                </option>
+              ))}
+            </select>
+          </label>
+        );
         break;
     }
   };

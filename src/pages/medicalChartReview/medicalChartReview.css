@@ -74,20 +74,37 @@
   border-radius: 0.5rem;
   padding: 5px;
 }
+.listwidth{
+  width: 98%;
+}
+.align-box{
+  display: flex;
+    align-items: center;
+}
 .ref-text-container {
   display: flex;
+  flex-direction: column;
   padding: 14px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 1rem;
   margin: 12px;
-  background: navajowhite;
+  background: white;
 }
 .llm-box-container {
   border: 1px solid #cecece;
-  width: 94%;
+  width: 96%;
   margin: 18px 14px;
   border-radius: 5px;
+}
+
+.count-circle{
+  background: #9c27b0 !important; 
+  text-align: center;
+}
+.pagenumclr{
+  color: white;
+  font-weight: 600;
 }
 
 .ref-item {
@@ -200,6 +217,16 @@
 
 .select-concept-container {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 5px;
+}
+
+.select-notes-dd {
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
   font-size: 12px;
   font-weight: 700;
