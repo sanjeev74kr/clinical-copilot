@@ -30,22 +30,37 @@
 .pdfViewer-and-operations-container {
   display: flex;
   flex-direction: row;
-  /* padding-left:1.5rem;
-    padding-right: 1.5rem; */
   margin-left: 1rem;
   margin-right: 1rem;
+  margin-bottom: 2rem;
+  /* height: auto; */
 }
 
 .operation-container {
   display: flex;
   flex-direction: column;
-
   width: 50%;
+  height:100%;
   /*gap: 1rem;*/
   background: #fafafa;
   margin-left: 1rem;
   border-radius: 0.8rem;
 }
+
+.filter-container{
+  max-width:95%;
+  display: flex;
+  align-items: center;
+  margin:2%;
+  width:100%;
+  gap:1rem;
+}
+
+.clear-filter-button{
+  margin-left: auto;
+  color:blue;
+}
+
 
 .title-container {
   display: flex;
@@ -222,6 +237,8 @@
   font-size: 12px;
   font-weight: 700;
   gap: 5px;
+  margin:2%;
+  margin-top:0.5%;
 }
 
 .select-notes-dd {
@@ -269,3 +286,8 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+
+
+/* .checkbox-container-review{
+  display: flex;
+} */

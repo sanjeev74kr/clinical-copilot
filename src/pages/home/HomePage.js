@@ -158,7 +158,10 @@ const HomePage = () => {
       >
         <div className="modal-pdf-viewer-container">
         <IoIosCloseCircleOutline className="close-button" title='close' onClick={closeModal}/>
-        <PdfViewer className='modal-pdf-viewer' pdfurl={'https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D'} />
+        <PdfViewer className='modal-pdf-viewer' 
+        pdfurl={
+    pdfFile
+      } />
         </div>
       </Modal>
     </div>

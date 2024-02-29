@@ -4,6 +4,7 @@ import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
 import pdfFile from "../../assets/sample_file.pdf";
 import DropDownBox from "../../components/DropDownBox";
+import Checkbox from "../../components/Checkbox";
 import { status } from "../../utils/sampleData";
 
 import TextField from "@mui/material/TextField";
@@ -13,6 +14,7 @@ import { FaPaste } from "react-icons/fa";
 import { appContext } from "../../context/AppContext";
 import { useLocation } from "react-router-dom";
 import Evidence from "../../components/Evidence/evidence";
+import FilterButton from "../../components/FilterButton";
 
 function MedicalChartReview() {
   const {
@@ -32,6 +34,21 @@ function MedicalChartReview() {
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
+
+  // const child1Ref = useRef(null);
+  // const child2Ref = useRef(null);
+
+  // useEffect(() => {
+  //   if (child1Ref.current && child2Ref.current) {
+  //     const maxHeight = Math.max(
+  //       child1Ref.current.offsetHeight,
+  //       child2Ref.current.offsetHeight
+  //     );
+  //     child1Ref.current.style.height = `${maxHeight}px`;
+  //     child2Ref.current.style.height = `${maxHeight}px`;
+  //   }
+  // }, []);
+
 
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
@@ -117,13 +134,25 @@ function MedicalChartReview() {
         )}
       </div>
       <div className="pdfViewer-and-operations-container">
+      
         <PdfViewer
           className={"pdfViewer-container"}
-          pdfurl={'https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D'}
+          pdfurl={
+          //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
+        pdfFile  
+        }
           referenceTextInput={referenceText}
         />
-        <div className="operation-container">
-          <div className="title-container">
+        
+        <div className="operation-container" >
+          {/* <div className="title-container"> */}
+          <div className="filter-container">
+            <h4>Filter by :</h4>
+            <FilterButton label={'Not-Started'}/>
+            <FilterButton label={'In-Progress'}/>
+            <FilterButton label={'Completed'}/>
+            <h5 className="clear-filter-button">Clear Filter</h5>
+          </div>
             <div className="select-concept-container">
               {clinicalDocumentSummary && (
                 <DropDownBox
@@ -136,7 +165,8 @@ function MedicalChartReview() {
                   }
                 />
               )}
-              <DropDownBox
+
+              {/* <DropDownBox
                 label={""}
                 cssName={"select-box-container-review"}
                 type={"status"}
@@ -144,9 +174,16 @@ function MedicalChartReview() {
                 onSelect={(value) =>
                   handleDropDownSelection(value, "review_status")
                 }
-              />
+              /> */}
+              {/* <div className="checkbox-container-review">
+                <Checkbox label={"NOT-Started"} defaultChecked={"true"} />
+                <Checkbox label={"In-Progress"} defaultChecked={"false"} />
+                <Checkbox label={"Complete"} defaultChecked={"false"} />
+              </div> */}
             </div>
-          </div>
+        
+
+          {/* </div> */}
           <Evidence data={evidenceResult} />
           <div className="llm-box-container">
             <div className="user-box-container">
@@ -175,13 +212,11 @@ function MedicalChartReview() {
                   <FaPaste />
                 </div>
                 <div className="select-notes-dd">
-                    <DropDownBox
+                  <DropDownBox
                     label={""}
                     dropDownBoxData={status}
-                    onSelect={(value) =>
-                      handleDropDownSelection(value, "")
-                    }
-                  /> 
+                    onSelect={(value) => handleDropDownSelection(value, "")}
+                  />
                 </div>
               </div>
             </div>

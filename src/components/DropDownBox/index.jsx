@@ -1,6 +1,6 @@
 import "./dropDownBox.css";
 
-import Multiselect from "multiselect-react-dropdown";
+//import Multiselect from "multiselect-react-dropdown";
 
 function DropDownBox(props) {
   const { label, cssName, dropDownBoxData, onSelect, type } = props;

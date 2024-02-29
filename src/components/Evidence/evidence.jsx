@@ -2,6 +2,7 @@ import { FaTimes, FaCopy, FaCheck } from "react-icons/fa";
 
 const Evidence = ({ data }) => {
   const checkIsArray = (data) => {
+    try{
     const str = data.replaceAll("'", '"');
 
     const obj = JSON.parse(str);
@@ -11,30 +12,49 @@ const Evidence = ({ data }) => {
     } else {
       return false;
     }
+  }
+  catch(error){
+    console.log(error.message);
+  }
   };
 
   const refrenceKeyArray = (obj) => {
+   try{
     const str = obj.replaceAll("'", '"');
 
     let objVal = JSON.parse(str);
     objVal.map((item) => item);
 
     return objVal;
+   }
+   catch(error){
+    console.log(error.message);
+  }
   };
   const refrenceKeyObject = (obj) => {
+    try{
     const str = obj.replaceAll("'", '"');
 
     const objVal = JSON.parse(str);
 
     return Object.keys(objVal);
+    }
+    catch(error){
+      console.log(error.message);
+    }
   };
 
   const refrenceValueObject = (obj) => {
+    try{
     const str = obj.replaceAll("'", '"');
 
     const objVal = JSON.parse(str);
 
     return objVal[Object.keys(objVal)];
+    }
+    catch(error){
+      console.log(error.message);
+    }
   };
 
   return (

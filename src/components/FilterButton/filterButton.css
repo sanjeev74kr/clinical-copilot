@@ -1,0 +1,19 @@
+.filter-button{
+    text-align: center;
+    outline:none;
+    padding:0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 0.8rem;
+    background-color: #cccccc;
+}
+
+.filter-button-clicked{
+    text-align: center;
+    outline:none;
+    padding:0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 0.8rem;
+    background-color: var(--brand-color);
+}
