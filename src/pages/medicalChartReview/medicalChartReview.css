@@ -164,14 +164,26 @@
   height: 7rem;
 }
 .paste-icon {
-  color: #ccc;
+  color: #cecece;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 .check {
   color: green;
+  cursor: pointer;
 }
 .cross {
   color: red;
+  cursor: pointer;
+}
+
+.check-disable {
+  color: #cecece;
+  cursor: pointer;
+}
+.cross-disable {
+  color: #cecece;
+  cursor: pointer;
 }
 .evidence-container{
   display: flex;
@@ -198,8 +210,14 @@
   display: flex;
   gap: 15px;
   padding: 1px 14px;
-  color: #ccc;
+  cursor: pointer;
+  color: #cecece;
   font-size: 1.25rem;
+}
+
+.copyTextSuccess{
+  font-size: .8rem;
+  color: darkgreen;
 }
 .username {
   display: flex;

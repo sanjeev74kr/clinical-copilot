@@ -42,6 +42,7 @@
 .select-options-normal{
     margin-left: 0.8rem;
     outline: none;
+    padding: 10px;
     border: none;
     background: #f0f0f0;
     font-weight: 600;

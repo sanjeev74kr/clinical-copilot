@@ -24,12 +24,20 @@ function MedicalChartReview() {
     evidenceResult,
     loading,
     userName,
+    dispatch,
   } = useContext(appContext);
 
   const [referenceText, setReferenceText] = useState(["lorem"]);
+  const [notStarted, setNotStarted] = useState("Passed".toLocaleLowerCase());
+  const [inProgress, setInProgress] = useState(
+    "In-Progress".toLocaleLowerCase()
+  );
+  const [complete, setCompleted] = useState("Completed".toLocaleLowerCase());
+  const statusArray = [notStarted, inProgress, complete];
   const [selectedConcept, setSelectedConcept] = useState("");
 
-  const [selectedReviewStatus, setSelectedReviewStatus] = useState("");
+  const [masterDDArray, setmasterDDArray] = useState([]);
+  const [pastedText, setpastedText] = useState("");
   const [patient, setPatient] = useState([]);
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
@@ -49,7 +57,6 @@ function MedicalChartReview() {
   //   }
   // }, []);
 
-
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
 
@@ -61,37 +68,56 @@ function MedicalChartReview() {
     setPatient(identifierDetails.patient);
     setProvider(identifierDetails.provider);
     setClinicalDocument(identifierDetails.clinical_document);
-    setclinicalDocumentSummary(identifierDetails.clinical_document_summary);
+
+    const cds = identifierDetails.clinical_document_summary;
     if (identifierDetails?.clinical_document_summary !== undefined) {
       const cdsid =
         identifierDetails?.clinical_document_summary[0].CDS_Identifier;
-
-      initConceptEvidence(cdsid, "NOT-STARTED");
+      // setSelectedConcept(cdsid);
     }
+
+    const filterdDropdown = cds?.filter((item) =>
+      statusArray.includes(item.Concept_Review_Status.toLowerCase())
+    );
+    setclinicalDocumentSummary(filterdDropdown);
+    setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
 
-  const initConceptEvidence = (cds_identifier, reviewStatus) => {
-    getConceptEvidence(cds_identifier, reviewStatus);
+  useEffect(() => {
+    const filterdDropdown = masterDDArray?.filter((item) =>
+      statusArray.includes(item.Concept_Review_Status.toLowerCase())
+    );
+    setclinicalDocumentSummary(filterdDropdown);
+
+    if (filterdDropdown.length > 0) {
+      initConceptEvidence(selectedConcept);
+    } else {
+      dispatch({ type: "CLEAR_IDENTFIER_DOCUMENTS", payload: [] });
+      setSelectedConcept("");
+    }
+  }, [notStarted, inProgress, complete]);
+
+  const initConceptEvidence = (cds_identifier) => {
+    getConceptEvidence(cds_identifier, statusArray);
   };
 
   function handleDropDownSelection(value, field) {
+    console.log("value", value, field, statusArray);
     if (field === "concept") {
       setSelectedConcept(value);
-    } else if (field === "review_status") {
-      setSelectedReviewStatus(value);
     }
 
-    if (
-      selectedConcept !== undefined &&
-      selectedConcept !== "" &&
-      selectedReviewStatus !== undefined &&
-      selectedReviewStatus !== ""
-    ) {
-      getConceptEvidence(selectedConcept, selectedReviewStatus);
-    } else {
-      console.log(selectedConcept, selectedReviewStatus);
-    }
+    getConceptEvidence(value, statusArray);
+    console.log(selectedConcept, notStarted, inProgress, complete);
   }
+  const pasteText = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setpastedText(text)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="page-main-container">
@@ -134,56 +160,50 @@ function MedicalChartReview() {
         )}
       </div>
       <div className="pdfViewer-and-operations-container">
-      
         <PdfViewer
           className={"pdfViewer-container"}
           pdfurl={
-          //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
-        pdfFile  
-        }
+            //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
+            pdfFile
+          }
           referenceTextInput={referenceText}
         />
-        
-        <div className="operation-container" >
-          {/* <div className="title-container"> */}
+
+        <div className="operation-container">
           <div className="filter-container">
             <h4>Filter by :</h4>
-            <FilterButton label={'Not-Started'}/>
-            <FilterButton label={'In-Progress'}/>
-            <FilterButton label={'Completed'}/>
+            <FilterButton
+              label={"Passed"}
+              setLabel={(lbl) => {
+                setNotStarted(lbl);
+              }}
+            />
+            <FilterButton
+              label={"In-Progress"}
+              setLabel={(lbl) => {
+                setInProgress(lbl);
+              }}
+            />
+            <FilterButton
+              label={"Completed"}
+              setLabel={(lbl) => {
+                setCompleted(lbl);
+              }}
+            />
             <h5 className="clear-filter-button">Clear Filter</h5>
           </div>
-            <div className="select-concept-container">
-              {clinicalDocumentSummary && (
-                <DropDownBox
-                  label={""}
-                  cssName={"select-box-container-concept"}
-                  dropDownBoxData={clinicalDocumentSummary}
-                  type={"concept"}
-                  onSelect={(value) =>
-                    handleDropDownSelection(value, "concept")
-                  }
-                />
-              )}
-
-              {/* <DropDownBox
+          <div className="select-concept-container">
+            {clinicalDocumentSummary && (
+              <DropDownBox
                 label={""}
-                cssName={"select-box-container-review"}
-                type={"status"}
-                dropDownBoxData={status}
-                onSelect={(value) =>
-                  handleDropDownSelection(value, "review_status")
-                }
-              /> */}
-              {/* <div className="checkbox-container-review">
-                <Checkbox label={"NOT-Started"} defaultChecked={"true"} />
-                <Checkbox label={"In-Progress"} defaultChecked={"false"} />
-                <Checkbox label={"Complete"} defaultChecked={"false"} />
-              </div> */}
-            </div>
-        
+                cssName={"select-box-container-concept"}
+                dropDownBoxData={clinicalDocumentSummary}
+                type={"concept"}
+                onSelect={(value) => handleDropDownSelection(value, "concept")}
+              />
+            )}
+          </div>
 
-          {/* </div> */}
           <Evidence data={evidenceResult} />
           <div className="llm-box-container">
             <div className="user-box-container">
@@ -201,14 +221,15 @@ function MedicalChartReview() {
                   sx={{ width: "100%", padding: "10px 5px" }}
                   multiline
                   maxRows={4}
+                  value={pastedText}
                   placeholder="Type anything…"
                   InputProps={{
                     disableUnderline: false, // <== added this
                   }}
-                />
+                ></TextField>
               </div>
               <div className="btn-container">
-                <div className="paste-icon">
+                <div className="paste-icon" onClick={() => pasteText()}>
                   <FaPaste />
                 </div>
                 <div className="select-notes-dd">

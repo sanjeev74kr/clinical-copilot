@@ -9,12 +9,12 @@ import {
   getEvidenceURL,
 } from "../services/api";
 
-import {getDocuments} from '../services/apiConsume'
+import { getDocuments } from "../services/apiConsume";
 
 const initialState = {
   loading: true,
   isLoggedIn: false,
-  userName:'',
+  userName: "",
   docs: [],
   identifierDetails: {},
   evidenceResult: [],
@@ -29,10 +29,10 @@ export const AppContextProvider = ({ children }) => {
     const url = getDocumentsUrl;
     try {
       //`http://localhost:3000/documents`;
-    
+
       // const res = await axios.get(url);
       // const result = await res.data.res;
-      const result=await getDocuments();
+      const result = await getDocuments();
       let docs = [];
       docs = result?.map((item) => item);
       dispatch({ type: "GET_DOCUMENTS", payload: docs });
@@ -42,7 +42,10 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const setLoggedInState = (credentials) => {
-    if (credentials.email === "exl@exlservice.com" && credentials.password === "password@123") {
+    if (
+      credentials.email === "exl@exlservice.com" &&
+      credentials.password === "password@123"
+    ) {
       dispatch({
         type: "SET_LOGIN",
         payload: credentials,
@@ -68,20 +71,28 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const getConceptEvidence = async (cds_identifier, reviewStatus) => {
-    const evidencURL = getEvidenceURL + `${cds_identifier}`;
-    dispatch({ type: "GET_EVIDENCE_START", payload: true });
-    try {
-      const res = await axios.get(evidencURL);
-      const result = await res.data.res.clinical_evidence_summary;
+    
+    const reviewArray = reviewStatus.filter((item) => item !== "");
+    if (
+      cds_identifier !== "" &&
+      cds_identifier !== undefined &&
+      reviewArray.length > 0
+    ) {
+      const evidencURL = getEvidenceURL + `${cds_identifier}`;
+      dispatch({ type: "GET_EVIDENCE_START", payload: true });
+      try {
+        const res = await axios.get(evidencURL);
+        const result = await res.data.res.clinical_evidence_summary;
 
-      let evidenceDetails;
-      evidenceDetails = result?.filter(
-        (item) => item.CDS_Identifier === cds_identifier
-      );
+        let evidenceDetails;
+        evidenceDetails = result?.filter(
+          (item) => item.CDS_Identifier === cds_identifier && reviewArray
+        );
 
-      dispatch({ type: "GET_EVIDENCE", payload: evidenceDetails });
-    } catch (error) {
-      console.log(error);
+        dispatch({ type: "GET_EVIDENCE", payload: evidenceDetails });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -94,7 +105,7 @@ export const AppContextProvider = ({ children }) => {
         loading: state.loading,
         identifierDetails: state.identifierDetails,
         evidenceResult: state.evidenceResult,
-        userName:state.userName,
+        userName: state.userName,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

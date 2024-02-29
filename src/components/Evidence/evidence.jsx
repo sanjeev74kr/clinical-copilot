@@ -1,62 +1,86 @@
+import { useState } from "react";
 import { FaTimes, FaCopy, FaCheck } from "react-icons/fa";
 
 const Evidence = ({ data }) => {
+  const [copySuccess, setCopySuccess] = useState("");
+  const [acceptClick, setAcceptClick] = useState(false);
+  const [rejectClick, setRejectClick] = useState(false);
   const checkIsArray = (data) => {
-    try{
-    const str = data.replaceAll("'", '"');
+    try {
+      const str = data.replaceAll("'", '"');
 
-    const obj = JSON.parse(str);
+      const obj = JSON.parse(str);
 
-    if (Array.isArray(obj)) {
-      return true;
-    } else {
-      return false;
+      if (Array.isArray(obj)) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-  }
-  catch(error){
-    console.log(error.message);
-  }
   };
 
   const refrenceKeyArray = (obj) => {
-   try{
-    const str = obj.replaceAll("'", '"');
+    try {
+      const str = obj.replaceAll("'", '"');
 
-    let objVal = JSON.parse(str);
-    objVal.map((item) => item);
+      let objVal = JSON.parse(str);
+      objVal.map((item) => item);
 
-    return objVal;
-   }
-   catch(error){
-    console.log(error.message);
-  }
+      return objVal;
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   const refrenceKeyObject = (obj) => {
-    try{
-    const str = obj.replaceAll("'", '"');
+    try {
+      const str = obj.replaceAll("'", '"');
 
-    const objVal = JSON.parse(str);
+      const objVal = JSON.parse(str);
 
-    return Object.keys(objVal);
-    }
-    catch(error){
+      return Object.keys(objVal);
+    } catch (error) {
       console.log(error.message);
     }
   };
 
   const refrenceValueObject = (obj) => {
-    try{
-    const str = obj.replaceAll("'", '"');
+    try {
+      const str = obj.replaceAll("'", '"');
 
-    const objVal = JSON.parse(str);
+      const objVal = JSON.parse(str);
 
-    return objVal[Object.keys(objVal)];
-    }
-    catch(error){
+      return objVal[Object.keys(objVal)];
+    } catch (error) {
       console.log(error.message);
     }
   };
 
+  const copyText = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopySuccess("text copied successfully.");
+      clearCopyText();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const toggleReject = () => {
+    setRejectClick(!rejectClick);
+    setAcceptClick(rejectClick);
+  };
+
+  const toggleAccept = () => {
+    setAcceptClick(!acceptClick);
+    setRejectClick(acceptClick);
+  };
+  const clearCopyText = () => {
+    setTimeout(() => {
+      setCopySuccess("");
+    }, 2000);
+  };
   return (
     <div className="evidence-container">
       {data?.map((item, index) => (
@@ -100,15 +124,23 @@ const Evidence = ({ data }) => {
             </ul>
           </div>
           <div className="icon-container">
-            <span>
+            <span onClick={() => copyText(item.Concept_LLM_Summary)}>
               <FaCopy />
             </span>
-            <span className="cross">
-              <FaTimes />
-            </span>
-            <span className="check">
+
+            <span
+              className={acceptClick ? "check" : "check-disabled"}
+              onClick={toggleAccept}
+            >
               <FaCheck />
             </span>
+            <span
+              className={rejectClick ? "cross" : "cross-disabled"}
+              onClick={toggleReject}
+            >
+              <FaTimes />
+            </span>
+            <span className="copyTextSuccess">{copySuccess}</span>
           </div>
         </div>
       ))}

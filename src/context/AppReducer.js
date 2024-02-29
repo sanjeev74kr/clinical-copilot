@@ -3,11 +3,10 @@ import { act } from "react-dom/test-utils";
 export const AppReducer = (state, action) => {
   switch (action.type) {
     case "SET_LOGIN":
-      
       return {
         ...state,
         isLoggedIn: true,
-        userName: action.payload.email.split("@")[0]
+        userName: action.payload.email.split("@")[0],
       };
 
     case "GET_DOCUMENTS":
@@ -40,7 +39,11 @@ export const AppReducer = (state, action) => {
         loading: false,
         evidenceResult: action.payload,
       };
-
+    case "CLEAR_IDENTFIER_DOCUMENTS":
+      return {
+        ...state,
+        evidenceResult: action.payload,
+      };
     default:
       return state;
   }
