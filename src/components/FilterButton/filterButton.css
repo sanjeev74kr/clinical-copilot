@@ -5,7 +5,9 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     border-radius: 0.8rem;
-    background-color: #cccccc;
+    color:#666666;
+    border-color: #BEBEBE;
+    background-color: #DEDEDE;
 }
 
 .filter-button-clicked{
@@ -15,5 +17,7 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     border-radius: 0.8rem;
-    background-color: var(--brand-color);
+    color:#008B94;
+    background-color:#BEE7EA;
+    border-color: #53C9D1;
 }
