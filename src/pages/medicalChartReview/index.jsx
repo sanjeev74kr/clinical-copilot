@@ -8,7 +8,7 @@ import { status } from "../../utils/sampleData";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import { CgProfile } from "react-icons/cg";
 import { FaPaste } from "react-icons/fa";
 import { appContext } from "../../context/AppContext";
 import { useLocation } from "react-router-dom";
@@ -21,6 +21,7 @@ function MedicalChartReview() {
     getConceptEvidence,
     evidenceResult,
     loading,
+    userName,
   } = useContext(appContext);
 
   const [referenceText, setReferenceText] = useState(["lorem"]);
@@ -59,15 +60,19 @@ function MedicalChartReview() {
   function handleDropDownSelection(value, field) {
     if (field === "concept") {
       setSelectedConcept(value);
-      console.log("concept:", value);
     } else if (field === "review_status") {
       setSelectedReviewStatus(value);
-      console.log("review_status", value);
     }
 
-    console.log(selectedConcept, selectedReviewStatus)
-    if (selectedConcept !== undefined && selectedReviewStatus !== undefined) {
+    if (
+      selectedConcept !== undefined &&
+      selectedConcept !== "" &&
+      selectedReviewStatus !== undefined &&
+      selectedReviewStatus !== ""
+    ) {
       getConceptEvidence(selectedConcept, selectedReviewStatus);
+    } else {
+      console.log(selectedConcept, selectedReviewStatus);
     }
   }
 
@@ -145,8 +150,10 @@ function MedicalChartReview() {
           <Evidence data={evidenceResult} />
           <div className="llm-box-container">
             <div className="user-box-container">
-              <div className="person-icon"></div>
-              <div className="username"> Jane Doe</div>
+              <div className="person-icon">
+                <CgProfile className="profile-icon" />
+              </div>
+              <div className="username"> {userName}</div>
               <div className="time">5 min ago</div>
             </div>
             <div className="text-field-container">
@@ -168,13 +175,13 @@ function MedicalChartReview() {
                   <FaPaste />
                 </div>
                 <div className="select-concept-container">
-                  {/*  <DropDownBox
+                    <DropDownBox
                     label={""}
                     dropDownBoxData={status}
                     onSelect={(value) =>
                       handleDropDownSelection(value, "concept")
                     }
-                  /> */}
+                  /> 
                 </div>
               </div>
             </div>

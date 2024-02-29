@@ -14,6 +14,7 @@ import {getDocuments} from '../services/apiConsume'
 const initialState = {
   loading: true,
   isLoggedIn: false,
+  userName:'',
   docs: [],
   identifierDetails: {},
   evidenceResult: [],
@@ -44,7 +45,7 @@ export const AppContextProvider = ({ children }) => {
     if (credentials.email === "exl@exlservice.com" && credentials.password === "password@123") {
       dispatch({
         type: "SET_LOGIN",
-        payload: true,
+        payload: credentials,
       });
     } else {
       alert("Invalid username or password");
@@ -93,6 +94,7 @@ export const AppContextProvider = ({ children }) => {
         loading: state.loading,
         identifierDetails: state.identifierDetails,
         evidenceResult: state.evidenceResult,
+        userName:state.userName,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

@@ -32,6 +32,18 @@ function DropDownBox(props) {
         );
         
       default:
+        return (
+          <label>
+            {label}
+            <select className="select-options-normal" onChange={handleSelectionChange}>
+              {dropDownBoxData?.map((item, index) => (
+                <option key={`select${index}`} value={item[index]}>
+                  {item[index]}
+                </option>
+              ))}
+            </select>
+          </label>
+        );
         break;
     }
   };

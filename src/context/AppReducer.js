@@ -3,10 +3,11 @@ import { act } from "react-dom/test-utils";
 export const AppReducer = (state, action) => {
   switch (action.type) {
     case "SET_LOGIN":
-      console.log(action);
+      
       return {
         ...state,
         isLoggedIn: true,
+        userName: action.payload.email.split("@")[0]
       };
 
     case "GET_DOCUMENTS":
