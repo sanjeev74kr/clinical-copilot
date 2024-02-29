@@ -174,12 +174,12 @@ function MedicalChartReview() {
                 <div className="paste-icon">
                   <FaPaste />
                 </div>
-                <div className="select-concept-container">
+                <div className="select-notes-dd">
                     <DropDownBox
                     label={""}
                     dropDownBoxData={status}
                     onSelect={(value) =>
-                      handleDropDownSelection(value, "concept")
+                      handleDropDownSelection(value, "")
                     }
                   /> 
                 </div>

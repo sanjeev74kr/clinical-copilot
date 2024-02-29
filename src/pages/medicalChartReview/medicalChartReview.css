@@ -217,6 +217,15 @@
 
 .select-concept-container {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 5px;
+}
+
+.select-notes-dd {
+  display: flex;
   justify-content: flex-end;
   width: 100%;
   font-size: 12px;
