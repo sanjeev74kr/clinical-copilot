@@ -113,7 +113,7 @@ function MedicalChartReview() {
   const pasteText = async () => {
     try {
       const text = await navigator.clipboard.readText();
-      setpastedText(text)
+      setpastedText(text);
     } catch (error) {
       console.log(error);
     }
@@ -121,7 +121,6 @@ function MedicalChartReview() {
 
   return (
     <div className="page-main-container">
-      {/* <Header /> */}
       <div className="card-container">
         {clinicalDocument && (
           <DetailsCard

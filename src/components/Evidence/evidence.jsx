@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { FaTimes, FaCopy, FaCheck } from "react-icons/fa";
+import { FaCopy } from "react-icons/fa";
+import UserFeedback from "../UserFeedback/userFeedback";
 
 const Evidence = ({ data }) => {
   const [copySuccess, setCopySuccess] = useState("");
-  const [acceptClick, setAcceptClick] = useState(false);
-  const [rejectClick, setRejectClick] = useState(false);
+
+
+ 
   const checkIsArray = (data) => {
     try {
       const str = data.replaceAll("'", '"');
@@ -67,15 +69,7 @@ const Evidence = ({ data }) => {
     }
   };
 
-  const toggleReject = () => {
-    setRejectClick(!rejectClick);
-    setAcceptClick(rejectClick);
-  };
-
-  const toggleAccept = () => {
-    setAcceptClick(!acceptClick);
-    setRejectClick(acceptClick);
-  };
+  
   const clearCopyText = () => {
     setTimeout(() => {
       setCopySuccess("");
@@ -128,18 +122,7 @@ const Evidence = ({ data }) => {
               <FaCopy />
             </span>
 
-            <span
-              className={acceptClick ? "check" : "check-disabled"}
-              onClick={toggleAccept}
-            >
-              <FaCheck />
-            </span>
-            <span
-              className={rejectClick ? "cross" : "cross-disabled"}
-              onClick={toggleReject}
-            >
-              <FaTimes />
-            </span>
+           <UserFeedback feedback={item}/>
             <span className="copyTextSuccess">{copySuccess}</span>
           </div>
         </div>

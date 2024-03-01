@@ -4,6 +4,7 @@ import { AppReducer } from "./AppReducer";
 import axios from "axios";
 
 import {
+  getCESURL,
   getDocumentIdentifierURL,
   getDocumentsUrl,
   getEvidenceURL,
@@ -71,7 +72,6 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const getConceptEvidence = async (cds_identifier, reviewStatus) => {
-    
     const reviewArray = reviewStatus.filter((item) => item !== "");
     if (
       cds_identifier !== "" &&
@@ -96,6 +96,18 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  const updateUserFeedback = async (data)=>{
+    const URL = getCESURL;
+    try {
+
+      const res = await axios.put(URL,JSON.stringify(data));
+        const result = await res.data;
+        console.log(result)
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <appContext.Provider
       value={{
@@ -110,6 +122,7 @@ export const AppContextProvider = ({ children }) => {
         getPdfDocuments,
         getDocumentDataPerIdentifier,
         getConceptEvidence,
+        updateUserFeedback,
         dispatch,
       }}
     >
