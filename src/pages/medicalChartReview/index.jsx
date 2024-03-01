@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import "./medicalChartReview.css";
 import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
@@ -34,6 +34,7 @@ function MedicalChartReview() {
   );
   const [complete, setCompleted] = useState("Completed".toLocaleLowerCase());
   const statusArray = [notStarted, inProgress, complete];
+  const [pageNumber, setPageNumber] = useState(1);
   const [selectedConcept, setSelectedConcept] = useState("");
 
   const [masterDDArray, setmasterDDArray] = useState([]);
@@ -42,9 +43,40 @@ function MedicalChartReview() {
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
+  
+  const [maxHeight,setMaxHeight]= useState();
 
-  // const child1Ref = useRef(null);
-  // const child2Ref = useRef(null);
+  const child1Ref = useRef(null);
+  const child2Ref = useRef(null);
+
+  useEffect(() => {
+    if (!child1Ref.current || !child2Ref.current) {
+      return;
+    }
+    try{
+    const resizeObserver = new ResizeObserver(() => {
+      // maxHeight = Math.max(
+      //   child1Ref.current.offsetHeight,
+      //   child2Ref.current.offsetHeight
+      // );
+      setMaxHeight( Math.max(
+        child1Ref.current.offsetHeight,
+        child2Ref.current.offsetHeight
+      ));
+      child1Ref.current.style.height = `${maxHeight}px`;
+      child2Ref.current.style.height = `${maxHeight}px`;
+    });
+
+    resizeObserver.observe(child1Ref.current,child2Ref.current);
+
+    return function cleanup() {
+      resizeObserver.disconnect();
+    }; 
+  }
+  catch(error){
+    console.log(error.message);
+  }
+  }, [][child1Ref,child2Ref]);
 
   // useEffect(() => {
   //   if (child1Ref.current && child2Ref.current) {
@@ -82,6 +114,11 @@ function MedicalChartReview() {
     setclinicalDocumentSummary(filterdDropdown);
     setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
+
+  //passing  reference text from clinical_evidence summary
+  // useEffect(()=>{
+  //   setReferenceText(evidenceResult.clinical_evidence_summary[0].Reference_Text);
+  // },[evidenceResult]);
 
   useEffect(() => {
     const filterdDropdown = masterDDArray?.filter((item) =>

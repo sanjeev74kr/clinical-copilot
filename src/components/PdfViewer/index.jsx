@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import Tooltip from '@mui/material/Tooltip';
 import { FaArrowsAltH } from 'react-icons/fa'
@@ -21,8 +21,10 @@ function PdfViewer(props) {
     const [scale, setScale] = useState(1);
     const [pdfWidth, setPdfWidth] = useState(800);
 
-    const { className,pdfurl, referenceTextInput } = props;
+    const { className,pdfurl, referenceTextInput, pagenum } = props;
 
+   // useEffect(()=>setPageNumber(pagenum),[pagenum]);
+    
     //load pdf
     function handleDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -45,11 +47,14 @@ function PdfViewer(props) {
         // setReferenceText({...referenceTextInput});
     }
 
+
     function highlightPattern(text, patterns) {
         // const combinedPattern = new RegExp(patterns.join('|'), 'gi');
         // return text.replace(combinedPattern, (match) => `<mark>${match}</mark>`);
         return text.replace(patterns, (match) => `<mark>${match}</mark>`);
     }
+
+
 
     const textRenderer = useCallback(
         (textItem) => highlightPattern(textItem.str, searchTerm),

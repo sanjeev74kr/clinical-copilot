@@ -36,6 +36,11 @@
   /* height: auto; */
 }
 
+.medicalchart-pdf-container{
+width:50%;
+height:100%;
+}
+
 .operation-container {
   display: flex;
   flex-direction: column;
