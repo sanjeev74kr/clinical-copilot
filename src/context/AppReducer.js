@@ -44,6 +44,11 @@ export const AppReducer = (state, action) => {
         ...state,
         evidenceResult: action.payload,
       };
+    case "SET_PAGENUMBER":
+      return {
+        ...state,
+        pageNum: action.payload,
+      };
     default:
       return state;
   }

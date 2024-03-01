@@ -20,6 +20,7 @@ const initialState = {
   identifierDetails: {},
   evidenceResult: [],
   error: false,
+  pageNum: 0,
 };
 export const appContext = React.createContext(initialState);
 
@@ -96,17 +97,14 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
-  const updateUserFeedback = async (data)=>{
+  const updateUserFeedback = async (data) => {
     const URL = getCESURL;
     try {
-
-      const res = await axios.put(URL,JSON.stringify(data));
-        const result = await res.data;
-        console.log(result)
-    } catch (error) {
-      
-    }
-  }
+      const res = await axios.put(URL, JSON.stringify(data));
+      const result = await res.data;
+      console.log(result);
+    } catch (error) {}
+  };
 
   return (
     <appContext.Provider
@@ -118,6 +116,7 @@ export const AppContextProvider = ({ children }) => {
         identifierDetails: state.identifierDetails,
         evidenceResult: state.evidenceResult,
         userName: state.userName,
+        pageNum: state.pageNum,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

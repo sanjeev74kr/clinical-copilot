@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState, useRef, useCallback } from "react";
 import "./medicalChartReview.css";
 import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
@@ -27,14 +27,14 @@ function MedicalChartReview() {
     dispatch,
   } = useContext(appContext);
 
-  const [referenceText, setReferenceText] = useState(["lorem"]);
+  const [referenceText, setReferenceText] = useState(["column 2","column 3"]);
   const [notStarted, setNotStarted] = useState("Passed".toLocaleLowerCase());
   const [inProgress, setInProgress] = useState(
     "In-Progress".toLocaleLowerCase()
   );
-  const [complete, setCompleted] = useState("Completed".toLocaleLowerCase());
+  const [complete, setCompleted] = useState("Complete".toLocaleLowerCase());
   const statusArray = [notStarted, inProgress, complete];
-  const [pageNumber, setPageNumber] = useState(1);
+  
   const [selectedConcept, setSelectedConcept] = useState("");
 
   const [masterDDArray, setmasterDDArray] = useState([]);
@@ -44,39 +44,45 @@ function MedicalChartReview() {
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
   
-  const [maxHeight,setMaxHeight]= useState();
+
+  const [maxHeight, setMaxHeight] = useState();
 
   const child1Ref = useRef(null);
   const child2Ref = useRef(null);
 
-  useEffect(() => {
+  const resizeCallback = useCallback(() => {
     if (!child1Ref.current || !child2Ref.current) {
       return;
     }
-    try{
-    const resizeObserver = new ResizeObserver(() => {
-      // maxHeight = Math.max(
-      //   child1Ref.current.offsetHeight,
-      //   child2Ref.current.offsetHeight
-      // );
-      setMaxHeight( Math.max(
-        child1Ref.current.offsetHeight,
-        child2Ref.current.offsetHeight
-      ));
-      child1Ref.current.style.height = `${maxHeight}px`;
-      child2Ref.current.style.height = `${maxHeight}px`;
-    });
+    const newMaxHeight = Math.max(
+      child1Ref.current.offsetHeight,
+      child2Ref.current.offsetHeight
+    );
+    setMaxHeight(newMaxHeight);
+  }, [child1Ref.current, child2Ref.current]);
 
-    resizeObserver.observe(child1Ref.current,child2Ref.current);
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(resizeCallback);
+    if (child1Ref.current) {
+      resizeObserver.observe(child1Ref.current);
+    }
+    if (child2Ref.current) {
+      resizeObserver.observe(child2Ref.current);
+    }
 
     return function cleanup() {
       resizeObserver.disconnect();
-    }; 
-  }
-  catch(error){
-    console.log(error.message);
-  }
-  }, [][child1Ref,child2Ref]);
+    };
+  }, [resizeCallback]);
+
+  useEffect(() => {
+    if (child1Ref.current) {
+      child1Ref.current.style.height = `${maxHeight}px`;
+    }
+    if (child2Ref.current) {
+      child2Ref.current.style.height = `${maxHeight}px`;
+    }
+  }, [maxHeight]);
 
   // useEffect(() => {
   //   if (child1Ref.current && child2Ref.current) {
@@ -104,7 +110,7 @@ function MedicalChartReview() {
     const cds = identifierDetails.clinical_document_summary;
     if (identifierDetails?.clinical_document_summary !== undefined) {
       const cdsid =
-        identifierDetails?.clinical_document_summary[0].CDS_Identifier;
+        identifierDetails?.clinical_document_summary[0]?.CDS_Identifier;
       // setSelectedConcept(cdsid);
     }
 
@@ -115,11 +121,7 @@ function MedicalChartReview() {
     setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
 
-  //passing  reference text from clinical_evidence summary
-  // useEffect(()=>{
-  //   setReferenceText(evidenceResult.clinical_evidence_summary[0].Reference_Text);
-  // },[evidenceResult]);
-
+  
   useEffect(() => {
     const filterdDropdown = masterDDArray?.filter((item) =>
       statusArray.includes(item.Concept_Review_Status.toLowerCase())
@@ -155,6 +157,11 @@ function MedicalChartReview() {
       console.log(error);
     }
   };
+
+  function storeReferenceTextInArray(reference){
+    console.log("reference is",reference,"reference array is",referenceText);
+     setReferenceText(...referenceText,reference);
+  }
 
   return (
     <div className="page-main-container">
@@ -196,16 +203,17 @@ function MedicalChartReview() {
         )}
       </div>
       <div className="pdfViewer-and-operations-container">
-        <PdfViewer
-          className={"pdfViewer-container"}
-          pdfurl={
-            //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
-            pdfFile
-          }
-          referenceTextInput={referenceText}
-        />
-
-        <div className="operation-container">
+        <div className="medicalchart-pdf-container" ref={child1Ref}>
+          <PdfViewer
+            className={"pdfViewer-container"}
+            pdfurl={
+              //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
+              pdfFile
+            }
+            referenceTextInput={referenceText}
+          />
+        </div>
+        <div className="operation-container" ref={child2Ref}>
           <div className="filter-container">
             <h4>Filter by :</h4>
             <FilterButton
@@ -221,7 +229,7 @@ function MedicalChartReview() {
               }}
             />
             <FilterButton
-              label={"Completed"}
+              label={"Complete"}
               setLabel={(lbl) => {
                 setCompleted(lbl);
               }}
@@ -240,7 +248,7 @@ function MedicalChartReview() {
             )}
           </div>
 
-          <Evidence data={evidenceResult} />
+          <Evidence data={evidenceResult} storeReferenceTextInArray={storeReferenceTextInArray}/>
           <div className="llm-box-container">
             <div className="user-box-container">
               <div className="person-icon">
