@@ -93,12 +93,10 @@ function MedicalChartReview() {
     }
   }, [maxHeight]);
 
-  
-
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
-  const pdfPath= location.state.documentPath;
-  const pdfName=location.state.documentName;
+  const pdfPath = location.state.documentPath;
+  const pdfName = location.state.documentName;
 
   useEffect(() => {
     getDocumentDataPerIdentifier(documentIdentifier);
@@ -120,7 +118,7 @@ function MedicalChartReview() {
       statusArray.includes(item.Concept_Review_Status.toLowerCase())
     );
     setclinicalDocumentSummary(filterdDropdown);
-    
+
     setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
 
@@ -150,7 +148,7 @@ function MedicalChartReview() {
     const obj = clinicalDocumentSummary.filter(
       (item) => item.CDS_Identifier === id
     )[0];
-    setpastedText(obj.User_Notes)
+    setpastedText(obj.User_Notes);
     setSelectedCDS(obj);
   };
   function handleDropDownSelection(value, field) {
@@ -158,7 +156,6 @@ function MedicalChartReview() {
       setSelectedConcept(value);
       getConceptEvidence(value, statusArray);
       getSelectedCDSObject(value);
-      
     }
 
     if (field === "notes") {
@@ -212,7 +209,7 @@ function MedicalChartReview() {
     )[0];
     let docStatus = "";
     const statusArray = checkDocumentStatus("In-Progress");
-    
+
     if (
       statusArray.length > 0 ||
       selectedCDSStatus.toLowerCase() === "In-Progress".toLowerCase()
@@ -296,7 +293,7 @@ function MedicalChartReview() {
             pdfurl={
               //   "https://cenblob001.blob.core.windows.net/ccpcont-incoming-pdf/ActemraPrior_Auth_Request_synthetic%201.pdf?sp=r&st=2024-03-04T10:13:34Z&se=2024-03-04T18:13:34Z&spr=https&sv=2022-11-02&sr=b&sig=%2B648YMXvSWIOYscqGseJ8U26qMKoepcLQ08bYI1ELXQ%3D"
               pdfFile
-           //  pdfPath
+              //  pdfPath
             }
             pdfname={pdfName}
             referenceTextInput={referenceText}
