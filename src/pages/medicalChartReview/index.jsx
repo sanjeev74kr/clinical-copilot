@@ -22,20 +22,30 @@ function MedicalChartReview() {
     getDocumentDataPerIdentifier,
     getConceptEvidence,
     evidenceResult,
-    loading,
-    userName,
+
+    updateClinicalDocumentSummary,
+    updateDocumentStatus,
     dispatch,
   } = useContext(appContext);
+  const keyName = "userCredentials";
 
-  const [referenceText, setReferenceText] = useState(["column 2","column 3"]);
-  const [notStarted, setNotStarted] = useState("Passed".toLocaleLowerCase());
+  const [referenceText, setReferenceText] = useState(["column 2", "column 3"]);
+
+  const value = window.localStorage.getItem(keyName);
+  const userCredentials = JSON.parse(value);
+
+  const [selectedCDS, setSelectedCDS] = useState({});
+  const [notStarted, setNotStarted] = useState(
+    "Not-started".toLocaleLowerCase()
+  );
   const [inProgress, setInProgress] = useState(
     "In-Progress".toLocaleLowerCase()
   );
   const [complete, setCompleted] = useState("Complete".toLocaleLowerCase());
   const statusArray = [notStarted, inProgress, complete];
-  
+
   const [selectedConcept, setSelectedConcept] = useState("");
+  const [selectedCDSStatus, setSelectedCDSStatus] = useState("");
 
   const [masterDDArray, setmasterDDArray] = useState([]);
   const [pastedText, setpastedText] = useState("");
@@ -43,7 +53,6 @@ function MedicalChartReview() {
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
-  
 
   const [maxHeight, setMaxHeight] = useState();
 
@@ -84,16 +93,7 @@ function MedicalChartReview() {
     }
   }, [maxHeight]);
 
-  // useEffect(() => {
-  //   if (child1Ref.current && child2Ref.current) {
-  //     const maxHeight = Math.max(
-  //       child1Ref.current.offsetHeight,
-  //       child2Ref.current.offsetHeight
-  //     );
-  //     child1Ref.current.style.height = `${maxHeight}px`;
-  //     child2Ref.current.style.height = `${maxHeight}px`;
-  //   }
-  // }, []);
+  
 
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
@@ -118,10 +118,10 @@ function MedicalChartReview() {
       statusArray.includes(item.Concept_Review_Status.toLowerCase())
     );
     setclinicalDocumentSummary(filterdDropdown);
+    console.log(clinicalDocumentSummary, "clinicalDocumentSummary");
     setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
 
-  
   useEffect(() => {
     const filterdDropdown = masterDDArray?.filter((item) =>
       statusArray.includes(item.Concept_Review_Status.toLowerCase())
@@ -140,14 +140,26 @@ function MedicalChartReview() {
     getConceptEvidence(cds_identifier, statusArray);
   };
 
+  const handleChange = (e) => {
+    setpastedText(e.target.value);
+  };
+
+  const getSelectedCDSObject = (id) => {
+    const obj = clinicalDocumentSummary.filter(
+      (item) => item.CDS_Identifier === id
+    )[0];
+    setSelectedCDS(obj);
+  };
   function handleDropDownSelection(value, field) {
-    console.log("value", value, field, statusArray);
     if (field === "concept") {
       setSelectedConcept(value);
+      getConceptEvidence(value, statusArray);
+      getSelectedCDSObject(value);
     }
 
-    getConceptEvidence(value, statusArray);
-    console.log(selectedConcept, notStarted, inProgress, complete);
+    if (field === "notes") {
+      setSelectedCDSStatus(value);
+    }
   }
   const pasteText = async () => {
     try {
@@ -158,10 +170,81 @@ function MedicalChartReview() {
     }
   };
 
-  function storeReferenceTextInArray(reference){
-    console.log("reference is",reference,"reference array is",referenceText);
-     setReferenceText(...referenceText,reference);
+  function storeReferenceTextInArray(reference) {
+    console.log("reference is", reference, "reference array is", referenceText);
+    setReferenceText(...referenceText, reference);
   }
+  const buildCDSPostObject = (data) => {
+    return {
+      ...data,
+      User_Name: userCredentials.email.split("@")[0],
+      User_Notes: pastedText,
+      Concept_Review_Status: selectedCDSStatus,
+    };
+  };
+
+  const buildDocumentPostObject = (data, docStatus) => {
+    return {
+      ...data,
+      User_Name: userCredentials.email.split("@")[0],
+
+      Document_Review_Status: docStatus,
+    };
+  };
+
+  const checkDocumentStatus = (status) => {
+    return masterDDArray.filter(
+      (item) =>
+        item.Concept_Review_Status.toLowerCase() === status.toLowerCase() &&
+        selectedConcept !== item.CDS_Identifier
+    );
+  };
+  const updateStates = () => {
+    const cdsRecord = clinicalDocumentSummary.filter(
+      (item) => item.CDS_Identifier === selectedConcept
+    )[0];
+    const documentRecord = clinicalDocument.filter(
+      (item) => item.CDS_Identifier === clinicalDocument.Identifier
+    )[0];
+    let docStatus = "";
+    const statusArray = checkDocumentStatus("In-Progress");
+    console.log(statusArray, "statusArray", masterDDArray.length - 1);
+    if (
+      statusArray.length > 0 ||
+      selectedCDSStatus.toLowerCase() === "In-Progress".toLowerCase()
+    ) {
+      docStatus = "In-Progress";
+    } else {
+      const NotStartedArray = checkDocumentStatus("Not-Started");
+      const completdArray = checkDocumentStatus("Completed");
+      if (
+        NotStartedArray.length === masterDDArray.length - 1 &&
+        selectedCDSStatus.toLowerCase() === "Not-Started".toLowerCase()
+      ) {
+        docStatus = "Not-Started";
+      } else if (
+        completdArray.length === masterDDArray.length - 1 &&
+        selectedCDSStatus.toLowerCase() === "Complete".toLowerCase
+      ) {
+        docStatus = "Complete";
+      } else {
+        docStatus = "Complete";
+      }
+    }
+
+    updateClinicalDocumentSummary(
+      buildCDSPostObject(cdsRecord),
+      selectedConcept
+    )
+      .then((response) => {
+        const doc = buildDocumentPostObject(documentRecord, docStatus);
+
+        updateDocumentStatus(doc, documentRecord.Identifier);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="page-main-container">
@@ -217,7 +300,7 @@ function MedicalChartReview() {
           <div className="filter-container">
             <h4>Filter by :</h4>
             <FilterButton
-              label={"Passed"}
+              label={"Not-Started"}
               setLabel={(lbl) => {
                 setNotStarted(lbl);
               }}
@@ -248,62 +331,79 @@ function MedicalChartReview() {
             )}
           </div>
 
-          <Evidence data={evidenceResult} storeReferenceTextInArray={storeReferenceTextInArray}/>
-          <div className="llm-box-container">
-            <div className="user-box-container">
-              <div className="person-icon">
-                <CgProfile className="profile-icon" />
+          <Evidence
+            data={evidenceResult}
+            storeReferenceTextInArray={storeReferenceTextInArray}
+          />
+          {selectedConcept !== "" && (
+            <div className="llm-box-container">
+              <div className="user-box-container">
+                <div className="person-icon">
+                  <CgProfile className="profile-icon" />
+                </div>
+                <div className="username">
+                  {" "}
+                  {userCredentials.email.split("@")[0]}
+                </div>
+                <div className="time">5 min ago</div>
               </div>
-              <div className="username"> {userName}</div>
-              <div className="time">5 min ago</div>
+              <div className="text-field-container">
+                <div>
+                  <TextField
+                    variant="standard"
+                    disableUnderline={false}
+                    sx={{ width: "100%", padding: "10px 5px" }}
+                    multiline
+                    maxRows={4}
+                    onChange={handleChange}
+                    value={pastedText}
+                    placeholder="Type anything…"
+                    InputProps={{
+                      disableUnderline: false, // <== added this
+                    }}
+                  ></TextField>
+                </div>
+                <div className="btn-container">
+                  <div className="paste-icon" onClick={() => pasteText()}>
+                    <FaPaste />
+                  </div>
+                  <div className="select-notes-dd">
+                    <DropDownBox
+                      label={""}
+                      dropDownBoxData={status}
+                      type="notes"
+                      selectedValue={selectedCDS}
+                      onSelect={(value) =>
+                        handleDropDownSelection(value, "notes")
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="text-field-container">
-              <div>
-                <TextField
-                  variant="standard"
-                  disableUnderline={false}
-                  sx={{ width: "100%", padding: "10px 5px" }}
-                  multiline
-                  maxRows={4}
-                  value={pastedText}
-                  placeholder="Type anything…"
-                  InputProps={{
-                    disableUnderline: false, // <== added this
+          )}
+          {selectedConcept !== "" && (
+            <div>
+              <div className="save-btn-container">
+                <Button
+                  type="button"
+                  disabled={selectedConcept === ""}
+                  style={{
+                    backgroundColor: "rgb(233, 79, 28)",
+                    borderRadius: "20px",
+                    fontWeight: "700",
+                    width: "20%",
                   }}
-                ></TextField>
-              </div>
-              <div className="btn-container">
-                <div className="paste-icon" onClick={() => pasteText()}>
-                  <FaPaste />
-                </div>
-                <div className="select-notes-dd">
-                  <DropDownBox
-                    label={""}
-                    dropDownBoxData={status}
-                    onSelect={(value) => handleDropDownSelection(value, "")}
-                  />
-                </div>
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={updateStates}
+                >
+                  Save
+                </Button>
               </div>
             </div>
-          </div>
-          <div>
-            <div className="save-btn-container">
-              <Button
-                type="button"
-                style={{
-                  backgroundColor: "rgb(233, 79, 28)",
-                  borderRadius: "20px",
-                  fontWeight: "700",
-                  width: "20%",
-                }}
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Save
-              </Button>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
