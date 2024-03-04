@@ -98,6 +98,7 @@ function MedicalChartReview() {
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
   const pdfPath= location.state.documentPath;
+  const pdfName=location.state.documentName;
 
   useEffect(() => {
     getDocumentDataPerIdentifier(documentIdentifier);
@@ -292,9 +293,10 @@ function MedicalChartReview() {
             className={"pdfViewer-container"}
             pdfurl={
               //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
-             // pdfFile
-             pdfPath
+               pdfFile
+             //pdfPath
             }
+            pdfname={pdfName}
             referenceTextInput={referenceText}
           />
         </div>

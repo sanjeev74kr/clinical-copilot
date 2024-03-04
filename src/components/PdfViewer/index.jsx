@@ -21,7 +21,7 @@ function PdfViewer(props) {
   const [scale, setScale] = useState(1);
   const [pdfWidth, setPdfWidth] = useState(800);
 
-  const { className, pdfurl, referenceTextInput } = props;
+  const { className, pdfurl, referenceTextInput,pdfname } = props;
   const { pageNum } = useContext(appContext);
 
   // useEffect(()=> console.log("we got referenceTExtInput:",...referenceTextInput),referenceTextInput)
@@ -113,7 +113,7 @@ function PdfViewer(props) {
   return (
     <div className={className}>
       <div className="pdfViewer-function-container">
-        <div className="pdf-viewer-title">sample.pdf</div>
+        <div className="pdf-viewer-title">{pdfname}</div>
         <div className="page-count-container">
           <button
             className="page-controller-btn"

@@ -92,7 +92,7 @@ const Evidence = ({ data,storeReferenceTextInArray}) => {
             <div className="person-icon count-circle">
               <span
                 className="pagenumclr"
-                onClick={() => onPageNumberClick(3)}
+                onClick={() => onPageNumberClick(Number(item.Document_Page_Number))}
               >
                 {item.Document_Page_Number}
               </span>
