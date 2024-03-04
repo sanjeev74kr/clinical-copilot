@@ -108,7 +108,7 @@ export const AppContextProvider = ({ children }) => {
     try {
       const res = await axios.put(URL, data);
       const result = await res.data;
-      console.log(result, "updated");
+      
     } catch (error) {}
   };
   const updateClinicalDocumentSummary = async (data, cds_identifier) => {

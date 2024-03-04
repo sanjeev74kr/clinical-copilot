@@ -29,7 +29,7 @@ function MedicalChartReview() {
   } = useContext(appContext);
   const keyName = "userCredentials";
 
-  const [referenceText, setReferenceText] = useState(["column 2", "column 3"]);
+  const [referenceText, setReferenceText] = useState(["Column 2", "Column 3"]);
 
   const value = window.localStorage.getItem(keyName);
   const userCredentials = JSON.parse(value);
@@ -119,7 +119,7 @@ function MedicalChartReview() {
       statusArray.includes(item.Concept_Review_Status.toLowerCase())
     );
     setclinicalDocumentSummary(filterdDropdown);
-    console.log(clinicalDocumentSummary, "clinicalDocumentSummary");
+    
     setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
 
@@ -149,6 +149,7 @@ function MedicalChartReview() {
     const obj = clinicalDocumentSummary.filter(
       (item) => item.CDS_Identifier === id
     )[0];
+    setpastedText(obj.User_Notes)
     setSelectedCDS(obj);
   };
   function handleDropDownSelection(value, field) {
@@ -156,6 +157,7 @@ function MedicalChartReview() {
       setSelectedConcept(value);
       getConceptEvidence(value, statusArray);
       getSelectedCDSObject(value);
+      
     }
 
     if (field === "notes") {
@@ -209,7 +211,7 @@ function MedicalChartReview() {
     )[0];
     let docStatus = "";
     const statusArray = checkDocumentStatus("In-Progress");
-    console.log(statusArray, "statusArray", masterDDArray.length - 1);
+    
     if (
       statusArray.length > 0 ||
       selectedCDSStatus.toLowerCase() === "In-Progress".toLowerCase()
@@ -291,9 +293,9 @@ function MedicalChartReview() {
           <PdfViewer
             className={"pdfViewer-container"}
             pdfurl={
-              //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
-             // pdfFile
-             pdfPath
+                 "https://cenblob001.blob.core.windows.net/ccpcont-incoming-pdf/ActemraPrior_Auth_Request_synthetic%201.pdf?sp=r&st=2024-03-04T10:13:34Z&se=2024-03-04T18:13:34Z&spr=https&sv=2022-11-02&sr=b&sig=%2B648YMXvSWIOYscqGseJ8U26qMKoepcLQ08bYI1ELXQ%3D"
+           //   pdfFile
+           //  pdfPath
             }
             referenceTextInput={referenceText}
           />
