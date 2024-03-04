@@ -36,14 +36,16 @@ export const AppReducer = (state, action) => {
     case "UPDATE_CLINICAL_DOCUMENT_START":
       return {
         ...state,
-        loading: true,
+        loading: action.payload.loading,
+        toastMessage: action.payload.toastMessage,
+        messageType: action.payload.taostType,
       };
     case "UPDATE_CLINICAL_DOCUMENT_SUCCESS":
       return {
         ...state,
-        loading: action.payload.loading, 
+        loading: action.payload.loading,
         toastMessage: action.payload.toastMessage,
-        messageType:action.payload.taostType
+        messageType: action.payload.taostType,
       };
 
     case "GET_EVIDENCE_START":
