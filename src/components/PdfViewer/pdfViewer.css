@@ -27,6 +27,19 @@
 .pdf-viewer-title {
   color: white;
   font-weight: 600;
+  max-width: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pdf-viewer-title:hover {
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: visible;
+  white-space: normal;
+  background-color: black;
 }
 
 .page-number {
@@ -47,7 +60,7 @@
 }
 
 .search-box {
-  width:auto;
+  width: auto;
   margin-left: auto;
   outline: none;
   border-radius: 0.4rem;
