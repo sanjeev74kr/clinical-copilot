@@ -40,8 +40,9 @@ const DataTable = (props) => {
      handleIdentifierClick(id);
   }
 
-  const filePathClickHandler=()=>{
-    handleFilePathClick();
+  const filePathClickHandler=(documentPath)=>{
+     console.log("document path",documentPath);
+    handleFilePathClick(documentPath);
   }
 
   return (
@@ -69,7 +70,7 @@ const DataTable = (props) => {
                 <StyledTableCell sx={{color:'blue', cursor:'pointer'}} component="th" scope="row" onClick={()=>identifierClickHandler(row.Identifier)}>
                   {row.Identifier}
                 </StyledTableCell>
-                <StyledTableCell sx={{color:'blue', cursor:'pointer'}} align="left" onClick={filePathClickHandler}>{row.Document_Name}</StyledTableCell>
+                <StyledTableCell sx={{color:'blue', cursor:'pointer'}} align="left" onClick={()=>filePathClickHandler(row.Document_Path)}>{row.Document_Name}</StyledTableCell>
                 {/* <StyledTableCell align="center" >{row.Document_Path}</StyledTableCell> */}
                 <StyledTableCell sx={{color:'#535252',align:"left"}}>{new Date(row.Document_Evaluation_dts).toLocaleDateString()}</StyledTableCell>
                 <StyledTableCell sx={{color:'#535252',align:"left"}}>

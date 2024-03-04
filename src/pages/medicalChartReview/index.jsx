@@ -54,7 +54,7 @@ function MedicalChartReview() {
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
 
-  const [maxHeight, setMaxHeight] = useState();
+  const [maxHeight, setMaxHeight] = useState(450);
 
   const child1Ref = useRef(null);
   const child2Ref = useRef(null);
@@ -97,6 +97,7 @@ function MedicalChartReview() {
 
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
+  const pdfPath= location.state.documentPath;
 
   useEffect(() => {
     getDocumentDataPerIdentifier(documentIdentifier);
@@ -291,7 +292,8 @@ function MedicalChartReview() {
             className={"pdfViewer-container"}
             pdfurl={
               //   "https://cenblob001.blob.core.windows.net/samplepdfstorage/Blank%20diagram%20(1).pdf?sp=r&st=2024-02-28T11:05:48Z&se=2024-02-29T00:05:48Z&sv=2022-11-02&sr=b&sig=CvhHK5U8u%2Fgzh6OGSg4eIyjoSi7LibZbobFNUPGEN9k%3D"
-              pdfFile
+             // pdfFile
+             pdfPath
             }
             referenceTextInput={referenceText}
           />

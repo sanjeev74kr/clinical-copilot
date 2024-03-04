@@ -40,6 +40,7 @@ const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [tableData, setTableData] = useState([]);
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [pdfPath, setPdfPath]= useState();
 
   const [page, setPage] = React.useState(1);
 
@@ -91,7 +92,7 @@ const HomePage = () => {
   useEffect(() => setTableData(docs), [docs]);
 
   function handleIdentifierClick(id) {
-    navigate("/medicalChartReview", { state: { identifier: id } });
+    navigate("/medicalChartReview", { state: { identifier: id , documentPath:pdfPath} });
   }
 
   function openModal() {
@@ -108,7 +109,9 @@ const HomePage = () => {
     setIsOpen(false);
   }
 
-  function handleFilePathClick() {
+  function handleFilePathClick(documentPath) {
+    console.log("handleFilePath called");
+    setPdfPath(documentPath);
     openModal();
   }
 
