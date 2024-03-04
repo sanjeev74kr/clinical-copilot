@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { FaTimes, FaCheck } from "react-icons/fa";
 import "./userFeedback.css";
 import { appContext } from "../../context/AppContext";
+import { Tooltip } from "@mui/material";
 
 function UserFeedback(props) {
   const { updateUserFeedback, userName } = useContext(appContext);
@@ -33,7 +34,7 @@ function UserFeedback(props) {
     setAcceptClick(rejectClick);
     const userResponse = !rejectClick ? 0 : 1;
     const updateValue = buildObject(userResponse);
-    updateUserFeedback(updateValue, feedback.CES_Identifier)
+    updateUserFeedback(updateValue, feedback.CES_Identifier);
     console.log(updateValue);
   };
 
@@ -42,23 +43,27 @@ function UserFeedback(props) {
     setRejectClick(acceptClick);
     const userResponse = !acceptClick ? 1 : 0;
     const updateValue = buildObject(userResponse);
-    updateUserFeedback(updateValue, feedback.CES_Identifier)
+    updateUserFeedback(updateValue, feedback.CES_Identifier);
     console.log(updateValue);
   };
   return (
     <div className="feedback-container">
-      <span
-        className={acceptClick ? "check" : "check-disabled"}
-        onClick={toggleAccept}
-      >
-        <FaCheck />
-      </span>
-      <span
-        className={rejectClick ? "cross" : "cross-disabled"}
-        onClick={toggleReject}
-      >
-        <FaTimes />
-      </span>
+      <Tooltip title="Accept evidence" placement="top-start">
+        <span
+          className={acceptClick ? "check" : "check-disabled"}
+          onClick={toggleAccept}
+        >
+          <FaCheck />
+        </span>
+      </Tooltip>
+      <Tooltip title="Reject evidence" placement="top-start">
+        <span
+          className={rejectClick ? "cross" : "cross-disabled"}
+          onClick={toggleReject}
+        >
+          <FaTimes />
+        </span>
+      </Tooltip>
     </div>
   );
 }

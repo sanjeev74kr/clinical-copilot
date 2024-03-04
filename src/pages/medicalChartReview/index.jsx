@@ -15,6 +15,7 @@ import { appContext } from "../../context/AppContext";
 import { useLocation } from "react-router-dom";
 import Evidence from "../../components/Evidence/evidence";
 import FilterButton from "../../components/FilterButton";
+import Tooltip from "@mui/material/Tooltip";
 
 function MedicalChartReview() {
   const {
@@ -28,6 +29,7 @@ function MedicalChartReview() {
     dispatch,
   } = useContext(appContext);
   const keyName = "userCredentials";
+  let finalText = "";
 
   const [referenceText, setReferenceText] = useState(["Column 2", "Column 3"]);
 
@@ -93,12 +95,10 @@ function MedicalChartReview() {
     }
   }, [maxHeight]);
 
-  
-
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
-  const pdfPath= location.state.documentPath;
-  const pdfName=location.state.documentName;
+  const pdfPath = location.state.documentPath;
+  const pdfName = location.state.documentName;
 
   useEffect(() => {
     getDocumentDataPerIdentifier(documentIdentifier);
@@ -120,7 +120,7 @@ function MedicalChartReview() {
       statusArray.includes(item.Concept_Review_Status.toLowerCase())
     );
     setclinicalDocumentSummary(filterdDropdown);
-    
+
     setmasterDDArray(filterdDropdown);
   }, [identifierDetails]);
 
@@ -150,7 +150,7 @@ function MedicalChartReview() {
     const obj = clinicalDocumentSummary.filter(
       (item) => item.CDS_Identifier === id
     )[0];
-    setpastedText(obj.User_Notes)
+    setpastedText(obj.User_Notes);
     setSelectedCDS(obj);
   };
   function handleDropDownSelection(value, field) {
@@ -158,7 +158,6 @@ function MedicalChartReview() {
       setSelectedConcept(value);
       getConceptEvidence(value, statusArray);
       getSelectedCDSObject(value);
-      
     }
 
     if (field === "notes") {
@@ -168,14 +167,18 @@ function MedicalChartReview() {
   const pasteText = async () => {
     try {
       const text = await navigator.clipboard.readText();
-      setpastedText(text);
+      const existingNotes = selectedCDS.User_Notes;
+      let holdText =
+        pastedText === "" ? text + existingNotes : pastedText + text;
+      finalText = holdText;
+
+      setpastedText(finalText);
     } catch (error) {
       console.log(error);
     }
   };
 
   function storeReferenceTextInArray(reference) {
-    console.log("reference is", reference, "reference array is", referenceText);
     setReferenceText(...referenceText, reference);
   }
   const buildCDSPostObject = (data) => {
@@ -212,7 +215,7 @@ function MedicalChartReview() {
     )[0];
     let docStatus = "";
     const statusArray = checkDocumentStatus("In-Progress");
-    
+
     if (
       statusArray.length > 0 ||
       selectedCDSStatus.toLowerCase() === "In-Progress".toLowerCase()
@@ -296,7 +299,7 @@ function MedicalChartReview() {
             pdfurl={
               //   "https://cenblob001.blob.core.windows.net/ccpcont-incoming-pdf/ActemraPrior_Auth_Request_synthetic%201.pdf?sp=r&st=2024-03-04T10:13:34Z&se=2024-03-04T18:13:34Z&spr=https&sv=2022-11-02&sr=b&sig=%2B648YMXvSWIOYscqGseJ8U26qMKoepcLQ08bYI1ELXQ%3D"
               pdfFile
-           //  pdfPath
+              //  pdfPath
             }
             pdfname={pdfName}
             referenceTextInput={referenceText}
@@ -360,7 +363,7 @@ function MedicalChartReview() {
                     disableUnderline={false}
                     sx={{ width: "100%", padding: "10px 5px" }}
                     multiline
-                    maxRows={4}
+                    maxRows={8}
                     onChange={handleChange}
                     value={pastedText}
                     placeholder="Type anything…"
@@ -370,9 +373,11 @@ function MedicalChartReview() {
                   ></TextField>
                 </div>
                 <div className="btn-container">
-                  <div className="paste-icon" onClick={() => pasteText()}>
-                    <FaPaste />
-                  </div>
+                  <Tooltip title="Paste" placement="top-start">
+                    <div className="paste-icon" onClick={() => pasteText()}>
+                      <FaPaste />
+                    </div>
+                  </Tooltip>
                   <div className="select-notes-dd">
                     <DropDownBox
                       label={""}
