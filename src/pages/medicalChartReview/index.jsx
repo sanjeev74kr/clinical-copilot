@@ -44,6 +44,8 @@ function MedicalChartReview() {
   const [complete, setCompleted] = useState("Complete".toLocaleLowerCase());
   const statusArray = [notStarted, inProgress, complete];
 
+  const [clear,setClear] = useState();
+
   const [selectedConcept, setSelectedConcept] = useState("");
   const [selectedCDSStatus, setSelectedCDSStatus] = useState("");
 
@@ -53,7 +55,6 @@ function MedicalChartReview() {
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
-
   const [maxHeight, setMaxHeight] = useState(450);
 
   const child1Ref = useRef(null);
@@ -139,6 +140,14 @@ function MedicalChartReview() {
   const initConceptEvidence = (cds_identifier) => {
     getConceptEvidence(cds_identifier, statusArray);
   };
+
+//handle clear
+  const handleClearFilter=()=>{
+    setClear(true);
+    setNotStarted(null);
+    setInProgress(null);
+    setCompleted(null);
+  }
 
   const handleChange = (e) => {
     setpastedText(e.target.value);
@@ -307,20 +316,27 @@ function MedicalChartReview() {
               setLabel={(lbl) => {
                 setNotStarted(lbl);
               }}
+
+              cleared={clear}
+              setCleared={setClear}
             />
             <FilterButton
               label={"In-Progress"}
               setLabel={(lbl) => {
                 setInProgress(lbl);
               }}
+              cleared={clear}
+              setCleared={setClear}
             />
             <FilterButton
               label={"Complete"}
               setLabel={(lbl) => {
                 setCompleted(lbl);
               }}
+              cleared={clear}
+              setCleared={setClear}
             />
-            <h5 className="clear-filter-button">Clear Filter</h5>
+            <h5 className="clear-filter-button" onClick={handleClearFilter}>Clear Filter</h5>
           </div>
           <div className="select-concept-container">
             {clinicalDocumentSummary && (

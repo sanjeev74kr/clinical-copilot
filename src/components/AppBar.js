@@ -22,6 +22,11 @@ export const AppBar = () => {
     setProfileClicked(!profileClicked);
   };
 
+  function handleSignOut(){
+  localStorage.removeItem(keyName);
+  navigate('/');    
+  }
+
   return (
     <>
       <div className="main-container">
@@ -34,7 +39,7 @@ export const AppBar = () => {
       </div>
       {profileClicked && (
         <div className="profile-options">
-          <h4>Sign out</h4>
+          <h4 onClick={handleSignOut}>Sign out</h4>
         </div>
       )}
     </>
