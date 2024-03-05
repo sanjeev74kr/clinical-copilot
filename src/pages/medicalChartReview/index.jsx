@@ -15,6 +15,7 @@ import { appContext } from "../../context/AppContext";
 import { useLocation } from "react-router-dom";
 import Evidence from "../../components/Evidence/evidence";
 import FilterButton from "../../components/FilterButton";
+import Tooltip from "@mui/material/Tooltip";
 
 function MedicalChartReview() {
   const {
@@ -28,6 +29,7 @@ function MedicalChartReview() {
     dispatch,
   } = useContext(appContext);
   const keyName = "userCredentials";
+  let finalText = "";
 
   const [referenceText, setReferenceText] = useState(["Column 2", "Column 3"]);
 
@@ -174,14 +176,18 @@ function MedicalChartReview() {
   const pasteText = async () => {
     try {
       const text = await navigator.clipboard.readText();
-      setpastedText(text);
+      const existingNotes = selectedCDS.User_Notes;
+      let holdText =
+        pastedText === "" ? text + existingNotes : pastedText + text;
+      finalText = holdText;
+
+      setpastedText(finalText);
     } catch (error) {
       console.log(error);
     }
   };
 
   function storeReferenceTextInArray(reference) {
-    console.log("reference is", reference, "reference array is", referenceText);
     setReferenceText(...referenceText, reference);
   }
   const buildCDSPostObject = (data) => {
@@ -373,7 +379,7 @@ function MedicalChartReview() {
                     disableUnderline={false}
                     sx={{ width: "100%", padding: "10px 5px" }}
                     multiline
-                    maxRows={4}
+                    maxRows={8}
                     onChange={handleChange}
                     value={pastedText}
                     placeholder="Type anything…"
@@ -383,9 +389,11 @@ function MedicalChartReview() {
                   ></TextField>
                 </div>
                 <div className="btn-container">
-                  <div className="paste-icon" onClick={() => pasteText()}>
-                    <FaPaste />
-                  </div>
+                  <Tooltip title="Paste" placement="top-start">
+                    <div className="paste-icon" onClick={() => pasteText()}>
+                      <FaPaste />
+                    </div>
+                  </Tooltip>
                   <div className="select-notes-dd">
                     <DropDownBox
                       label={""}

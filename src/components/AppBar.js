@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import exlLogo from "../assets/EXL_logo.png";
 import "../../src/components/Header/header.css";
+import exlLogo from "../assets/EXL_logo.png";
+import "../../src/components/Header/header.css";
 
 // import MuiAppBar from "@mui/material/AppBar";
 // import Toolbar from "@mui/material/Toolbar";

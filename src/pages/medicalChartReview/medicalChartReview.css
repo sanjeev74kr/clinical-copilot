@@ -36,9 +36,9 @@
   /* height: auto; */
 }
 
-.medicalchart-pdf-container{
-width:50%;
-height:100%;
+.medicalchart-pdf-container {
+  width: 50%;
+  height: 100%;
 }
 
 .operation-container {
@@ -46,27 +46,27 @@ height:100%;
   flex-direction: column;
   width: 50%;
   height: 100%;
-  overflow:scroll;
+  overflow: scroll;
   /*gap: 1rem;*/
   background: #fafafa;
   margin-left: 1rem;
-  border-radius: 0.8rem;
+  border-radius: 0.4rem;
+  overflow-x: hidden;
 }
 
-.filter-container{
-  max-width:95%;
+.filter-container {
+  max-width: 95%;
   display: flex;
   align-items: center;
-  margin:2%;
-  width:100%;
-  gap:1rem;
+  margin: 2%;
+  width: 100%;
+  gap: 1rem;
 }
 
-.clear-filter-button{
+.clear-filter-button {
   margin-left: auto;
-  color:#00A2F3;
+  color: #00a2f3;
 }
-
 
 .title-container {
   display: flex;
@@ -95,12 +95,12 @@ height:100%;
   border-radius: 0.5rem;
   padding: 5px;
 }
-.listwidth{
+.listwidth {
   width: 98%;
 }
-.align-box{
+.align-box {
   display: flex;
-    align-items: center;
+  align-items: center;
 }
 .ref-text-container {
   display: flex;
@@ -119,11 +119,11 @@ height:100%;
   border-radius: 5px;
 }
 
-.count-circle{
-  background: #9c27b0 !important; 
+.count-circle {
+  background: #9c27b0 !important;
   text-align: center;
 }
-.pagenumclr{
+.pagenumclr {
   color: white;
   font-weight: 600;
 }
@@ -148,7 +148,7 @@ height:100%;
   display: flex;
   justify-content: flex-start;
   font-size: 0.8rem;
-  margin-left: .4rem;
+  margin-left: 0.4rem;
   padding-bottom: 7px;
 }
 
@@ -167,7 +167,8 @@ height:100%;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 7rem;
+  height: auto;
+  min-height: 7rem;
 }
 .paste-icon {
   color: #cecece;
@@ -191,10 +192,10 @@ height:100%;
   color: #cecece;
   cursor: pointer;
 }
-.evidence-container{
+.evidence-container {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 .box-container {
   background-color: #e4e2e2;
@@ -221,8 +222,8 @@ height:100%;
   font-size: 1.25rem;
 }
 
-.copyTextSuccess{
-  font-size: .8rem;
+.copyTextSuccess {
+  font-size: 0.8rem;
   color: darkgreen;
 }
 .username {
@@ -261,8 +262,8 @@ height:100%;
   font-size: 12px;
   font-weight: 700;
   gap: 5px;
-  margin:2%;
-  margin-top:0.5%;
+  margin: 2%;
+  margin-top: 0.5%;
 }
 
 .select-notes-dd {
@@ -310,7 +311,6 @@ height:100%;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-
 
 /* .checkbox-container-review{
   display: flex;

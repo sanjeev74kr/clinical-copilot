@@ -1,17 +1,17 @@
+import * as React from "react";
 import { useContext, useState } from "react";
 import { FaCopy } from "react-icons/fa";
 import UserFeedback from "../UserFeedback/userFeedback";
 
 import { appContext } from "../../context/AppContext";
+import { Tooltip } from "@mui/material";
 
-
-const Evidence = ({ data,storeReferenceTextInArray}) => {
+const Evidence = ({ data, storeReferenceTextInArray }) => {
   const [copySuccess, setCopySuccess] = useState("");
 
   const { dispatch } = useContext(appContext);
 
   const onPageNumberClick = (pagenum) => {
-    
     dispatch({ type: "SET_PAGENUMBER", payload: pagenum });
   };
 
@@ -92,7 +92,9 @@ const Evidence = ({ data,storeReferenceTextInArray}) => {
             <div className="person-icon count-circle">
               <span
                 className="pagenumclr"
-                onClick={() => onPageNumberClick(Number(item.Document_Page_Number))}
+                onClick={() =>
+                  onPageNumberClick(Number(item.Document_Page_Number))
+                }
               >
                 {item.Document_Page_Number}
               </span>
@@ -131,12 +133,13 @@ const Evidence = ({ data,storeReferenceTextInArray}) => {
             </ul>
           </div>
           <div className="icon-container">
-            <span onClick={() => copyText(item.Concept_LLM_Summary)}>
-              <FaCopy />
-            </span>
-
+            <Tooltip title="Copy" placement="top-start">
+              <span onClick={() => copyText(item.Concept_LLM_Summary)}>
+                <FaCopy />
+              </span>
+            </Tooltip>
             <UserFeedback feedback={item} />
-            <span className="copyTextSuccess">{copySuccess}</span>
+            {/* <span className="copyTextSuccess">{copySuccess}</span> */}
           </div>
         </div>
       ))}
