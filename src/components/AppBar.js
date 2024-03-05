@@ -27,7 +27,7 @@ export const AppBar = () => {
     <>
       <div className="main-container">
         <img className="brand-logo" src={exlLogo} alt="exl" />
-        <h3 className="project-title">Clinician-CoPilot</h3>
+        <h3 className="project-title">Clinical CoPilot</h3>
         <div className="profile-icon-container" onClick={handleProfileClick}>
           <h4 className="user-name">{userCredentials.email.split("@")[0]}</h4>
           <CgProfile className="profile-icon" />

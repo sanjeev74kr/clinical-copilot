@@ -48,7 +48,7 @@ function UserFeedback(props) {
   };
   return (
     <div className="feedback-container">
-      <Tooltip title="Accept evidence" placement="top-start">
+      <Tooltip title="Accept Evidence" placement="top-start">
         <span
           className={acceptClick ? "check" : "check-disabled"}
           onClick={toggleAccept}
@@ -56,7 +56,7 @@ function UserFeedback(props) {
           <FaCheck />
         </span>
       </Tooltip>
-      <Tooltip title="Reject evidence" placement="top-start">
+      <Tooltip title="Reject Evidence" placement="top-start">
         <span
           className={rejectClick ? "cross" : "cross-disabled"}
           onClick={toggleReject}

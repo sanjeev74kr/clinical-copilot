@@ -290,7 +290,7 @@ function handlePdfDoubleClick(){
       }
     }
 
-    console.log(docStatus)
+    
     setDocStatus(docStatus);
 
      updateClinicalDocumentSummary(

@@ -13,7 +13,7 @@ export const converUTCtoLoacle = (utcDate) => {
       Math.floor(dateDiffmin / 60) +
       " hour(s) and " +
       (dateDiffmin % 60) +
-      " min";
+      " mins";
     return dateDiffmin;
   }
   return dateDiffmin + " mins";

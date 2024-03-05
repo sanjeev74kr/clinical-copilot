@@ -24,7 +24,7 @@
   padding-right: 1rem;
   margin: 3% 1%;
   background: #fafafa;
-  border-radius: 1.25rem;
+  border-radius: .4rem;
 }
 
 .pdfViewer-and-operations-container {
@@ -67,6 +67,7 @@
 .clear-filter-button {
   margin-left: auto;
   color: #00a2f3;
+  cursor: pointer;
 }
 
 .title-container {
