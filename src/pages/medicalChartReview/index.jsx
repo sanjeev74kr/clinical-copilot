@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef, useCallback } from "react";
+import { useContext, useEffect, useState, useRef, useCallback,useLayoutEffect } from "react";
 import "./medicalChartReview.css";
 import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
@@ -16,6 +16,29 @@ import { useLocation } from "react-router-dom";
 import Evidence from "../../components/Evidence/evidence";
 import FilterButton from "../../components/FilterButton";
 import Tooltip from "@mui/material/Tooltip";
+import Modal from "react-modal";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
+
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.75)", // This will give a semi-transparent dark background
+  },
+  content: {
+    position: "absolute",
+    top: "10%",
+    left: "15%",
+    right: "15%",
+    bottom: "5%",
+    overflow:'none',
+    paddingTop:'0',
+    outline:'none',
+  },
+};
+
+Modal.setAppElement("body");
+
+
 
 function MedicalChartReview() {
   const {
@@ -57,7 +80,10 @@ function MedicalChartReview() {
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
-  const [maxHeight, setMaxHeight] = useState(450);
+  
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const [maxHeight, setMaxHeight] = useState(600);
 
   const child1Ref = useRef(null);
   const child2Ref = useRef(null);
@@ -67,14 +93,14 @@ function MedicalChartReview() {
       return;
     }
     const newMaxHeight = Math.max(
-      child1Ref.current.offsetHeight,
-      child2Ref.current.offsetHeight
+      child1Ref.current.scrollHeight,
+      child2Ref.current.scrollHeight
     );
     setMaxHeight(newMaxHeight);
   }, [child1Ref.current, child2Ref.current]);
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver(resizeCallback);
+    const resizeObserver = new ResizeObserver(resizeCallback)
     if (child1Ref.current) {
       resizeObserver.observe(child1Ref.current);
     }
@@ -85,7 +111,8 @@ function MedicalChartReview() {
     return function cleanup() {
       resizeObserver.disconnect();
     };
-  }, [resizeCallback]);
+  },[resizeCallback,child1Ref.current, child2Ref.current]);
+
 
   useEffect(() => {
     if (child1Ref.current) {
@@ -94,12 +121,26 @@ function MedicalChartReview() {
     if (child2Ref.current) {
       child2Ref.current.style.height = `${maxHeight}px`;
     }
-  }, [maxHeight]);
+  }, [maxHeight,child1Ref.current, child2Ref.current]);
 
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
   const pdfPath = location.state.documentPath;
   const pdfName = location.state.documentName;
+
+//modal functions
+function openModal() {
+  setIsOpen(true);
+}
+
+function closeModal() {
+  setIsOpen(false);
+}
+
+function handlePdfDoubleClick(){
+  openModal();
+}
+
 
   useEffect(() => {
     getDocumentDataPerIdentifier(documentIdentifier);
@@ -302,7 +343,7 @@ function MedicalChartReview() {
         )}
       </div>
       <div className="pdfViewer-and-operations-container">
-        <div className="medicalchart-pdf-container" ref={child1Ref}>
+        <div className="medicalchart-pdf-container" onDoubleClick={handlePdfDoubleClick} ref={child1Ref}>
           <PdfViewer
             className={"pdfViewer-container"}
             pdfurl={
@@ -433,6 +474,19 @@ function MedicalChartReview() {
           )}
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Pdf File"
+      >
+        <div className="modal-pdf-viewer-container">
+        <IoIosCloseCircleOutline className="close-button" title='close' onClick={closeModal}/>
+        <PdfViewer className='modal-pdf-viewer' 
+        pdfurl={pdfFile}
+        pdfname={pdfName} />
+        </div>
+      </Modal>
     </div>
   );
 }
