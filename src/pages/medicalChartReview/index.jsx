@@ -4,7 +4,6 @@ import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
 import pdfFile from "../../assets/sample_file.pdf";
 import DropDownBox from "../../components/DropDownBox";
-import Checkbox from "../../components/Checkbox";
 import { status } from "../../utils/sampleData";
 
 import TextField from "@mui/material/TextField";
@@ -16,6 +15,7 @@ import { useLocation } from "react-router-dom";
 import Evidence from "../../components/Evidence/evidence";
 import FilterButton from "../../components/FilterButton";
 import Tooltip from "@mui/material/Tooltip";
+import { converUTCtoLoacle } from "../../utils/dateUtils";
 
 function MedicalChartReview() {
   const {
@@ -37,6 +37,7 @@ function MedicalChartReview() {
   const userCredentials = JSON.parse(value);
 
   const [selectedCDS, setSelectedCDS] = useState({});
+  const [documentStatus, setDocStatus] = useState('');
   const [notStarted, setNotStarted] = useState(
     "Not-started".toLocaleLowerCase()
   );
@@ -248,7 +249,10 @@ function MedicalChartReview() {
       }
     }
 
-    updateClinicalDocumentSummary(
+    console.log(docStatus)
+    setDocStatus(docStatus);
+
+     updateClinicalDocumentSummary(
       buildCDSPostObject(cdsRecord),
       selectedConcept
     )
@@ -259,7 +263,7 @@ function MedicalChartReview() {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }); 
   };
 
   return (
@@ -297,6 +301,7 @@ function MedicalChartReview() {
           <DetailsCard
             cardHeader={"Status"}
             cardData={clinicalDocument}
+            documentStatus={documentStatus}
             type={"status"}
           />
         )}
@@ -370,7 +375,7 @@ function MedicalChartReview() {
                   {" "}
                   {userCredentials.email.split("@")[0]}
                 </div>
-                <div className="time">5 min ago</div>
+                <div className="time">{converUTCtoLoacle(selectedCDS.Last_Updated_Dts)} ago</div>
               </div>
               <div className="text-field-container">
                 <div>
