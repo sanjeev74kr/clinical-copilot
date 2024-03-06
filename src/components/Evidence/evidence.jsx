@@ -9,7 +9,7 @@ import { Tooltip } from "@mui/material";
 const Evidence = ({ data, storeReferenceTextInArray }) => {
   const [copySuccess, setCopySuccess] = useState("");
 
-  const { dispatch } = useContext(appContext);
+  const { dispatch, updateUserFeedback, userCredentials } = useContext(appContext);
 
   const onPageNumberClick = (pagenum) => {
     dispatch({ type: "SET_PAGENUMBER", payload: pagenum });
@@ -77,6 +77,10 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
     }
   };
 
+  const updateFeedback = (value, identifier)=>{
+    updateUserFeedback(value, identifier);
+  }
+
   const clearCopyText = () => {
     setTimeout(() => {
       setCopySuccess("");
@@ -87,21 +91,7 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
       <div className="evidence-heading">Evidence of Concept </div>
       {data?.map((item, index) => (
         <div className="box-container">
-          {/*  <div className="ref-text-container">
-            <div>{item.Reference_Text}</div>
-            {storeReferenceTextInArray(item.Reference_Text)}
-            <div className="person-icon count-circle">
-              <span
-                className="pagenumclr"
-                onClick={() =>
-                  onPageNumberClick(Number(item.Document_Page_Number))
-                }
-              >
-                {item.Document_Page_Number}
-              </span>
-            </div>
-          </div> */}
-
+        
           <div className="para-container"><span>Summary: &nbsp; </span>{item.Concept_LLM_Summary}</div>
 
           <div className="note-container">
@@ -141,7 +131,7 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
                   <FaCopy />
                 </span>
               </Tooltip>
-              <UserFeedback feedback={item} />
+              <UserFeedback feedback={item} updateUserFeedback = {updateFeedback} type={"CES"}/>
             </div>
             <div className="feedback-container">
             <span className="page-font">Document Page</span>
