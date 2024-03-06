@@ -84,9 +84,10 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
   };
   return (
     <div className="evidence-container">
+      <div className="evidence-heading">Evidence of Concept </div>
       {data?.map((item, index) => (
         <div className="box-container">
-          <div className="ref-text-container">
+          {/*  <div className="ref-text-container">
             <div>{item.Reference_Text}</div>
             {storeReferenceTextInArray(item.Reference_Text)}
             <div className="person-icon count-circle">
@@ -99,11 +100,12 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
                 {item.Document_Page_Number}
               </span>
             </div>
-          </div>
+          </div> */}
 
-          <div className="para-container">{item.Concept_LLM_Summary}</div>
+          <div className="para-container"><span>Summary: &nbsp; </span>{item.Concept_LLM_Summary}</div>
 
           <div className="note-container">
+            <div className="note-container-div">Evidence Description: </div>
             <ul className="listwidth">
               <li className="list-style-none">
                 {checkIsArray(item.Response_Attribute) ? (
@@ -133,13 +135,28 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
             </ul>
           </div>
           <div className="icon-container">
-            <Tooltip title="Copy" placement="top-start">
-              <span onClick={() => copyText(item.Concept_LLM_Summary)}>
-                <FaCopy />
+            <div className="feedback-container">
+              <Tooltip title="Copy" placement="top-start">
+                <span onClick={() => copyText(item.Concept_LLM_Summary)}>
+                  <FaCopy />
+                </span>
+              </Tooltip>
+              <UserFeedback feedback={item} />
+            </div>
+            <div className="feedback-container">
+            <span className="page-font">Document Page</span>
+            <div className="person-icon count-circle">
+            
+              <span
+                className="pagenumclr"
+                onClick={() =>
+                  onPageNumberClick(Number(item.Document_Page_Number))
+                }
+              >
+                {item.Document_Page_Number}
               </span>
-            </Tooltip>
-            <UserFeedback feedback={item} />
-            {/* <span className="copyTextSuccess">{copySuccess}</span> */}
+            </div>
+            </div>
           </div>
         </div>
       ))}
@@ -147,4 +164,4 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
   );
 };
 
-export default Evidence;
+export default React.memo(Evidence);

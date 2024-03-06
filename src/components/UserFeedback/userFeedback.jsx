@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaTimes, FaCheck } from "react-icons/fa";
 import "./userFeedback.css";
 import { appContext } from "../../context/AppContext";
@@ -68,4 +68,4 @@ function UserFeedback(props) {
   );
 }
 
-export default UserFeedback;
+export default React.memo(UserFeedback);

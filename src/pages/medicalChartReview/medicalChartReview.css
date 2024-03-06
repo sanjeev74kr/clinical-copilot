@@ -83,6 +83,20 @@
   padding: 14px;
   font-size: 14px;
 }
+.para-container span{
+  font-weight: 600;
+ 
+}
+
+.note-container-div{
+  margin-left: 0.9rem;
+    font-weight: 600;
+}
+
+.evidence-heading{
+  font-weight: 700;
+  margin-left: 1.1rem;
+}
 .condition-line {
   border-left: 1px solid #cecece;
   height: 3rem;
@@ -122,7 +136,7 @@
 }
 
 .count-circle {
-  background: #9c27b0 !important;
+  background: rgb(233, 79, 28) !important;
   text-align: center;
 }
 .pagenumclr {
@@ -148,9 +162,10 @@
 }
 .note-container {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   font-size: 0.8rem;
-  margin-left: 0.4rem;
+  
   padding-bottom: 7px;
 }
 
@@ -217,11 +232,21 @@
 }
 .icon-container {
   display: flex;
-  gap: 15px;
+ justify-content: space-between;
   padding: 1px 14px;
   cursor: pointer;
   color: #cecece;
   font-size: 1.25rem;
+}
+.feedback-container{
+  display: flex;
+  gap: 15px;
+}
+.page-font{
+  color: black;
+  font-size: .9rem;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 .copyTextSuccess {
