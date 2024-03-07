@@ -24,7 +24,7 @@
   padding-right: 1rem;
   margin: 3% 1%;
   background: #fafafa;
-  border-radius: 1.25rem;
+  border-radius: 0.4rem;
 }
 
 .pdfViewer-and-operations-container {
@@ -33,7 +33,6 @@
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 2rem;
- 
 }
 
 .medicalchart-pdf-container {
@@ -67,6 +66,7 @@
 .clear-filter-button {
   margin-left: auto;
   color: #00a2f3;
+  cursor: pointer;
 }
 
 .title-container {
@@ -81,6 +81,19 @@
   display: flex;
   padding: 14px;
   font-size: 14px;
+}
+.para-container span {
+  font-weight: 600;
+}
+
+.note-container-div {
+  margin-left: 0.9rem;
+  font-weight: 600;
+}
+
+.evidence-heading {
+  font-weight: 700;
+  margin-left: 1.1rem;
 }
 .condition-line {
   border-left: 1px solid #cecece;
@@ -121,12 +134,13 @@
 }
 
 .count-circle {
-  background: #9c27b0 !important;
+  background: rgb(233, 79, 28) !important;
   text-align: center;
 }
 .pagenumclr {
   color: white;
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .ref-item {
@@ -147,9 +161,10 @@
 }
 .note-container {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   font-size: 0.8rem;
-  margin-left: 0.4rem;
+
   padding-bottom: 7px;
 }
 
@@ -216,11 +231,21 @@
 }
 .icon-container {
   display: flex;
-  gap: 15px;
+  justify-content: space-between;
   padding: 1px 14px;
   cursor: pointer;
   color: #cecece;
   font-size: 1.25rem;
+}
+.feedback-container {
+  display: flex;
+  gap: 15px;
+}
+.page-font {
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 .copyTextSuccess {
@@ -244,9 +269,10 @@
 .person-icon {
   border: 0.01rem solid white;
   border-radius: 50%;
-  background: #ccc;
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  display: flex;
+  height: 1.6rem;
+  justify-content: center;
 }
 .subtitle-container {
   display: none;

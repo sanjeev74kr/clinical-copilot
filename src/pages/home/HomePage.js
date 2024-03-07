@@ -112,7 +112,7 @@ const HomePage = () => {
   }
 
   function handleFilePathClick(documentPath,documentName) {
-    console.log("handleFilePath called");
+    
     setPdfPath(documentPath);
     setPdfName(documentName);
     openModal();

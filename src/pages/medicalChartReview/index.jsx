@@ -1,4 +1,11 @@
-import { useContext, useEffect, useState, useRef, useCallback,useLayoutEffect } from "react";
+import {
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  useLayoutEffect,
+} from "react";
 import "./medicalChartReview.css";
 import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
@@ -18,7 +25,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { converUTCtoLoacle } from "../../utils/dateUtils";
 import Modal from "react-modal";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-
+import Accordion from "../../components/Accordion";
 
 const customStyles = {
   overlay: {
@@ -30,15 +37,13 @@ const customStyles = {
     left: "15%",
     right: "15%",
     bottom: "5%",
-    overflow:'none',
-    paddingTop:'0',
-    outline:'none',
+    overflow: "none",
+    paddingTop: "0",
+    outline: "none",
   },
 };
 
 Modal.setAppElement("body");
-
-
 
 function MedicalChartReview() {
   const {
@@ -59,8 +64,8 @@ function MedicalChartReview() {
   const value = window.localStorage.getItem(keyName);
   const userCredentials = JSON.parse(value);
 
-  const [selectedCDS, setSelectedCDS] = useState({});
-  const [documentStatus, setDocStatus] = useState('');
+  const [selectedCDS, setSelectedCDS] = useState(undefined);
+  const [documentStatus, setDocStatus] = useState("");
   const [notStarted, setNotStarted] = useState(
     "Not-started".toLocaleLowerCase()
   );
@@ -70,7 +75,7 @@ function MedicalChartReview() {
   const [complete, setCompleted] = useState("Complete".toLocaleLowerCase());
   const statusArray = [notStarted, inProgress, complete];
 
-  const [clear,setClear] = useState();
+  const [clear, setClear] = useState();
 
   const [selectedConcept, setSelectedConcept] = useState("");
   const [selectedCDSStatus, setSelectedCDSStatus] = useState("");
@@ -81,7 +86,7 @@ function MedicalChartReview() {
   const [provider, setProvider] = useState([]);
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [clinicalDocumentSummary, setclinicalDocumentSummary] = useState([]);
-  
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const [maxHeight, setMaxHeight] = useState(600);
@@ -101,7 +106,7 @@ function MedicalChartReview() {
   }, [child1Ref.current, child2Ref.current]);
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver(resizeCallback)
+    const resizeObserver = new ResizeObserver(resizeCallback);
     if (child1Ref.current) {
       resizeObserver.observe(child1Ref.current);
     }
@@ -112,8 +117,7 @@ function MedicalChartReview() {
     return function cleanup() {
       resizeObserver.disconnect();
     };
-  },[resizeCallback,child1Ref.current, child2Ref.current]);
-
+  }, [resizeCallback, child1Ref.current, child2Ref.current]);
 
   useEffect(() => {
     if (child1Ref.current) {
@@ -122,26 +126,25 @@ function MedicalChartReview() {
     if (child2Ref.current) {
       child2Ref.current.style.height = `${maxHeight}px`;
     }
-  }, [maxHeight,child1Ref.current, child2Ref.current]);
+  }, [maxHeight, child1Ref.current, child2Ref.current]);
 
   const location = useLocation();
   const documentIdentifier = location.state.identifier;
   const pdfPath = location.state.documentPath;
   const pdfName = location.state.documentName;
 
-//modal functions
-function openModal() {
-  setIsOpen(true);
-}
+  //modal functions
+  function openModal() {
+    setIsOpen(true);
+  }
 
-function closeModal() {
-  setIsOpen(false);
-}
+  function closeModal() {
+    setIsOpen(false);
+  }
 
-function handlePdfDoubleClick(){
-  openModal();
-}
-
+  function handlePdfDoubleClick() {
+    openModal();
+  }
 
   useEffect(() => {
     getDocumentDataPerIdentifier(documentIdentifier);
@@ -185,13 +188,13 @@ function handlePdfDoubleClick(){
     getConceptEvidence(cds_identifier, statusArray);
   };
 
-//handle clear
-  const handleClearFilter=()=>{
+  //handle clear
+  const handleClearFilter = () => {
     setClear(true);
     setNotStarted(null);
     setInProgress(null);
     setCompleted(null);
-  }
+  };
 
   const handleChange = (e) => {
     setpastedText(e.target.value);
@@ -220,7 +223,7 @@ function handlePdfDoubleClick(){
       const text = await navigator.clipboard.readText();
       const existingNotes = selectedCDS.User_Notes;
       let holdText =
-        pastedText === "" ? text + existingNotes : pastedText + text;
+        pastedText === "" ? text + "\n"+ existingNotes : pastedText + "\n"+ text;
       finalText = holdText;
 
       setpastedText(finalText);
@@ -290,10 +293,9 @@ function handlePdfDoubleClick(){
       }
     }
 
-    console.log(docStatus)
     setDocStatus(docStatus);
 
-     updateClinicalDocumentSummary(
+    updateClinicalDocumentSummary(
       buildCDSPostObject(cdsRecord),
       selectedConcept
     )
@@ -304,7 +306,7 @@ function handlePdfDoubleClick(){
       })
       .catch((error) => {
         console.log(error);
-      }); 
+      });
   };
 
   return (
@@ -348,7 +350,11 @@ function handlePdfDoubleClick(){
         )}
       </div>
       <div className="pdfViewer-and-operations-container">
-        <div className="medicalchart-pdf-container" onDoubleClick={handlePdfDoubleClick} ref={child1Ref}>
+        <div
+          className="medicalchart-pdf-container"
+          onDoubleClick={handlePdfDoubleClick}
+          ref={child1Ref}
+        >
           <PdfViewer
             className={"pdfViewer-container"}
             pdfurl={
@@ -368,7 +374,6 @@ function handlePdfDoubleClick(){
               setLabel={(lbl) => {
                 setNotStarted(lbl);
               }}
-
               cleared={clear}
               setCleared={setClear}
             />
@@ -388,7 +393,9 @@ function handlePdfDoubleClick(){
               cleared={clear}
               setCleared={setClear}
             />
-            <h5 className="clear-filter-button" onClick={handleClearFilter}>Clear Filter</h5>
+            <h5 className="clear-filter-button" onClick={handleClearFilter}>
+              Clear Filter
+            </h5>
           </div>
           <div className="select-concept-container">
             {clinicalDocumentSummary && (
@@ -401,11 +408,20 @@ function handlePdfDoubleClick(){
               />
             )}
           </div>
-
-          <Evidence
-            data={evidenceResult}
-            storeReferenceTextInArray={storeReferenceTextInArray}
-          />
+          <div>
+            {selectedCDS && (
+              <Accordion
+                accordionTitle={"Summary for All Evidences"}
+                accordionContent={selectedCDS}
+              />
+            )}
+          </div>
+          {evidenceResult && selectedCDS && (
+            <Evidence
+              data={evidenceResult}
+              storeReferenceTextInArray={storeReferenceTextInArray}
+            />
+          )}
           {selectedConcept !== "" && (
             <div className="llm-box-container">
               <div className="user-box-container">
@@ -416,7 +432,9 @@ function handlePdfDoubleClick(){
                   {" "}
                   {userCredentials.email.split("@")[0]}
                 </div>
-                <div className="time">{converUTCtoLoacle(selectedCDS.Last_Updated_Dts)} ago</div>
+                <div className="time">
+                  {converUTCtoLoacle(selectedCDS.Last_Updated_Dts)} ago
+                </div>
               </div>
               <div className="text-field-container">
                 <div>
@@ -486,10 +504,16 @@ function handlePdfDoubleClick(){
         contentLabel="Pdf File"
       >
         <div className="modal-pdf-viewer-container">
-        <IoIosCloseCircleOutline className="close-button" title='close' onClick={closeModal}/>
-        <PdfViewer className='modal-pdf-viewer' 
-        pdfurl={pdfFile}
-        pdfname={pdfName} />
+          <IoIosCloseCircleOutline
+            className="close-button"
+            title="close"
+            onClick={closeModal}
+          />
+          <PdfViewer
+            className="modal-pdf-viewer"
+            pdfurl={pdfFile}
+            pdfname={pdfName}
+          />
         </div>
       </Modal>
     </div>
