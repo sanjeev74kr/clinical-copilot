@@ -12,6 +12,7 @@ import Pagination from "@mui/material/Pagination";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import "./homePage.css";
+import { AzureAuth } from "../../components/AzureAuth";
 
 const customStyles = {
   overlay: {
