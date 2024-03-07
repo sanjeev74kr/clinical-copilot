@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Toast from "./components/Toast/toast";
 
-import App from './App'
+import App from './App.jsx'
 import { PublicClientApplication,EventType } from "@azure/msal-browser";
 import { msalConfig } from "./authConfig";
 
