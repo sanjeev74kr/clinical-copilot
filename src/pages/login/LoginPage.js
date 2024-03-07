@@ -49,7 +49,7 @@ export const LoginPage = () => {
     <div className="login-main-container">
       <div className="product-name-container">
         <p className="product-name">Clinical</p>
-        <p className="product-name second">CPilot</p>
+        <p className="product-name second">CoPilot</p>
       </div>
       <div className="login-image-container">
         <img className="login-image" src={loginCoverImage} alt="login image" />

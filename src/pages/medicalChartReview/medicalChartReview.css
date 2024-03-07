@@ -24,7 +24,7 @@
   padding-right: 1rem;
   margin: 3% 1%;
   background: #fafafa;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
 }
 
 .pdfViewer-and-operations-container {
@@ -33,7 +33,6 @@
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 2rem;
- 
 }
 
 .medicalchart-pdf-container {
@@ -83,17 +82,16 @@
   padding: 14px;
   font-size: 14px;
 }
-.para-container span{
+.para-container span {
   font-weight: 600;
- 
 }
 
-.note-container-div{
+.note-container-div {
   margin-left: 0.9rem;
-    font-weight: 600;
+  font-weight: 600;
 }
 
-.evidence-heading{
+.evidence-heading {
   font-weight: 700;
   margin-left: 1.1rem;
 }
@@ -142,6 +140,7 @@
 .pagenumclr {
   color: white;
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .ref-item {
@@ -165,7 +164,7 @@
   flex-direction: column;
   justify-content: flex-start;
   font-size: 0.8rem;
-  
+
   padding-bottom: 7px;
 }
 
@@ -232,19 +231,19 @@
 }
 .icon-container {
   display: flex;
- justify-content: space-between;
+  justify-content: space-between;
   padding: 1px 14px;
   cursor: pointer;
   color: #cecece;
   font-size: 1.25rem;
 }
-.feedback-container{
+.feedback-container {
   display: flex;
   gap: 15px;
 }
-.page-font{
+.page-font {
   color: black;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 600;
   margin-top: 5px;
 }
@@ -270,9 +269,10 @@
 .person-icon {
   border: 0.01rem solid white;
   border-radius: 50%;
-  background: #ccc;
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  display: flex;
+  height: 1.6rem;
+  justify-content: center;
 }
 .subtitle-container {
   display: none;

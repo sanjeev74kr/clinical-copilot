@@ -88,14 +88,14 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
   };
   return (
     <div className="evidence-container">
-      <div className="evidence-heading">Evidence of Concept </div>
+      <div className="evidence-heading">Evidence of Concept(s) </div>
       {data?.map((item, index) => (
         <div className="box-container">
         
           <div className="para-container"><span>Summary: &nbsp; </span>{item.Concept_LLM_Summary}</div>
 
           <div className="note-container">
-            <div className="note-container-div">Evidence Description: </div>
+            <div className="note-container-div">Description: </div>
             <ul className="listwidth">
               <li className="list-style-none">
                 {checkIsArray(item.Response_Attribute) ? (

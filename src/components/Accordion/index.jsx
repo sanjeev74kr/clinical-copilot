@@ -24,9 +24,7 @@ function Accordion(props) {
       {isExpandable && accordionContent && (
         <div className="accordion-content-container">
           <p className="accordion-content">
-            {accordionContent.All_Evidence_Summary === null
-              ? "Want to learn all ES6+ features in detail including let and const, promises, various promise methods, array and object destructuring, arrow functions, async/await, import and export and a whole lot more from scratch?"
-              : accordionContent.All_Evidence_Summary}
+            {accordionContent.All_Evidence_Summary}
           </p>
           <div className="document-feedback-container">
             <UserFeedback

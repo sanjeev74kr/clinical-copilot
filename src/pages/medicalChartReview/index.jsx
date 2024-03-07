@@ -184,7 +184,6 @@ function MedicalChartReview() {
     }
   }, [notStarted, inProgress, complete]);
 
-  
   const initConceptEvidence = (cds_identifier) => {
     getConceptEvidence(cds_identifier, statusArray);
   };
@@ -224,7 +223,7 @@ function MedicalChartReview() {
       const text = await navigator.clipboard.readText();
       const existingNotes = selectedCDS.User_Notes;
       let holdText =
-        pastedText === "" ? text + existingNotes : pastedText + text;
+        pastedText === "" ? text + "\n"+ existingNotes : pastedText + "\n"+ text;
       finalText = holdText;
 
       setpastedText(finalText);
@@ -414,7 +413,6 @@ function MedicalChartReview() {
               <Accordion
                 accordionTitle={"Summary for All Evidences"}
                 accordionContent={selectedCDS}
-
               />
             )}
           </div>

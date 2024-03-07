@@ -29,7 +29,7 @@
    
   ul.nav li {
     width: 50%;
-    padding: 2rem;
+    padding: 1.3rem;
     list-style: none;
     border: .1rem solid #cecece;
     text-align: center;
@@ -50,8 +50,8 @@
   }
    
   ul.nav li.active {
-    background: #cecece;
-    border-color: white;
+    background: #e4e2e2;
+    border-color: #cecece;
   }
    
   /* Tab Content Styles */
