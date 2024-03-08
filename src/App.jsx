@@ -21,6 +21,7 @@ import { MsalProvider, useMsal } from "@azure/msal-react";
 import { EventType } from "@azure/msal-browser";
 import { b2cPolicies, protectedResources } from "./authConfig";
 import { compareIssuingPolicy } from "./utils/claimUtils";
+import Tabs from "./components/Tabs/Tabs";
 
 const Pages = () => {
   /**
@@ -124,7 +125,7 @@ const Pages = () => {
       
       <Route path="/home" element={<ProtectedRoute><HomePage /> </ProtectedRoute>} />
       
-      <Route path="/medicalChartReview" element={<ProtectedRoute><MedicalChartReview /></ProtectedRoute>} />
+      <Route path="/medicalChartReview" element={<ProtectedRoute>{/* <MedicalChartReview /> */}<Tabs /></ProtectedRoute>} />
       <Route path="/passwordReset" element={<PasswordResetPage />} />
 
       <Route path="*" element={<NotFoundPage />} />
