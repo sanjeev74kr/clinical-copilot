@@ -9,31 +9,18 @@ import NotFoundPage from "./pages/notfound/NotFoundPage";
 import PasswordResetPage from "./pages/passwordReset";
 
 import { MsalProvider } from "@azure/msal-react";
+import Tabs from "./components/Tabs/Tabs";
 
 const Pages = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<LoginPage />} />
-
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute>
-              <HomePage />{" "}
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/medicalChartReview"
-          element={
-            <ProtectedRoute>
-              <MedicalChartReview />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/passwordReset" element={<PasswordResetPage />} />
+    <Routes>
+      <Route exact path="/" element={<LoginPage />} />
+      
+      <Route path="/home" element={<ProtectedRoute><HomePage /> </ProtectedRoute>} />
+      
+      <Route path="/medicalChartReview" element={<ProtectedRoute>{/* <MedicalChartReview /> */}<Tabs /></ProtectedRoute>} />
+      <Route path="/passwordReset" element={<PasswordResetPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
