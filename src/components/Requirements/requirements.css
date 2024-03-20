@@ -1,0 +1,27 @@
+.requirements-main-container{
+    width:100%;
+    color:black;
+    display: flex;
+    flex-direction: column;
+}
+.req-table{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;   
+}
+
+.req-head{
+    margin-bottom: 8%;
+}
+
+.req-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:1px solid var(--border-color);
+}
+
+.req-data{
+    padding-left: 1%;
+    padding-right: 1%;
+}
