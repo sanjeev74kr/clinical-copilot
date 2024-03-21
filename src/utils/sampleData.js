@@ -1,3 +1,7 @@
+import file1 from '../assets/file1.pdf'
+import file2 from '../assets/file2.pdf'
+import file3 from '../assets/file3.pdf'
+
 export const status = [
   { 0: "Not-Started" },
   { 1: "In-Progress" },
@@ -27,9 +31,27 @@ export const llmAnswer = {
 };
 
 export const requirementsData = [
-  { requirementName: "Requirement1", requirementStatus: 'true' },
-  { requirementName: "Requirement2", requirementStatus: 'false' },
-  { requirementName: "Requirement3", requirementStatus: 'true' },
-  { requirementName: "Requirement4", requirementStatus: 'false' },
-  { requirementName: "Requirement5", requirementStatus: 'false' }
+  { requirementName: "Requirement1", requirementStatus: "True" },
+  { requirementName: "Requirement2", requirementStatus: "False" },
+  { requirementName: "Requirement3", requirementStatus: "True" },
+  { requirementName: "Requirement4", requirementStatus: "False" },
+  { requirementName: "Requirement5", requirementStatus: "False" },
+];
+
+export const findPolicyTableData = [
+  {
+    status: "Cigna",
+    conference_number: "Actemera VI",
+    pdf_file: file1,
+  },
+  {
+    status: "Centene",
+    conference_number:"Actemera",
+    pdf_file: file2,
+  },
+  {
+    status: "UHG",
+    conference_number: "Actemera",
+    pdf_file: file3,
+  },
 ];
