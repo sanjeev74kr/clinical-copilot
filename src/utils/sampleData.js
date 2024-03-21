@@ -31,9 +31,9 @@ export const llmAnswer = {
 };
 
 export const requirementsData = [
-  { requirementName: "Requirement1", requirementStatus: "True" },
+  { requirementName: "Requirement1", requirementStatus: "False" },
   { requirementName: "Requirement2", requirementStatus: "False" },
-  { requirementName: "Requirement3", requirementStatus: "True" },
+  { requirementName: "Requirement3", requirementStatus: "False" },
   { requirementName: "Requirement4", requirementStatus: "False" },
   { requirementName: "Requirement5", requirementStatus: "False" },
 ];
