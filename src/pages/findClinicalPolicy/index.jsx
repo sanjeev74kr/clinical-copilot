@@ -1,8 +1,11 @@
 import "./findClinicalPolicy.css";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import { FaRegArrowAltCircleLeft } from "react-icons/fa";
+import {
+  FaRegArrowAltCircleLeft,
+  FaRegArrowAltCircleRight,
+} from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
 import PdfViewer from "../../components/PdfViewer";
@@ -11,20 +14,86 @@ import { findPolicyTableData, requirementsData } from "../../utils/sampleData";
 import { appContext } from "../../context/AppContext";
 import EvidenceCopy from "../../components/EvidenceCopy";
 
+
 function FindClinicalPolicy() {
   const [pdfFile, setPdfFile] = useState();
   const [selected, setSelected] = useState();
+  const [pdfContrCollapse, setPdfContnrCollapse] = useState(false);
+  const [requirementsContrCollapse, setRequirementsContnrCollapse] =
+    useState(false);
+  const [evidenceContrCollapse, setEvidenceContnrCollapse] = useState(false);
 
   const { evidenceResult, getAllConceptEvidence } = useContext(appContext);
+
+  useEffect(() => {
+    handleResize();
+    console.log("pdfContainerCollapse in useEffect:", pdfContrCollapse);
+  }, [pdfContrCollapse, requirementsContrCollapse, evidenceContrCollapse]);
 
   function handleSelect(pdf_file) {
     setPdfFile(pdf_file);
     setSelected(true);
-    getAllConceptEvidence("6d4fe8f3b75b4f72b5006c739057fca4");
+    getAllConceptEvidence("b9f3b1001fee4097b19e9e391954ee29");
   }
 
   function handleBack() {
     setSelected(false);
+  }
+
+  const handleCollapse = (container) => {
+    if (container === "pdfContnr") {
+      setPdfContnrCollapse(!pdfContrCollapse);
+    } else if (container === "requirementsContnr") {
+      setRequirementsContnrCollapse(!requirementsContrCollapse);
+    } else if (container === "evidenceContnr") {
+      setEvidenceContnrCollapse(!evidenceContrCollapse);
+    }
+  };
+
+  const handleExpand = (container) => {
+    if (container === "pdfContnr") {
+      setPdfContnrCollapse(!pdfContrCollapse);
+    } else if (container === "requirementsContnr") {
+      setRequirementsContnrCollapse(!requirementsContrCollapse);
+    } else if (container === "evidenceContnr") {
+      setEvidenceContnrCollapse(!evidenceContrCollapse);
+    }
+  };
+
+  function handleResize() {
+    console.log("handleresize called");
+    const pdfContnr = document.querySelector(".pdf-contnr");
+    const requirementsContnr = document.querySelector(".requirements-contnr");
+    const evidenceContnr = document.querySelector(".evidence-contnr");
+    console.log("pdfcontnrcollapse", pdfContrCollapse);
+    if (
+      pdfContrCollapse &&
+      requirementsContrCollapse &&
+      evidenceContrCollapse
+    ) {
+      return;
+    } else if (pdfContrCollapse && requirementsContrCollapse) {
+      evidenceContnr.style.width = "100%";
+    } else if (pdfContrCollapse && evidenceContrCollapse) {
+      requirementsContnr.style.width = "100%";
+    } else if (evidenceContrCollapse && requirementsContrCollapse) {
+      pdfContnr.style.width = "100%";
+    } else if (pdfContrCollapse) {
+      requirementsContnr.style.width = "50%";
+      evidenceContnr.style.width = "50%";
+    } else if (requirementsContrCollapse) {
+      pdfContnr.style.width = "50%";
+      evidenceContnr.style.width = "50%";
+    } else if (evidenceContrCollapse) {
+      requirementsContnr.style.width = "50%";
+      pdfContnr.style.width = "50%";
+    } else {
+      if (pdfContnr && requirementsContnr && evidenceContnr) {
+        pdfContnr.style.width = "40%";
+        requirementsContnr.style.width = "30%";
+        evidenceContnr.style.width = "30%";
+      }
+    }
   }
 
   return (
@@ -70,6 +139,7 @@ function FindClinicalPolicy() {
             <FaRegArrowAltCircleLeft className="back-icon" />
             <h5>Back</h5>
           </div>
+
           <div className="data-contnr">
             <div className="prior-auth">
               <h5>Prior Auth For : </h5>
@@ -81,28 +151,58 @@ function FindClinicalPolicy() {
             </div>
           </div>
           <div className="findPolicy-card-contnr">
-            <div className="pdf-contnr">
-              <div className="collapse-contnr">
-                <FaRegArrowAltCircleLeft className="collapse-button" />
-                <h5>Collapse</h5>
+            {pdfContrCollapse && (
+              <FaRegArrowAltCircleRight className="expand-icon"
+                onClick={() => handleExpand("pdfContnr")}
+              />
+            )}
+            {!pdfContrCollapse && (
+              <div className="pdf-contnr">
+                <div
+                  className="collapse-contnr"
+                  onClick={() => handleCollapse("pdfContnr")}
+                >
+                  <FaRegArrowAltCircleLeft className="collapse-button" />
+                  <h5>Collapse</h5>
+                </div>
+                <PdfViewer pdfurl={pdfFile} />
               </div>
-              <PdfViewer pdfurl={pdfFile} />
-            </div>
-            <div className="requirements-contnr">
-              <div className="collapse-contnr">
-                <FaRegArrowAltCircleLeft className="collapse-button" />
-                <h5>Collapse</h5>
+            )}
+            {requirementsContrCollapse && (
+              <FaRegArrowAltCircleRight className="expand-icon"
+                onClick={() => handleExpand("requirementsContnr")}
+              />
+            )}
+            {!requirementsContrCollapse && (
+              <div className="requirements-contnr">
+                <div
+                  className="collapse-contnr"
+                  onClick={() => handleCollapse("requirementsContnr")}
+                >
+                  <FaRegArrowAltCircleLeft className="collapse-button" />
+                  <h5>Collapse</h5>
+                </div>
+                <Requirements requirementTable={requirementsData} />
               </div>
-              <Requirements requirementTable={requirementsData} />
-            </div>
-            <div className="evidence-contnr">
-              <div className="collapse-contnr">
-                <FaRegArrowAltCircleLeft className="collapse-button" />
+            )}
+            {evidenceContrCollapse && (
+              <FaRegArrowAltCircleRight className="expand-icon"
+                onClick={() => handleExpand("evidenceContnr")}
+              />
+            )}
+            {!evidenceContrCollapse && (
+              <div className="evidence-contnr">
+                <div
+                  className="collapse-contnr"
+                  onClick={() => handleCollapse("evidenceContnr")}
+                >
+                  <FaRegArrowAltCircleLeft className="collapse-button" />
 
-                <h5>Collapse</h5>
+                  <h5>Collapse</h5>
+                </div>
+                <EvidenceCopy data={evidenceResult} className="evidence-list" />
               </div>
-              <EvidenceCopy data={evidenceResult} className="evidence-list" />
-            </div>
+            )}
           </div>
         </div>
       )}
