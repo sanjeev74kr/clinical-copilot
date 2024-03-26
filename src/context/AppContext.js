@@ -26,6 +26,7 @@ const initialState = {
   pageNum: 0,
   toastMessage: "",
   messageType: "",
+  prior_auth_desc:"",
 };
 export const appContext = React.createContext(initialState);
 
@@ -203,6 +204,7 @@ const getAllConceptEvidence = async (cds_identifier) => {
         userCredentials: state.userCredentials,
         messageType:state.messageType,
         toastMessage:state.toastMessage,
+        prior_auth_desc:state.prior_auth_desc,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

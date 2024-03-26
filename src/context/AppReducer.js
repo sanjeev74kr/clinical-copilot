@@ -69,6 +69,11 @@ export const AppReducer = (state, action) => {
         ...state,
         pageNum: action.payload,
       };
+      case "SET_PRIOR_AUTH_DESC":
+        return {
+          ...state,
+          prior_auth_desc: action.payload,
+        };  
     default:
       return state;
   }
