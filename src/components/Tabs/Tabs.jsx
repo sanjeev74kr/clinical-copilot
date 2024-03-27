@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Tabs.css";
 import TabNavItem from "./TabNavItem";
 import TabContent from "./TabContent";
@@ -6,16 +6,24 @@ import TabContent from "./TabContent";
 import MedicalChartReview from "../../pages/medicalChartReview";
 import { FindClinicalPolicy } from "../../pages/findClinicalPolicy";
 import { appContext } from "../../context/AppContext";
+import DecisionSupport from "../DecisionSupport/DecisionSupport";
 
 const Tabs = () => {
-  const { Tab_Status,dispatch } = useContext(appContext);
+  const { Tab_Status, currentTabSelected } = useContext(appContext);
   const [activeTab, setActiveTab] = useState("tab1");
-  console.log(Tab_Status,"commentbefore")
-  const handle3tab=()=>{
-   
-   // dispatch({ type: "SET_TAB_STATUS", payload: true });
-    
-  }
+
+  useEffect(() => {
+    if (
+      (activeTab === "tab1" || activeTab === "tab2") &&
+      !currentTabSelected.itemselected
+    ) {
+      //  dispatch({ type: "SET_DECISION_SUPPORT_TAB", payload: false })
+    } else {
+      setActiveTab("tab3");
+    }
+  }, [currentTabSelected]);
+
+ 
 
   return (
     <div className="Tabs">
@@ -32,14 +40,14 @@ const Tabs = () => {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        
-         <TabNavItem
+
+        <TabNavItem
           title="Step3: Decision Support"
           id="tab3"
           activeTab={activeTab}
-          onClick={handle3tab}
+         
           disabled={!Tab_Status}
-          className={Tab_Status ? "disabled" : ""}
+          className={!Tab_Status ? "disabled" : ""}
         />
         
       </ul>
@@ -52,7 +60,7 @@ const Tabs = () => {
           <FindClinicalPolicy />
         </TabContent>
         <TabContent id="tab3" activeTab={activeTab}>
-          <p> Decision Support</p>
+          <DecisionSupport />
         </TabContent>
       </div>
     </div>

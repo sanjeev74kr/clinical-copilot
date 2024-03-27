@@ -28,6 +28,7 @@ const initialState = {
   messageType: "",
   prior_auth_desc:"",
   Tab_Status:false,
+  currentTabSelected:{}
 };
 export const appContext = React.createContext(initialState);
 
@@ -106,17 +107,12 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
-  //manipulated getconceptevidence
-  const getAllConceptEvidence = async (identifier) => {
-    let allEvidence = [];
-    const getAllCDS = await axios.get(getCDSURL);
-    console.log("all cds data:", getAllCDS.data.res);
 
-    const conceptPerIdentifier = getAllCDS?.data?.res?.filter(
-      (item, index) => item.Identifier === identifier
-    );
-    console.log("concepts:", conceptPerIdentifier);
+//manipulated getconceptevidence
+const getAllConceptEvidence = async (cds_identifier) => {
+ 
 
+    const evidencURL = getEvidenceURL + `${cds_identifier}`;
     dispatch({ type: "GET_EVIDENCE_START", payload: true });
 
     conceptPerIdentifier.map(async (item) => {
@@ -218,6 +214,7 @@ export const AppContextProvider = ({ children }) => {
         messageType:state.messageType,
         toastMessage:state.toastMessage,
         prior_auth_desc:state.prior_auth_desc,
+        currentTabSelected:state.currentTabSelected,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,
