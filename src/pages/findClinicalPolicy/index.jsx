@@ -10,20 +10,25 @@ import { Requirements } from "../../components/Requirements";
 import { findPolicyTableData, requirementsData } from "../../utils/sampleData";
 import { appContext } from "../../context/AppContext";
 import EvidenceCopy from "../../components/EvidenceCopy";
+import DecisionSupport from "../../components/DecisionSupport/DecisionSupport";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 function FindClinicalPolicy() {
   const [pdfFile, setPdfFile] = useState();
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(false);
   const [payer, setPayer] = useState("");
   const { prior_auth_desc } = useContext(appContext);
 
-  const { evidenceResult, getAllConceptEvidence } = useContext(appContext);
+  const { dispatch, getAllConceptEvidence, Tab_Status } =
+    useContext(appContext);
 
   function handleSelect(item) {
     setPdfFile(item.pdf_file);
     setPayer(item.payer);
     setSelected(true);
-    getAllConceptEvidence("6d4fe8f3b75b4f72b5006c739057fca4");
+   // getAllConceptEvidence("6d4fe8f3b75b4f72b5006c739057fca4");
+    dispatch({ type: "SET_DECISION_SUPPORT_TAB", payload: {itemselected:true, payer:item.payer, prior_auth_desc:prior_auth_desc} })
+    //console.log(findPolicyTableData,"Find table")
   }
 
   function handleBack() {
@@ -67,48 +72,16 @@ function FindClinicalPolicy() {
           </div>
         </div>
       )}
-      {selected && (
-        <div className="findPolicy-second-screen">
-          <div className="back-button" onClick={handleBack}>
-            <FaRegArrowAltCircleLeft className="back-icon" />
-            <h5>Back</h5>
-          </div>
-          <div className="data-contnr">
-            <div className="prior-auth">
-              <h5>Prior Auth For : </h5>
-              <h5 className="data-value">{prior_auth_desc}</h5>
-            </div>
-            <div className="payer">
-              <h5>Payer : </h5>
-              <h5 className="data-value">{payer}</h5>
-            </div>
-          </div>
-          <div className="findPolicy-card-contnr">
-            <div className="pdf-contnr">
-              <div className="collapse-contnr">
-                <FaRegArrowAltCircleLeft className="collapse-button" />
-                <h5>Collapse</h5>
-              </div>
-              <PdfViewer pdfurl={pdfFile} />
-            </div>
-            <div className="requirements-contnr">
-              <div className="collapse-contnr">
-                <FaRegArrowAltCircleLeft className="collapse-button" />
-                <h5>Collapse</h5>
-              </div>
-              <Requirements requirementTable={requirementsData} />
-            </div>
-            <div className="evidence-contnr">
-              <div className="collapse-contnr">
-                <FaRegArrowAltCircleLeft className="collapse-button" />
-
-                <h5>Collapse</h5>
-              </div>
-              <EvidenceCopy data={evidenceResult} className="evidence-list" />
-            </div>
-          </div>
-        </div>
-      )}
+     {/*  {selected && (
+        <DecisionSupport
+          pdfFile={pdfFile}
+          requirementsData={requirementsData}
+          payer={payer}
+          prior_auth_desc={prior_auth_desc}
+          handleBack={handleBack}
+          selected={selected}
+        />
+      )} */}
     </div>
   );
 }

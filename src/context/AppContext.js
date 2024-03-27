@@ -27,6 +27,8 @@ const initialState = {
   toastMessage: "",
   messageType: "",
   prior_auth_desc:"",
+  Tab_Status:false,
+  currentTabSelected:{}
 };
 export const appContext = React.createContext(initialState);
 
@@ -108,12 +110,7 @@ export const AppContextProvider = ({ children }) => {
 
 //manipulated getconceptevidence
 const getAllConceptEvidence = async (cds_identifier) => {
-  // const reviewArray = reviewStatus.filter((item) => item !== "");
-  // if (
-  //   cds_identifier !== "" &&
-  //   cds_identifier !== undefined &&
-  //   reviewArray.length > 0
-  // ) {
+ 
 
     const evidencURL = getEvidenceURL + `${cds_identifier}`;
     dispatch({ type: "GET_EVIDENCE_START", payload: true });
@@ -199,12 +196,13 @@ const getAllConceptEvidence = async (cds_identifier) => {
         loading: state.loading,
         identifierDetails: state.identifierDetails,
         evidenceResult: state.evidenceResult,
-        
+        Tab_Status:state.Tab_Status,
         pageNum: state.pageNum,
         userCredentials: state.userCredentials,
         messageType:state.messageType,
         toastMessage:state.toastMessage,
         prior_auth_desc:state.prior_auth_desc,
+        currentTabSelected:state.currentTabSelected,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,
