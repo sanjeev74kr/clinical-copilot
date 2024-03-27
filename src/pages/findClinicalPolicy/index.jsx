@@ -22,6 +22,8 @@ function FindClinicalPolicy() {
   const [requirementsContrCollapse, setRequirementsContnrCollapse] =
     useState(false);
   const [evidenceContrCollapse, setEvidenceContnrCollapse] = useState(false);
+  const [payer, setPayer] = useState("");
+  const { prior_auth_desc } = useContext(appContext);
 
   const { evidenceResult, getAllConceptEvidence } = useContext(appContext);
 
@@ -30,8 +32,9 @@ function FindClinicalPolicy() {
     console.log("pdfContainerCollapse in useEffect:", pdfContrCollapse);
   }, [pdfContrCollapse, requirementsContrCollapse, evidenceContrCollapse]);
 
-  function handleSelect(pdf_file) {
-    setPdfFile(pdf_file);
+  function handleSelect(item) {
+    setPdfFile(item.pdf_file);
+    setPayer(item.payer);
     setSelected(true);
     getAllConceptEvidence("b9f3b1001fee4097b19e9e391954ee29");
   }
@@ -102,7 +105,7 @@ function FindClinicalPolicy() {
         <div className="findPolicy-first -screen">
           <div className="prior-auth">
             <h5>Prior Auth For : </h5>
-            <h5 className="data-value">Actemera - 12ml</h5>
+            <h5 className="data-value">{prior_auth_desc}</h5>
           </div>
           <div className="findPolicy-table-container">
             <table className="findPolicy-table">
@@ -114,14 +117,14 @@ function FindClinicalPolicy() {
               {findPolicyTableData.map((item, index) => {
                 return (
                   <tr className="findPolicy-row" key={index}>
-                    <td className="findPolicy-data">{item.status}</td>
+                    <td className="findPolicy-data">{item.payer}</td>
                     <td className="findPolicy-data">
                       {item.conference_number}
                     </td>
 
                     <td
                       className="select-button"
-                      onClick={() => handleSelect(item.pdf_file)}
+                      onClick={() => handleSelect(item)}
                     >
                       <p className="select-btn-txt">Select</p>
                       <MdKeyboardArrowRight className="select-btn-icon" />
@@ -143,11 +146,11 @@ function FindClinicalPolicy() {
           <div className="data-contnr">
             <div className="prior-auth">
               <h5>Prior Auth For : </h5>
-              <h5 className="data-value">Actemera - 12ml</h5>
+              <h5 className="data-value">{prior_auth_desc}</h5>
             </div>
             <div className="payer">
               <h5>Payer : </h5>
-              <h5 className="data-value">Aetna</h5>
+              <h5 className="data-value">{payer}</h5>
             </div>
           </div>
           <div className="findPolicy-card-contnr">

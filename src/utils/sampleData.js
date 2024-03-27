@@ -40,17 +40,17 @@ export const requirementsData = [
 
 export const findPolicyTableData = [
   {
-    status: "Cigna",
+    payer: "Cigna",
     conference_number: "Actemera VI",
     pdf_file: file1,
   },
   {
-    status: "Centene",
+    payer: "Centene",
     conference_number:"Actemera",
     pdf_file: file2,
   },
   {
-    status: "UHG",
+    payer: "UHG",
     conference_number: "Actemera",
     pdf_file: file3,
   },

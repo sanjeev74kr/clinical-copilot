@@ -26,6 +26,7 @@ const initialState = {
   pageNum: 0,
   toastMessage: "",
   messageType: "",
+  prior_auth_desc:"",
 };
 export const appContext = React.createContext(initialState);
 
@@ -213,8 +214,9 @@ export const AppContextProvider = ({ children }) => {
 
         pageNum: state.pageNum,
         userCredentials: state.userCredentials,
-        messageType: state.messageType,
-        toastMessage: state.toastMessage,
+        messageType:state.messageType,
+        toastMessage:state.toastMessage,
+        prior_auth_desc:state.prior_auth_desc,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,
