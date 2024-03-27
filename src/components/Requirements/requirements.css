@@ -58,3 +58,37 @@
   padding-right: 3%;
   cursor: pointer;
 }
+.textcls{
+  display: flex;
+  justify-content: space-around;
+}
+.prntheader{
+  text-align: center;
+}
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-cell {
+   /* Equal space distribution */
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 35px;
+}
+
+.custom-select {
+  width: 100%; /* Full width */
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.custom-button {
+  width: 100%; /* Full width */
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

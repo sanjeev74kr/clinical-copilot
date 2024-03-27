@@ -1,65 +1,164 @@
-import { useEffect } from "react";
+import React, { useState } from "react";
 import "./requirements.css";
 
-import { useState } from "react";
-
 function Requirements(props) {
-  const { requirementTable } = props;
-  const [requirementBooleanValue, setRequirementBooleanValue] = useState([]);
-  const [clicked, setClicked] = useState([]);
+  const [dropdownValues, setDropdownValues] = useState({});
 
-  useEffect(
-    () =>
-      setRequirementBooleanValue(
-        requirementTable.map((item) => item.requirementStatus)
-      ),
-    []
-  );
+  const handleDropdownChange = (event, item) => {
+    setDropdownValues({ ...dropdownValues, [item]: event.target.value });
+    
+  };
 
-  const handleRequirementBoolean = (requirementBoolean, index) => {
-    if (requirementBoolean === "True") {
-      setRequirementBooleanValue((prev) => {
-        let requirementBooleanValueCopy = [...prev];
-        requirementBooleanValueCopy[index] = "False";
-        return requirementBooleanValueCopy;
-      });
-    } else if (requirementBoolean === "False") {
-      setRequirementBooleanValue((prev) => {
-        let requirementBooleanValueCopy = [...prev];
-        requirementBooleanValueCopy[index] = "True";
-        return requirementBooleanValueCopy;
-      });
-    }
+  // Function to handle button click
+  const handleButtonClick = () => {
+    // Perform actions when the button is clicked
+    console.log("button clicked ")
   };
 
   return (
-    <div className="requirements-main-container">
-      <h4 className="req-head">Extracted Features from MPB</h4>
-      <table className="req-table">
-        {requirementTable.map((item, index) => {
-          return (
-            <tr className="req-row" key={index}>
-              <td className="req-data" id="requirement-name">
-                {item.requirementName}
+    <>
+      <div className="prntheader">
+        <h3>
+          <span>Prior Authorization Evidence Validation</span>
+        </h3>
+      </div>
+      {/* <div className="textcls">
+        <span>Payer Name</span>
+        <span>UGH</span>
+        <span>Prior Authorization</span>
+        <span>Actemera</span>
+      </div> */}
+      <div>
+        <table className="custom-table">
+          <thead>
+            <tr>
+              <th className="custom-cell">Item</th>
+              <th className="custom-cell">AND/OR</th>
+              <th className="custom-cell">Description</th>
+              <th className="custom-cell">Evidence Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="custom-cell">1</td>
+              <td className="custom-cell">
+                <select
+                  className="custom-select"
+                  value={dropdownValues[1] || ""}
+                  onChange={(event) => handleDropdownChange(event, 1)}
+                >
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                </select>
               </td>
-              <td
-                className="req-data"
-                id={requirementBooleanValue[index]}
-                onClick={() =>
-                  handleRequirementBoolean(
-                    requirementBooleanValue[index],
-                    index
-                  )
-                }
-              >
-                {requirementBooleanValue[index]}
+              <td className="custom-cell">
+                Diagnosis of moderately to severely active rheumatoid Diagnosis
+                of moderately to severely active rheumatoid
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button"
+                  onClick={handleButtonClick}
+                >
+                  True
+                </button>
               </td>
             </tr>
-          );
-        })}
-      </table>
-    </div>
+            <tr>
+              <td className="custom-cell">2</td>
+              <td className="custom-cell">
+                <select
+                  className="custom-select"
+                  value={dropdownValues[2] || ""}
+                  onChange={(event) => handleDropdownChange(event, 2)}
+                >
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                </select>
+              </td>
+              <td className="custom-cell">Description of Item 2</td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button"
+                  onClick={handleButtonClick}
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td className="custom-cell">3</td>
+              <td className="custom-cell">
+                <select
+                  className="custom-select"
+                  value={dropdownValues[3] || ""}
+                  onChange={(event) => handleDropdownChange(event, 3)}
+                >
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                </select>
+              </td>
+              <td className="custom-cell">Description of Item 3</td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button"
+                  onClick={handleButtonClick}
+                >
+                  Partial
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td className="custom-cell">4</td>
+              <td className="custom-cell">
+                <select
+                  className="custom-select"
+                  value={dropdownValues[4] || ""}
+                  onChange={(event) => handleDropdownChange(event, 4)}
+                >
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                </select>
+              </td>
+              <td className="custom-cell">Description of Item 4</td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button"
+                  onClick={handleButtonClick}
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td className="custom-cell">5</td>
+              <td className="custom-cell">
+                <select
+                  className="custom-select"
+                  value={dropdownValues[5] || ""}
+                  onChange={(event) => handleDropdownChange(event, 5)}
+                >
+                  <option value="AND">AND</option>
+                  <option value="OR">OR</option>
+                </select>
+              </td>
+              <td className="custom-cell">Description of Item 5</td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button"
+                  onClick={handleButtonClick}
+                >
+                  False
+                </button>
+              </td>
+            </tr>
+            {/* Add more rows as needed */}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 
 export { Requirements };
+

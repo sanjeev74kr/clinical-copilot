@@ -1,6 +1,7 @@
 import React from "react";
-const TabNavItem = ({ id, title, activeTab, setActiveTab }) => {
+const TabNavItem = ({ id, title, activeTab, setActiveTab,disabled }) => {
   const handleClick = () => {
+    if(!disabled)
     setActiveTab(id);
   };
 

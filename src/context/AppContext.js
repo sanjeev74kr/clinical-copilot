@@ -27,6 +27,7 @@ const initialState = {
   toastMessage: "",
   messageType: "",
   prior_auth_desc:"",
+  Tab_Status:false,
 };
 export const appContext = React.createContext(initialState);
 
@@ -211,7 +212,7 @@ export const AppContextProvider = ({ children }) => {
         loading: state.loading,
         identifierDetails: state.identifierDetails,
         evidenceResult: state.evidenceResult,
-
+        Tab_Status:state.Tab_Status,
         pageNum: state.pageNum,
         userCredentials: state.userCredentials,
         messageType:state.messageType,

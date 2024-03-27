@@ -73,7 +73,13 @@ export const AppReducer = (state, action) => {
         return {
           ...state,
           prior_auth_desc: action.payload,
-        };  
+        }; 
+        case 'SET_TAB_STATUS':
+          console.log("yehhhhh")
+          return {
+            ...state,
+            Tab_Status:action.payload,
+          } 
     default:
       return state;
   }

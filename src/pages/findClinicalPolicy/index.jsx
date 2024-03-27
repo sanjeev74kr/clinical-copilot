@@ -24,8 +24,10 @@ function FindClinicalPolicy() {
   const [evidenceContrCollapse, setEvidenceContnrCollapse] = useState(false);
   const [payer, setPayer] = useState("");
   const { prior_auth_desc } = useContext(appContext);
+  const [payer, setPayer] = useState("");
+  const { prior_auth_desc } = useContext(appContext);
 
-  const { evidenceResult, getAllConceptEvidence } = useContext(appContext);
+  const { evidenceResult, getAllConceptEvidence,Tab_Status } = useContext(appContext);
 
   useEffect(() => {
     handleResize();
