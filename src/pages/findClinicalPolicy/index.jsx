@@ -38,25 +38,25 @@ function FindClinicalPolicy() {
     setSelected(false);
   }
 
-  const handleCollapse = (container) => {
-    if (container === "pdfContnr") {
-      setPdfContnrCollapse(!pdfContrCollapse);
-    } else if (container === "requirementsContnr") {
-      setRequirementsContnrCollapse(!requirementsContrCollapse);
-    } else if (container === "evidenceContnr") {
-      setEvidenceContnrCollapse(!evidenceContrCollapse);
-    }
-  };
+  // const handleCollapse = (container) => {
+  //   if (container === "pdfContnr") {
+  //     setPdfContnrCollapse(!pdfContrCollapse);
+  //   } else if (container === "requirementsContnr") {
+  //     setRequirementsContnrCollapse(!requirementsContrCollapse);
+  //   } else if (container === "evidenceContnr") {
+  //     setEvidenceContnrCollapse(!evidenceContrCollapse);
+  //   }
+  // };
 
-  const handleExpand = (container) => {
-    if (container === "pdfContnr") {
-      setPdfContnrCollapse(!pdfContrCollapse);
-    } else if (container === "requirementsContnr") {
-      setRequirementsContnrCollapse(!requirementsContrCollapse);
-    } else if (container === "evidenceContnr") {
-      setEvidenceContnrCollapse(!evidenceContrCollapse);
-    }
-  };
+  // const handleExpand = (container) => {
+  //   if (container === "pdfContnr") {
+  //     setPdfContnrCollapse(!pdfContrCollapse);
+  //   } else if (container === "requirementsContnr") {
+  //     setRequirementsContnrCollapse(!requirementsContrCollapse);
+  //   } else if (container === "evidenceContnr") {
+  //     setEvidenceContnrCollapse(!evidenceContrCollapse);
+  //   }
+  // };
 
   // function handleResize() {
   //   console.log("handleresize called");

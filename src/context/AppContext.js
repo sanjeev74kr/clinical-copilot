@@ -109,36 +109,36 @@ export const AppContextProvider = ({ children }) => {
 
 
 //manipulated getconceptevidence
-const getAllConceptEvidence = async (cds_identifier) => {
+// const getAllConceptEvidence = async (cds_identifier) => {
  
 
-    const evidencURL = getEvidenceURL + `${cds_identifier}`;
-    dispatch({ type: "GET_EVIDENCE_START", payload: true });
+//     const evidencURL = getEvidenceURL + `${cds_identifier}`;
+//     dispatch({ type: "GET_EVIDENCE_START", payload: true });
 
-    conceptPerIdentifier.map(async (item) => {
-      const evidencURL = getEvidenceURL + `${item.CDS_Identifier}`;
-      const cds_identifier = item.CDS_Identifier;
-      try {
-        const res = await axios.get(evidencURL);
-        const result = await res.data.res.clinical_evidence_summary;
+//     conceptPerIdentifier.map(async (item) => {
+//       const evidencURL = getEvidenceURL + `${item.CDS_Identifier}`;
+//       const cds_identifier = item.CDS_Identifier;
+//       try {
+//         const res = await axios.get(evidencURL);
+//         const result = await res.data.res.clinical_evidence_summary;
 
-        console.log("result of evidence_summary", result);
+//         console.log("result of evidence_summary", result);
 
-        let evidenceDetails;
-        evidenceDetails = result?.filter(
-          (item) => item.CDS_Identifier === cds_identifier
-        );
+//         let evidenceDetails;
+//         evidenceDetails = result?.filter(
+//           (item) => item.CDS_Identifier === cds_identifier
+//         );
 
-        console.log("evidencedetails:", evidenceDetails);
-        evidenceDetails.map((item) => (allEvidence = [...allEvidence, item]));
+//         console.log("evidencedetails:", evidenceDetails);
+//         evidenceDetails.map((item) => (allEvidence = [...allEvidence, item]));
 
-        console.log("all evidence:", allEvidence);
-        dispatch({ type: "GET_EVIDENCE", payload: allEvidence });
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  };
+//         console.log("all evidence:", allEvidence);
+//         dispatch({ type: "GET_EVIDENCE", payload: allEvidence });
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     });
+//   };
 
   const updateUserFeedback = async (data, ces_identifier) => {
     const URL = getCESURL + `${ces_identifier}`;
@@ -219,7 +219,7 @@ const getAllConceptEvidence = async (cds_identifier) => {
         getPdfDocuments,
         getDocumentDataPerIdentifier,
         getConceptEvidence,
-        getAllConceptEvidence,
+        
         updateUserFeedback,
         updateDocumentFeedback,
         updateClinicalDocumentSummary,
