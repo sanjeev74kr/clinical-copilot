@@ -24,21 +24,20 @@ function FindClinicalPolicy() {
   const [evidenceContrCollapse, setEvidenceContnrCollapse] = useState(false);
   const [payer, setPayer] = useState("");
   const { prior_auth_desc } = useContext(appContext);
-  const [payer, setPayer] = useState("");
-  const { prior_auth_desc } = useContext(appContext);
+  const { evidenceResult, getAllConceptEvidence,Tab_Status,dispatch } = useContext(appContext);
+  
 
-  const { evidenceResult, getAllConceptEvidence,Tab_Status } = useContext(appContext);
-
-  useEffect(() => {
-    handleResize();
-    console.log("pdfContainerCollapse in useEffect:", pdfContrCollapse);
-  }, [pdfContrCollapse, requirementsContrCollapse, evidenceContrCollapse]);
+  // useEffect(() => {
+  //   handleResize();
+  //   console.log("pdfContainerCollapse in useEffect:", pdfContrCollapse);
+  // }, [pdfContrCollapse, requirementsContrCollapse, evidenceContrCollapse]);
 
   function handleSelect(item) {
     setPdfFile(item.pdf_file);
     setPayer(item.payer);
     setSelected(true);
     getAllConceptEvidence("b9f3b1001fee4097b19e9e391954ee29");
+   // dispatch({ type: "SET_TAB_STATUS", payload: true });
   }
 
   function handleBack() {
@@ -65,41 +64,42 @@ function FindClinicalPolicy() {
     }
   };
 
-  function handleResize() {
-    console.log("handleresize called");
-    const pdfContnr = document.querySelector(".pdf-contnr");
-    const requirementsContnr = document.querySelector(".requirements-contnr");
-    const evidenceContnr = document.querySelector(".evidence-contnr");
-    console.log("pdfcontnrcollapse", pdfContrCollapse);
-    if (
-      pdfContrCollapse &&
-      requirementsContrCollapse &&
-      evidenceContrCollapse
-    ) {
-      return;
-    } else if (pdfContrCollapse && requirementsContrCollapse) {
-      evidenceContnr.style.width = "100%";
-    } else if (pdfContrCollapse && evidenceContrCollapse) {
-      requirementsContnr.style.width = "100%";
-    } else if (evidenceContrCollapse && requirementsContrCollapse) {
-      pdfContnr.style.width = "100%";
-    } else if (pdfContrCollapse) {
-      requirementsContnr.style.width = "50%";
-      evidenceContnr.style.width = "50%";
-    } else if (requirementsContrCollapse) {
-      pdfContnr.style.width = "50%";
-      evidenceContnr.style.width = "50%";
-    } else if (evidenceContrCollapse) {
-      requirementsContnr.style.width = "50%";
-      pdfContnr.style.width = "50%";
-    } else {
-      if (pdfContnr && requirementsContnr && evidenceContnr) {
-        pdfContnr.style.width = "40%";
-        requirementsContnr.style.width = "30%";
-        evidenceContnr.style.width = "30%";
-      }
-    }
-  }
+  // function handleResize() {
+  //   console.log("handleresize called");
+  //   const pdfContnr = document.querySelector(".pdf-contnr");
+  //   const requirementsContnr = document.querySelector(".requirements-contnr");
+  //   const evidenceContnr = document.querySelector(".evidence-contnr");
+  //   console.log("pdfcontnrcollapse", pdfContrCollapse);
+  //   if (
+  //     pdfContrCollapse &&
+  //     requirementsContrCollapse 
+      
+  //   ) {
+  //     return;
+  //   } else if (pdfContrCollapse && requirementsContrCollapse) {
+  //     // evidenceContnr.style.width = "100%";
+  //   } else if (pdfContrCollapse && evidenceContrCollapse) {
+  //     requirementsContnr.style.width = "100%";
+  //   } else if (evidenceContrCollapse && requirementsContrCollapse) {
+  //     pdfContnr.style.width = "100%";
+  //   } else if (pdfContrCollapse) {
+  //     requirementsContnr.style.width = "50%";
+  //     // evidenceContnr.style.width = "50%";
+  //   } else if (requirementsContrCollapse) {
+  //     pdfContnr.style.width = "50%";
+  //     // evidenceContnr.style.width = "50%";
+  //   // } else if (evidenceContrCollapse) {
+  //   //   requirementsContnr.style.width = "50%";
+  //   //   pdfContnr.style.width = "50%";
+  //   // }
+  //    else {
+  //     if (pdfContnr && requirementsContnr) {
+  //       pdfContnr.style.width = "40%";
+  //       requirementsContnr.style.width = "30%";
+  //       // evidenceContnr.style.width = "30%";
+  //     }
+  //   }
+  // }
 
   return (
     <div className="findPolicy-main-contnr">
@@ -195,7 +195,7 @@ function FindClinicalPolicy() {
                 onClick={() => handleExpand("evidenceContnr")}
               />
             )}
-            {!evidenceContrCollapse && (
+            {/* {!evidenceContrCollapse && (
               <div className="evidence-contnr">
                 <div
                   className="collapse-contnr"
@@ -205,9 +205,9 @@ function FindClinicalPolicy() {
 
                   <h5>Collapse</h5>
                 </div>
-                <EvidenceCopy data={evidenceResult} className="evidence-list" />
+                {/* <EvidenceCopy data={evidenceResult} className="evidence-list" /> 
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}

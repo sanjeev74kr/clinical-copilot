@@ -39,10 +39,10 @@
 #True {
   background-color: #abe1a6;
   color: white;
-  width: 5rem;
+  width: 100%;
   text-align: center;
   border-radius: 0.4rem;
-  padding: 1%;
+  padding: 2%;
   padding-left: 3%;
   padding-right: 3%;
   cursor: pointer;
@@ -50,19 +50,32 @@
 #False {
   background-color: #e1a6a6;
   color: white;
-  width: 5rem;
+  width: 100%;
   text-align: center;
   border-radius: 0.4rem;
-  padding: 1%;
+  padding: 2%;
   padding-left: 3%;
   padding-right: 3%;
   cursor: pointer;
 }
-.textcls{
+
+#Partial {
+  background-color: rgb(214, 214, 10);
+  color: white;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.4rem;
+  padding: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+  cursor: pointer;
+}
+
+.textcls {
   display: flex;
   justify-content: space-around;
 }
-.prntheader{
+.prntheader {
   text-align: center;
 }
 .custom-table {
@@ -71,7 +84,7 @@
 }
 
 .custom-cell {
-   /* Equal space distribution */
+  /* Equal space distribution */
   border: 1px solid #dddddd;
   text-align: left;
   padding: 35px;
@@ -91,4 +104,18 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.evidence-status-feedback-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.evidence-close-button {
+  font-size: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.evidence-close-button:hover {
+  color: red;
 }
