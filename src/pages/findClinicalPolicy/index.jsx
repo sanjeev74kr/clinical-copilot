@@ -17,13 +17,14 @@ function FindClinicalPolicy() {
   const [payer, setPayer] = useState("");
   const { prior_auth_desc } = useContext(appContext);
 
-  const { evidenceResult, getAllConceptEvidence } = useContext(appContext);
+  const { evidenceResult, getAllConceptEvidence,Tab_Status } = useContext(appContext);
 
   function handleSelect(item) {
     setPdfFile(item.pdf_file);
     setPayer(item.payer);
     setSelected(true);
     getAllConceptEvidence("6d4fe8f3b75b4f72b5006c739057fca4");
+    //console.log(findPolicyTableData,"Find table")
   }
 
   function handleBack() {
@@ -98,14 +99,14 @@ function FindClinicalPolicy() {
               </div>
               <Requirements requirementTable={requirementsData} />
             </div>
-            <div className="evidence-contnr">
+            {/* <div className="evidence-contnr">
               <div className="collapse-contnr">
                 <FaRegArrowAltCircleLeft className="collapse-button" />
 
                 <h5>Collapse</h5>
               </div>
-              <EvidenceCopy data={evidenceResult} className="evidence-list" />
-            </div>
+              {/* <EvidenceCopy data={evidenceResult} className="evidence-list" /> */}
+            {/* </div>  */}
           </div>
         </div>
       )}

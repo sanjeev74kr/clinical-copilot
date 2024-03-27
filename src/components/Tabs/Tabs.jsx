@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Tabs.css";
 import TabNavItem from "./TabNavItem";
 import TabContent from "./TabContent";
 
 import MedicalChartReview from "../../pages/medicalChartReview";
 import { FindClinicalPolicy } from "../../pages/findClinicalPolicy";
+import { appContext } from "../../context/AppContext";
 
 const Tabs = () => {
+  const { Tab_Status,dispatch } = useContext(appContext);
   const [activeTab, setActiveTab] = useState("tab1");
+  console.log(Tab_Status,"commentbefore")
+  const handle3tab=()=>{
+   
+   // dispatch({ type: "SET_TAB_STATUS", payload: true });
+    
+  }
 
   return (
     <div className="Tabs">
@@ -24,12 +32,16 @@ const Tabs = () => {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        <TabNavItem
+        
+         <TabNavItem
           title="Step3: Decision Support"
           id="tab3"
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          onClick={handle3tab}
+          disabled={!Tab_Status}
+          className={Tab_Status ? "disabled" : ""}
         />
+        
       </ul>
 
       <div className="outlet">
