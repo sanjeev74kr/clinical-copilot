@@ -47,6 +47,10 @@
   padding-right: 3%;
   cursor: pointer;
 }
+
+.true-color{
+  background-color: green !important;
+}
 #False {
   background-color: red;
   color: white;
@@ -57,6 +61,9 @@
   padding-left: 3%;
   padding-right: 3%;
   cursor: pointer;
+}
+.false-color{
+  background-color: red !important;
 }
 
 #Partial {
@@ -69,6 +76,9 @@
   padding-left: 3%;
   padding-right: 3%;
   cursor: pointer;
+}
+.partial-color{
+  background-color: rgb(214, 214, 10) !important;
 }
 
 .textcls {

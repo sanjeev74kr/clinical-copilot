@@ -14,11 +14,11 @@ const customStyles = {
     top: "10%",
     left: "15%",
     right: "15%",
-    bottom: "5%",
+    bottom: "22%",
     overflow: "none",
     padding: "0",
     outline: "none",
-    borderRadius:"0.5rem"
+    borderRadius: "0.5rem",
   },
 };
 
@@ -57,18 +57,17 @@ function Requirements(props) {
           style={customStyles}
         >
           <div className="evidence-status-feedback-container">
-          <div className="evidence-status-heading-contnr">
-          <h4 className="evidence-status-heading">Evidence</h4>
-            <IoIosCloseCircleOutline
-              className="evidence-close-button"
-              title="close"
-              onClick={closeModal}
-            />
+            <div className="evidence-status-heading-contnr">
+              <h4 className="evidence-status-heading">Evidence</h4>
+              <IoIosCloseCircleOutline
+                className="evidence-close-button"
+                title="close"
+                onClick={closeModal}
+              />
             </div>
             <hr></hr>
             <EvidenceFeedback closeModalFunc={closeModal} />
           </div>
-          
         </Modal>
       }
       <div className="prntheader">
@@ -91,7 +90,9 @@ function Requirements(props) {
           </thead>
           <tbody>
             <tr>
-              <td className="custom-cell" rowSpan={2}>1</td>
+              <td className="custom-cell" rowSpan={2}>
+                1
+              </td>
               <td className="custom-cell"></td>
               <td className="custom-cell"></td>
               <td className="custom-cell">
@@ -99,14 +100,15 @@ function Requirements(props) {
                 of moderately to severely active rheumatoid
               </td>
               <td className="custom-cell">
-                <button className="custom-button" onClick={handleButtonClick}>
+                <button className="custom-button true-color" onClick={handleButtonClick}>
                   True
                 </button>
               </td>
             </tr>
             <tr>
-            <td className="custom-cell" colSpan={4}>AND</td>
-           
+              <td className="custom-cell" colSpan={4}>
+                AND
+              </td>
             </tr>
             <tr>
               <td className="custom-cell" rowSpan={2}>
@@ -118,18 +120,17 @@ function Requirements(props) {
 
               <td className="custom-cell">Description of Item 2</td>
               <td className="custom-cell">
-                <button className="custom-button" onClick={handleButtonClick}>
+                <button className="custom-button true-color" onClick={handleButtonClick}>
                   True
                 </button>
               </td>
             </tr>
             <tr>
-              
               <td className="custom-cell">AND</td>
               <td className="custom-cell"></td>
               <td className="custom-cell">Description of Item 3</td>
               <td className="custom-cell">
-                <button className="custom-button" onClick={handleButtonClick}>
+                <button className="custom-button partial-color" onClick={handleButtonClick}>
                   Partial
                 </button>
               </td>
@@ -141,7 +142,7 @@ function Requirements(props) {
               <td className="custom-cell"></td>
               <td className="custom-cell">Description of Item 3</td>
               <td className="custom-cell">
-                <button className="custom-button" onClick={handleButtonClick}>
+                <button className="custom-button partial-color" onClick={handleButtonClick}>
                   Partial
                 </button>
               </td>
@@ -152,7 +153,7 @@ function Requirements(props) {
               <td className="custom-cell">OR</td>
               <td className="custom-cell">Description of Item 4</td>
               <td className="custom-cell">
-                <button className="custom-button" onClick={handleButtonClick}>
+                <button className="custom-button true-color" onClick={handleButtonClick}>
                   True
                 </button>
               </td>
@@ -163,7 +164,7 @@ function Requirements(props) {
               <td className="custom-cell"></td>
               <td className="custom-cell">Description of Item 5</td>
               <td className="custom-cell">
-                <button className="custom-button" onClick={handleButtonClick}>
+                <button className="custom-button false-color" onClick={handleButtonClick}>
                   False
                 </button>
               </td>
