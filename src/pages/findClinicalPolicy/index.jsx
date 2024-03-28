@@ -46,63 +46,6 @@ function FindClinicalPolicy() {
     setSelected(false);
   }
 
-  // const handleCollapse = (container) => {
-  //   if (container === "pdfContnr") {
-  //     setPdfContnrCollapse(!pdfContrCollapse);
-  //   } else if (container === "requirementsContnr") {
-  //     setRequirementsContnrCollapse(!requirementsContrCollapse);
-  //   } else if (container === "evidenceContnr") {
-  //     setEvidenceContnrCollapse(!evidenceContrCollapse);
-  //   }
-  // };
-
-  // const handleExpand = (container) => {
-  //   if (container === "pdfContnr") {
-  //     setPdfContnrCollapse(!pdfContrCollapse);
-  //   } else if (container === "requirementsContnr") {
-  //     setRequirementsContnrCollapse(!requirementsContrCollapse);
-  //   } else if (container === "evidenceContnr") {
-  //     setEvidenceContnrCollapse(!evidenceContrCollapse);
-  //   }
-  // };
-
-  // function handleResize() {
-  //   console.log("handleresize called");
-  //   const pdfContnr = document.querySelector(".pdf-contnr");
-  //   const requirementsContnr = document.querySelector(".requirements-contnr");
-  //   const evidenceContnr = document.querySelector(".evidence-contnr");
-  //   console.log("pdfcontnrcollapse", pdfContrCollapse);
-  //   if (
-  //     pdfContrCollapse &&
-  //     requirementsContrCollapse 
-      
-  //   ) {
-  //     return;
-  //   } else if (pdfContrCollapse && requirementsContrCollapse) {
-  //     // evidenceContnr.style.width = "100%";
-  //   } else if (pdfContrCollapse && evidenceContrCollapse) {
-  //     requirementsContnr.style.width = "100%";
-  //   } else if (evidenceContrCollapse && requirementsContrCollapse) {
-  //     pdfContnr.style.width = "100%";
-  //   } else if (pdfContrCollapse) {
-  //     requirementsContnr.style.width = "50%";
-  //     // evidenceContnr.style.width = "50%";
-  //   } else if (requirementsContrCollapse) {
-  //     pdfContnr.style.width = "50%";
-  //     // evidenceContnr.style.width = "50%";
-  //   // } else if (evidenceContrCollapse) {
-  //   //   requirementsContnr.style.width = "50%";
-  //   //   pdfContnr.style.width = "50%";
-  //   // }
-  //    else {
-  //     if (pdfContnr && requirementsContnr) {
-  //       pdfContnr.style.width = "40%";
-  //       requirementsContnr.style.width = "30%";
-  //       // evidenceContnr.style.width = "30%";
-  //     }
-  //   }
-  // }
-
   return (
     <div className="findPolicy-main-contnr">
       {!selected && (

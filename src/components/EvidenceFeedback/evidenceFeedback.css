@@ -89,13 +89,13 @@
 }
 
 #approve {
-  background-color: green;
+  background-color: rgb(233, 79, 28);
 }
 
 #reject {
-  background-color: red;
+  background-color: #cecece;
 }
 
 #partial {
-  background-color: rgb(202, 202, 37);
+  background-color: #cecece;
 }

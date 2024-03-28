@@ -79,8 +79,9 @@
 
 .data-contnr {
   display: flex;
-  gap: 10%;
+  justify-content: space-between;
   white-space: nowrap;
+  padding: 0px 1%;
   margin-top: 2%;
 }
 

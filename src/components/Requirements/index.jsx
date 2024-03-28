@@ -72,7 +72,7 @@ function Requirements(props) {
       }
       <div className="prntheader">
         <h3>
-          <span>Prior Authorization Evidence Validation</span>
+          <span>Clinical Policy Decision Tree</span>
         </h3>
       </div>
 
