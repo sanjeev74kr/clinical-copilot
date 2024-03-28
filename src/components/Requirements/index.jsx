@@ -16,8 +16,9 @@ const customStyles = {
     right: "15%",
     bottom: "5%",
     overflow: "none",
-    paddingTop: "0",
+    padding: "0",
     outline: "none",
+    borderRadius:"0.5rem"
   },
 };
 
@@ -56,13 +57,18 @@ function Requirements(props) {
           style={customStyles}
         >
           <div className="evidence-status-feedback-container">
+          <div className="evidence-status-heading-contnr">
+          <h4 className="evidence-status-heading">Evidence</h4>
             <IoIosCloseCircleOutline
               className="evidence-close-button"
               title="close"
               onClick={closeModal}
             />
+            </div>
+            <hr></hr>
             <EvidenceFeedback closeModalFunc={closeModal} />
           </div>
+          
         </Modal>
       }
       <div className="prntheader">

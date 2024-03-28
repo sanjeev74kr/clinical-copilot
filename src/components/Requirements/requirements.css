@@ -37,7 +37,7 @@
 }
 
 #True {
-  background-color: #abe1a6;
+  background-color: green;
   color: white;
   width: 100%;
   text-align: center;
@@ -48,7 +48,7 @@
   cursor: pointer;
 }
 #False {
-  background-color: #e1a6a6;
+  background-color: red;
   color: white;
   width: 100%;
   text-align: center;
@@ -111,11 +111,23 @@
   flex-direction: column;
 }
 
-.evidence-close-button {
-  font-size: 1.5rem;
-  margin-left: auto;
-  margin-right: auto;
+.evidence-status-heading-contnr{
+  display: flex;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
+
+.evidence-status-heading {
+  margin-left: 45%;
+  /* border-bottom: 0.1rem solid black; */
+}
+
+.evidence-close-button {
+  font-size: 1.85rem;
+  margin-left: auto;
+  padding-right: 0.5%;
+}
+
 .evidence-close-button:hover {
   color: red;
 }
