@@ -96,8 +96,9 @@
 .custom-cell {
   /* Equal space distribution */
   border: 1px solid #dddddd;
-  text-align: left;
-  padding: 35px;
+  text-align: center;
+    padding: 6px;
+    font-size: 13px;
 }
 
 .custom-select {
