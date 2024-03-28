@@ -208,10 +208,13 @@ function MedicalChartReview() {
     setSelectedCDS(obj);
   };
   function handleDropDownSelection(value, field) {
-    if (field === "concept") {
+    if (field === "concept" && value !== "") {
       setSelectedConcept(value);
       getConceptEvidence(value, statusArray);
       getSelectedCDSObject(value);
+    } else {
+      initConceptEvidence(value);
+      setSelectedConcept(value);
     }
 
     if (field === "notes") {
@@ -223,7 +226,9 @@ function MedicalChartReview() {
       const text = await navigator.clipboard.readText();
       const existingNotes = selectedCDS.User_Notes;
       let holdText =
-        pastedText === "" ? text + "\n"+ existingNotes : pastedText + "\n"+ text;
+        pastedText === ""
+          ? text + "\n" + existingNotes
+          : pastedText + "\n" + text;
       finalText = holdText;
 
       setpastedText(finalText);
@@ -239,7 +244,7 @@ function MedicalChartReview() {
     return {
       ...data,
       // User_Name: userCredentials?.name,
-      User_Name:userCredentials.email.split("@")[0],
+      User_Name: userCredentials.email.split("@")[0],
       User_Notes: pastedText,
       Concept_Review_Status: selectedCDSStatus,
     };
@@ -400,6 +405,7 @@ function MedicalChartReview() {
             </h5>
           </div>
           <div className="select-concept-container">
+            <div className="concept-heading">Concepts: </div>
             {clinicalDocumentSummary && (
               <DropDownBox
                 label={""}
@@ -410,15 +416,17 @@ function MedicalChartReview() {
               />
             )}
           </div>
+          
           <div>
-            {selectedCDS && (
+          <div className="evidence-heading">Evidence(s) </div>
+            {selectedCDS && evidenceResult.length > 0 && (
               <Accordion
                 accordionTitle={"Summary for All Evidences"}
                 accordionContent={selectedCDS}
               />
             )}
           </div>
-          {evidenceResult && selectedCDS && (
+          {evidenceResult && evidenceResult.length > 0 && selectedCDS && (
             <Evidence
               data={evidenceResult}
               storeReferenceTextInArray={storeReferenceTextInArray}
@@ -431,7 +439,7 @@ function MedicalChartReview() {
                   <CgProfile className="profile-icon" />
                 </div>
                 <div className="username">
-                {" "}
+                  {" "}
                   {userCredentials.email.split("@")[0]}
                   {/* {userCredentials?.name} */}
                 </div>
@@ -439,41 +447,43 @@ function MedicalChartReview() {
                   {converUTCtoLoacle(selectedCDS.Last_Updated_Dts)} ago
                 </div>
               </div>
-              <div className="text-field-container">
-                <div>
-                  <TextField
-                    variant="standard"
-                    disableUnderline={false}
-                    sx={{ width: "100%", padding: "10px 5px" }}
-                    multiline
-                    maxRows={8}
-                    onChange={handleChange}
-                    value={pastedText}
-                    placeholder="Enter User Notes..."
-                    InputProps={{
-                      disableUnderline: false, // <== added this
-                    }}
-                  ></TextField>
-                </div>
-                <div className="btn-container">
-                  <Tooltip title="Paste" placement="top-start">
-                    <div className="paste-icon" onClick={() => pasteText()}>
-                      <FaPaste />
+              {selectedConcept !== "" && (
+                <div className="text-field-container">
+                  <div>
+                    <TextField
+                      variant="standard"
+                      disableUnderline={false}
+                      sx={{ width: "100%", padding: "10px 5px" }}
+                      multiline
+                      maxRows={8}
+                      onChange={handleChange}
+                      value={pastedText}
+                      placeholder="Enter User Notes..."
+                      InputProps={{
+                        disableUnderline: false, // <== added this
+                      }}
+                    ></TextField>
+                  </div>
+                  <div className="btn-container">
+                    <Tooltip title="Paste" placement="top-start">
+                      <div className="paste-icon" onClick={() => pasteText()}>
+                        <FaPaste />
+                      </div>
+                    </Tooltip>
+                    <div className="select-notes-dd">
+                      <DropDownBox
+                        label={""}
+                        dropDownBoxData={status}
+                        type="notes"
+                        selectedValue={selectedCDS}
+                        onSelect={(value) =>
+                          handleDropDownSelection(value, "notes")
+                        }
+                      />
                     </div>
-                  </Tooltip>
-                  <div className="select-notes-dd">
-                    <DropDownBox
-                      label={""}
-                      dropDownBoxData={status}
-                      type="notes"
-                      selectedValue={selectedCDS}
-                      onSelect={(value) =>
-                        handleDropDownSelection(value, "notes")
-                      }
-                    />
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           )}
           {selectedConcept !== "" && (

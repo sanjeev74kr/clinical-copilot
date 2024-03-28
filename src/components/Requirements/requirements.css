@@ -51,6 +51,12 @@
 .true-color{
   background-color: green !important;
 }
+.bgcolor{
+  background: #cdd9d9;
+}
+.textAlignLeft{
+  text-align: left !important;
+}
 #False {
   background-color: red;
   color: white;

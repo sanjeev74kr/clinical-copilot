@@ -26,13 +26,13 @@ function Accordion(props) {
           <p className="accordion-content">
             {accordionContent.All_Evidence_Summary}
           </p>
-          <div className="document-feedback-container">
+         {/*  <div className="document-feedback-container">
             <UserFeedback
               feedback={accordionContent}
               updateUserFeedback={updateFeedback}
               type={"CDS"}
             />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

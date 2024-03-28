@@ -59,6 +59,12 @@ export const AppReducer = (state, action) => {
         loading: false,
         evidenceResult: action.payload,
       };
+    case "RESET_EVIDENCE_RESULT":
+      return {
+        ...state,
+
+        evidenceResult: action.payload,
+      };
     case "CLEAR_IDENTFIER_DOCUMENTS":
       return {
         ...state,

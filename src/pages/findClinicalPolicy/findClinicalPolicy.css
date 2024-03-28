@@ -79,8 +79,9 @@
 
 .data-contnr {
   display: flex;
-  gap: 10%;
+  justify-content: space-between;
   white-space: nowrap;
+  padding: 0px 1%;
   margin-top: 2%;
 }
 
@@ -99,8 +100,9 @@
 
 .findPolicy-card-contnr {
   display: flex;
-  gap: 1%;
+  gap: 5px;
   margin-top: 2%;
+  padding: 6px;
 }
 
 .collapse-contnr {
@@ -125,13 +127,13 @@
 .requirements-contnr,
 .evidence-contnr {
   display: flex;
-  flex-direction: column;
-  background-color: white;
-  box-shadow: 0rem 0rem 0.6rem 0.6rem rgb(226, 223, 223);
-  border-radius: 0.8rem;
-  padding: 2%;
-  padding-top: 1%;
-  gap: 1.5rem;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0rem 0rem 0.2rem 0.2rem rgb(226, 223, 223);
+    border-radius: 0.8rem;
+    padding: 2%;
+    padding-top: 1%;
+    gap: 1.5rem;
   width: 60%;
 }
 

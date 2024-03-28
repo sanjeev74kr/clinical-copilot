@@ -187,7 +187,7 @@
   min-height: 7rem;
 }
 .paste-icon {
-  color: #cecece;
+  color: #000;
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -234,7 +234,7 @@
   justify-content: space-between;
   padding: 1px 14px;
   cursor: pointer;
-  color: #cecece;
+  color: #000;
   font-size: 1.25rem;
 }
 .feedback-container {
@@ -281,15 +281,19 @@
   font-size: 14px;
   font-weight: 600;
 }
-
+.concept-heading{
+  display: flex;
+    align-items: center;
+}
 .select-concept-container {
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  font-size: 12px;
+  justify-content: space-between;
+  font-size: 17px;
   font-weight: 700;
-  gap: 5px;
-  margin: 2%;
+  gap: 12%;
+  margin: 2% 0% 2% 0%;
+  padding: 1% 3%;
   margin-top: 0.5%;
 }
 
