@@ -29,8 +29,16 @@ function FindClinicalPolicy() {
     setPdfFile(item.pdf_file);
     setPayer(item.payer);
     setSelected(true);
-   // getAllConceptEvidence("6d4fe8f3b75b4f72b5006c739057fca4");
-    dispatch({ type: "SET_DECISION_SUPPORT_TAB", payload: {itemselected:true, payer:item.payer, prior_auth_desc:prior_auth_desc} })
+    // getAllConceptEvidence("6d4fe8f3b75b4f72b5006c739057fca4");
+    dispatch({
+      type: "SET_DECISION_SUPPORT_TAB",
+      payload: {
+        itemselected: true,
+        payer: item.payer,
+        prior_auth_desc: prior_auth_desc,
+        pdfFile: item.pdf_file,
+      },
+    });
     //console.log(findPolicyTableData,"Find table")
   }
 
@@ -132,7 +140,7 @@ function FindClinicalPolicy() {
           </div>
         </div>
       )}
-     {/*  {selected && (
+      {/*  {selected && (
         <DecisionSupport
           pdfFile={pdfFile}
           requirementsData={requirementsData}

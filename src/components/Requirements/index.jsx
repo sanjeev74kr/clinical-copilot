@@ -70,79 +70,69 @@ function Requirements(props) {
           <span>Prior Authorization Evidence Validation</span>
         </h3>
       </div>
-      {/* <div className="textcls">
-        <span>Payer Name</span>
-        <span>UGH</span>
-        <span>Prior Authorization</span>
-        <span>Actemera</span>
-      </div> */}
+
       <div>
         <table className="custom-table">
           <thead>
             <tr>
               <th className="custom-cell">Item</th>
-              <th className="custom-cell">AND/OR</th>
+              <th className="custom-cell" colSpan={2}>
+                AND/OR
+              </th>
               <th className="custom-cell">Description</th>
               <th className="custom-cell">Evidence Status</th>
             </tr>
           </thead>
           <tbody>
-            {evidenceValidationData.map((item) => (
-              <tr>
-                <td className="custom-cell">{item?.item_no}</td>
-                <td className="custom-cell">
-                  <select
-                    className="custom-select"
-                    value={dropdownValues[1] || ""}
-                    onChange={(event) => handleDropdownChange(event, 1)}
-                  >
-                    <option value="AND">AND</option>
-                    <option value="OR">OR</option>
-                  </select>
-                </td>
-                <td className="custom-cell">{item?.description}</td>
-                <td className="custom-cell">
-                  <button
-                    className="custom-button"
-                    id={item.evidenceStatus}
-                    onClick={handleButtonClick}
-                  >
-                    {item?.evidenceStatus}
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {/* <tr>
-              <td className="custom-cell">2</td>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>1</td>
+              <td className="custom-cell"></td>
+              <td className="custom-cell"></td>
               <td className="custom-cell">
-                <select
-                  className="custom-select"
-                  value={dropdownValues[2] || ""}
-                  onChange={(event) => handleDropdownChange(event, 2)}
-                >
-                  <option value="AND">AND</option>
-                  <option value="OR">OR</option>
-                </select>
+                Diagnosis of moderately to severely active rheumatoid Diagnosis
+                of moderately to severely active rheumatoid
               </td>
+              <td className="custom-cell">
+                <button className="custom-button" onClick={handleButtonClick}>
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+            <td className="custom-cell" colSpan={4}>AND</td>
+           
+            </tr>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                2
+              </td>
+
+              <td className="custom-cell"></td>
+              <td className="custom-cell">OR</td>
+
               <td className="custom-cell">Description of Item 2</td>
               <td className="custom-cell">
                 <button className="custom-button" onClick={handleButtonClick}>
                   True
                 </button>
               </td>
-            </tr> */}
-            {/* <tr>
-              <td className="custom-cell">3</td>
+            </tr>
+            <tr>
+              
+              <td className="custom-cell">AND</td>
+              <td className="custom-cell"></td>
+              <td className="custom-cell">Description of Item 3</td>
               <td className="custom-cell">
-                <select
-                  className="custom-select"
-                  value={dropdownValues[3] || ""}
-                  onChange={(event) => handleDropdownChange(event, 3)}
-                >
-                  <option value="AND">AND</option>
-                  <option value="OR">OR</option>
-                </select>
+                <button className="custom-button" onClick={handleButtonClick}>
+                  Partial
+                </button>
               </td>
+            </tr>
+            <tr>
+              <td className="custom-cell">3</td>
+
+              <td className="custom-cell">AND</td>
+              <td className="custom-cell"></td>
               <td className="custom-cell">Description of Item 3</td>
               <td className="custom-cell">
                 <button className="custom-button" onClick={handleButtonClick}>
@@ -152,16 +142,8 @@ function Requirements(props) {
             </tr>
             <tr>
               <td className="custom-cell">4</td>
-              <td className="custom-cell">
-                <select
-                  className="custom-select"
-                  value={dropdownValues[4] || ""}
-                  onChange={(event) => handleDropdownChange(event, 4)}
-                >
-                  <option value="AND">AND</option>
-                  <option value="OR">OR</option>
-                </select>
-              </td>
+              <td className="custom-cell"></td>
+              <td className="custom-cell">OR</td>
               <td className="custom-cell">Description of Item 4</td>
               <td className="custom-cell">
                 <button className="custom-button" onClick={handleButtonClick}>
@@ -171,23 +153,15 @@ function Requirements(props) {
             </tr>
             <tr>
               <td className="custom-cell">5</td>
-              <td className="custom-cell">
-                <select
-                  className="custom-select"
-                  value={dropdownValues[5] || ""}
-                  onChange={(event) => handleDropdownChange(event, 5)}
-                >
-                  <option value="AND">AND</option>
-                  <option value="OR">OR</option>
-                </select>
-              </td>
+              <td className="custom-cell">AND</td>
+              <td className="custom-cell"></td>
               <td className="custom-cell">Description of Item 5</td>
               <td className="custom-cell">
                 <button className="custom-button" onClick={handleButtonClick}>
                   False
                 </button>
               </td>
-            </tr> */}
+            </tr>
             {/* Add more rows as needed */}
           </tbody>
         </table>
@@ -197,4 +171,3 @@ function Requirements(props) {
 }
 
 export { Requirements };
-
