@@ -404,8 +404,9 @@ function MedicalChartReview() {
               Clear Filter
             </h5>
           </div>
-           */}<div className="select-concept-container">
-            <div className="concept-heading">Concepts: </div>
+           */}
+          <div className="select-concept-container">
+            <div className="concept-heading">Concepts </div>
             {clinicalDocumentSummary && (
               <DropDownBox
                 label={""}
@@ -416,17 +417,19 @@ function MedicalChartReview() {
               />
             )}
           </div>
-          
-          <div>
-          <div className="PrntEvidence">
-          <span>Evidence </span></div>
-            {selectedCDS && evidenceResult.length > 0 && (
+          <div className="cardline-hr"></div>
+          {selectedCDS && evidenceResult.length > 0 && (
+            <div>
+              <div className="PrntEvidence">
+                <span>Evidence of concepts </span>
+              </div>
+
               <Accordion
                 accordionTitle={"Summary for All Evidences"}
                 accordionContent={selectedCDS}
               />
-            )}
-          </div>
+            </div>
+          )}
           {evidenceResult && evidenceResult.length > 0 && selectedCDS && (
             <Evidence
               data={evidenceResult}

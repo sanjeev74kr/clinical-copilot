@@ -26,13 +26,16 @@
   background: #fafafa;
   border-radius: 0.4rem;
 }
-
+.cardline-hr {
+  border-bottom: 1px solid #cecece;
+ 
+  margin: 0% 1% 2% 1%;
+}
 .pdfViewer-and-operations-container {
   display: flex;
   flex-direction: row;
   margin-left: 1rem;
   margin-right: 1rem;
-  
 }
 
 .medicalchart-pdf-container {
@@ -93,7 +96,6 @@
 
 .evidence-heading {
   font-weight: 700;
- 
 }
 .condition-line {
   border-left: 1px solid #cecece;
@@ -281,9 +283,9 @@
   font-size: 14px;
   font-weight: 600;
 }
-.concept-heading{
+.concept-heading {
   display: flex;
-    align-items: center;
+  align-items: center;
 }
 .select-concept-container {
   display: flex;
@@ -342,8 +344,8 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.PrntEvidence{
-  margin-left:22px;
+.PrntEvidence {
+  margin-left: 22px;
   font-size: 17px;
   font-weight: 700;
 }
