@@ -342,6 +342,11 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.PrntEvidence{
+  margin-left:22px;
+  font-size: 17px;
+  font-weight: 700;
+}
 
 /* .checkbox-container-review{
   display: flex;

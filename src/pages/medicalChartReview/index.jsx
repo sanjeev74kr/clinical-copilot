@@ -418,7 +418,8 @@ function MedicalChartReview() {
           </div>
           
           <div>
-          <div className="evidence-heading">Evidence(s) </div>
+          <div className="PrntEvidence">
+          <span>Evidence </span></div>
             {selectedCDS && evidenceResult.length > 0 && (
               <Accordion
                 accordionTitle={"Summary for All Evidences"}

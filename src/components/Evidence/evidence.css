@@ -1,0 +1,35 @@
+.evidence-container {
+    width: 103%;
+  }
+  
+  .evidence-item {
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    margin-right: 38px;
+    margin-left: 20px;
+  }
+  
+  .evidence-heading {
+    background-color: #f5f5f5;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .evidence-heading:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .open {
+    transform: rotate(180deg);
+  }
+  
+  .evidence-content {
+    padding: 10px;
+    
+  }
+  
+  
