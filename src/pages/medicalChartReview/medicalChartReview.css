@@ -22,7 +22,7 @@
   justify-content: space-evenly;
   padding-left: 1rem;
   padding-right: 1rem;
-  margin: 3% 1%;
+  margin: 1% 1%;
   background: #fafafa;
   border-radius: 0.4rem;
 }
@@ -32,7 +32,7 @@
   flex-direction: row;
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 2rem;
+  
 }
 
 .medicalchart-pdf-container {

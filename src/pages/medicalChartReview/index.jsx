@@ -374,7 +374,7 @@ function MedicalChartReview() {
           />
         </div>
         <div className="operation-container" ref={child2Ref}>
-          <div className="filter-container">
+          {/* <div className="filter-container">
             <h4>Filter by :</h4>
             <FilterButton
               label={"Not-Started"}
@@ -404,7 +404,7 @@ function MedicalChartReview() {
               Clear Filter
             </h5>
           </div>
-          <div className="select-concept-container">
+           */}<div className="select-concept-container">
             <div className="concept-heading">Concepts: </div>
             {clinicalDocumentSummary && (
               <DropDownBox

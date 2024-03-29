@@ -7,7 +7,7 @@ function Accordion(props) {
   const { updateDocumentFeedback } = useContext(appContext);
   const [isExpandable, setIsExpandable] = useState(true);
   const { accordionTitle, accordionContent } = props;
-  console.log(accordionTitle,accordionContent,"Title of the ")
+  
   const handleOnClick = () => {
     setIsExpandable(!isExpandable);
   };

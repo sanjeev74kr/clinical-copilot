@@ -11,7 +11,7 @@
   }
   
   .evidence-heading {
-    background-color: #f5f5f5;
+    background-color: #e4e2e2;
     padding: 10px;
     cursor: pointer;
     display: flex;
@@ -20,9 +20,12 @@
   }
   
   .evidence-heading:hover {
-    background-color: #e0e0e0;
+    background-color: rgb(233, 79, 28, .5);
   }
   
+  .evidence-heading:active {
+    background-color: rgb(233, 79, 28);
+  }
   .open {
     transform: rotate(180deg);
   }
