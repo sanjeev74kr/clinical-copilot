@@ -12,7 +12,7 @@
   flex-direction: column;
   gap: 5%;
   width: 96%;
-  background-color: #e4e2e2;
+  
   margin-top: 2%;
   padding: 0.5rem;
   margin-left: 2%;
@@ -24,13 +24,16 @@
 .description-contnr,
 .notes-contnr {
   display: flex;
+  flex-direction: column;
+  gap: 1%;
   align-items: flex-start;
-  margin-top: 2.5%;
+  margin-top: 0;
   font-size: 0.9rem;
-  height:2.5rem;
+  height: 3.5rem;
 }
 .notes-contnr{
   height: 5rem;
+  margin-top: 3%;
 }
 
 /* .description-contnr{
@@ -47,41 +50,40 @@
   width: 10%;
   min-width: fit-content;
   font-weight: 600;
+  color: rgb(233, 79, 28);
 }
 
 .summary,
 .description {
   width: 88.5%;
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
+  margin-top: 1%;
 }
 
-
-
 .user-notes {
-  width: 88.5%;
-  height: 5rem;
-  overflow: auto;
-  resize: none;
-  padding: 1%;
+  width: 99%;
+
+    margin-top: 1%;
+    height: 10rem;
+    overflow: auto;
+    resize: none;
+    padding: 1%;
 }
 
 .feedback-action-btn-contnr {
   display: flex;
-  justify-content: flex-end;
-  gap: 5%;
-  width: 70%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-left: auto;
-  margin-right: 1%;
+    justify-content: flex-end;
+    gap: 5%;
+    width: 70%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: auto;
+    margin-right: 1%;
 }
 
 .feedback-action-btn {
-  min-width: fit-content;
-  padding: 1%;
+ width: 6rem;
   border-radius: 0.4rem;
+  padding: 10px;
   cursor: pointer;
   color: white;
   border: none;
@@ -93,9 +95,9 @@
 }
 
 #reject {
-  background-color: #cecece;
+  background-color: rgb(233, 79, 28);
 }
 
 #partial {
-  background-color: #cecece;
+  background-color: rgb(233, 79, 28);
 }

@@ -48,7 +48,7 @@ export const LoginPage = () => {
   return (
     <div className="login-main-container">
       <div className="product-name-container">
-        <p className="product-name">Clinician</p>
+        <p className="product-name">Clinical</p>
         <p className="product-name second">Co-Pilot</p>
       </div>
       <div className="login-image-container">
