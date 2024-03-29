@@ -104,6 +104,8 @@ export const AppContextProvider = ({ children }) => {
       } catch (error) {
         console.log(error);
       }
+    } else{
+      dispatch({ type: "GET_EVIDENCE", payload: [] });
     }
   };
 

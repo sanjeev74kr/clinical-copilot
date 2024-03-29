@@ -11,7 +11,9 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
 
   const { dispatch, updateUserFeedback, userCredentials } = useContext(appContext);
 
+  
   const onPageNumberClick = (pagenum) => {
+    
     dispatch({ type: "SET_PAGENUMBER", payload: pagenum });
   };
 
@@ -89,7 +91,7 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
   };
   return (
     <div className="evidence-container">
-      <div className="evidence-heading">Evidence(s) </div>
+     
       {data?.map((item, index) => (
         <div className="box-container">
         
@@ -141,7 +143,7 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
               <span
                 className="pagenumclr"
                 onClick={() =>
-                  onPageNumberClick(Number(item.Document_Page_Number))
+                  onPageNumberClick(Number(item.Document_Page_Number), storeReferenceTextInArray[index])
                 }
               >
                 {item.Document_Page_Number}
