@@ -5,9 +5,9 @@ import { useContext, useState } from "react";
 
 function Accordion(props) {
   const { updateDocumentFeedback } = useContext(appContext);
-  const [isExpandable, setIsExpandable] = useState(false);
+  const [isExpandable, setIsExpandable] = useState(true);
   const { accordionTitle, accordionContent } = props;
-
+  console.log(accordionTitle,accordionContent,"Title of the ")
   const handleOnClick = () => {
     setIsExpandable(!isExpandable);
   };
@@ -17,9 +17,9 @@ function Accordion(props) {
   };
   return (
     <div className="accordion-container">
-      <div className="accordion-title-container" onClick={handleOnClick}>
+      <div className="accordion-title-container" >
         <p className="accordion-title">{accordionTitle}</p>
-        <div className="accordion-collapse">{isExpandable ? "-" : "+"}</div>
+        {/* <div className="accordion-collapse">{isExpandable ? "-" : "+"}</div> */}
       </div>
       {isExpandable && accordionContent && (
         <div className="accordion-content-container">

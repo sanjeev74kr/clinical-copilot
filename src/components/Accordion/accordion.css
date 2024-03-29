@@ -26,6 +26,7 @@
   justify-content: space-between;
   padding: 0 15px;
   border-bottom: 0.4px solid #ccc;
+  background-color: #e4e2e2;
 }
 
 .accordion-title {
