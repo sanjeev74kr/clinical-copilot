@@ -154,7 +154,11 @@ function MedicalChartReview() {
     setPatient(identifierDetails.patient);
     setProvider(identifierDetails.provider);
     setClinicalDocument(identifierDetails.clinical_document);
-
+    dispatch({
+      type: "SET_CLINICAL_POLICY_TAB",
+      payload:  false, 
+      
+    });
     const cds = identifierDetails.clinical_document_summary;
     if (identifierDetails?.clinical_document_summary !== undefined) {
       const cdsid =
@@ -315,6 +319,14 @@ function MedicalChartReview() {
       });
   };
 
+  const goToNextTab = ()=>{
+    dispatch({
+      type: "SET_CLINICAL_POLICY_TAB",
+      payload:  true, 
+      
+    });
+  }
+
   return (
     <div className="page-main-container">
       <div className="card-container">
@@ -374,37 +386,6 @@ function MedicalChartReview() {
           />
         </div>
         <div className="operation-container" ref={child2Ref}>
-          {/* <div className="filter-container">
-            <h4>Filter by :</h4>
-            <FilterButton
-              label={"Not-Started"}
-              setLabel={(lbl) => {
-                setNotStarted(lbl);
-              }}
-              cleared={clear}
-              setCleared={setClear}
-            />
-            <FilterButton
-              label={"In-Progress"}
-              setLabel={(lbl) => {
-                setInProgress(lbl);
-              }}
-              cleared={clear}
-              setCleared={setClear}
-            />
-            <FilterButton
-              label={"Complete"}
-              setLabel={(lbl) => {
-                setCompleted(lbl);
-              }}
-              cleared={clear}
-              setCleared={setClear}
-            />
-            <h5 className="clear-filter-button" onClick={handleClearFilter}>
-              Clear Filter
-            </h5>
-          </div>
-           */}
           <div className="select-concept-container">
             <div className="concept-heading">Concept Name </div>
             {clinicalDocumentSummary && (
@@ -491,7 +472,7 @@ function MedicalChartReview() {
             </div>
           )}
           {selectedConcept !== "" && (
-            <div>
+            <div className="btn-container">
               <div className="save-btn-container">
                 <Button
                   type="button"
@@ -500,7 +481,7 @@ function MedicalChartReview() {
                     backgroundColor: "rgb(233, 79, 28)",
                     borderRadius: "20px",
                     fontWeight: "700",
-                    width: "20%",
+                    width: "100%",
                   }}
                   fullWidth
                   variant="contained"
@@ -508,6 +489,24 @@ function MedicalChartReview() {
                   onClick={updateStates}
                 >
                   Save
+                </Button>
+              </div>
+              <div className="next-btn-container">
+                <Button
+                  type="button"
+                  disabled={selectedConcept === ""}
+                  style={{
+                    backgroundColor: "rgb(233, 79, 28)",
+                    borderRadius: "20px",
+                    fontWeight: "700",
+                    width: "100%",
+                  }}
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                 onClick={goToNextTab}
+                >
+                  Next Step
                 </Button>
               </div>
             </div>

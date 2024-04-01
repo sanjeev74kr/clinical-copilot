@@ -9,7 +9,7 @@ import { appContext } from "../../context/AppContext";
     notify(messageType);
   }, [messageType, toastMessage]);
 
-  console.log(messageType,'messageType')
+  
   const notify = (type) => {
     switch (type) {
       case "Success":

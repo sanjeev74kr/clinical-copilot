@@ -8,7 +8,7 @@ export const status = [
   { 2: "Complete" },
 ];
 
-export const conditions = [{ 0: "True" }, { 1: "True" }, { 2: "True" }];
+export const conditions = [{ 0: "True" }, { 1: "False" }, { 2: "Partial" }];
 // export const concept = {
 //     Document_identifer:
 //         [{

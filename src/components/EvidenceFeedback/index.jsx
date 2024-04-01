@@ -55,7 +55,6 @@ function EvidenceFeedback(props) {
               <div className="txtarawdth">
                 <textarea
                   className="user-notes"
-                 
                   placeholder="Please enter your feedback"
                 ></textarea>
               </div>
@@ -64,50 +63,54 @@ function EvidenceFeedback(props) {
                   <FaPaperclip />
                 </div>
               </div>
-             
             </div>
           </div>
           <div>
-                <input
-                  id="fileInput"
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                />
-              </div>
-          
+            <input
+              id="fileInput"
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+          </div>
 
           <div className="feedback-action-btn-contnr">
-          <div className="attchClass">Attachement(s): <span className="text"><p>{fileName}</p></span></div>
+            <div className="attchClass">
+              Attachement(s):{" "}
+              <span className="text">
+                <p>{fileName}</p>
+              </span>
+            </div>
             <div className="select-notes-popup">
-              <DropDownBox
-                label={"Evidence Status: "}
-                dropDownBoxData={conditions}
-                type="condtion"
-                selectedValue="True"
-                onSelect={(value) =>
-                  handleDropDownSelection(value, "condition")
-                }
-              />
-               <div>
-              <Button
-                type="button"
-                style={{
-                  backgroundColor: "rgb(233, 79, 28)",
-                  borderRadius: "20px",
-                  fontWeight: "700",
-                  width: "20%",
-                }}
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Save
-              </Button>
+              <div className="evidence-lable">
+                <div>Evidence Status:</div>
+                <DropDownBox
+                  label={"Evidence Status: "}
+                  dropDownBoxData={conditions}
+                  type="condtion"
+                  selectedValue="True"
+                  onSelect={(value) =>
+                    handleDropDownSelection(value, "condition")
+                  }
+                />
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  style={{
+                    backgroundColor: "rgb(233, 79, 28)",
+                    borderRadius: "20px",
+                    fontWeight: "700",
+                    width: "20%",
+                  }}
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Save
+                </Button>
+              </div>
             </div>
-            </div>
-           
-           
           </div>
         </div>
       </div>

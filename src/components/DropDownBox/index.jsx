@@ -13,6 +13,7 @@ function DropDownBox(props) {
     value: "",
   });
   const options = dropDownBoxData.map((item, index) => {
+    
     return {
       label: item[index],
       value: item[index],
@@ -73,6 +74,7 @@ function DropDownBox(props) {
         );
       case "condtion":
         return (
+
           <Select
             options={options}
             value={{label:"True", value:"True"}}

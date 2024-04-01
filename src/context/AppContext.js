@@ -28,7 +28,8 @@ const initialState = {
   messageType: "",
   prior_auth_desc:"",
   Tab_Status:false,
-  currentTabSelected:{}
+  currentTabSelected:{},
+  clinicalPolicy:false
 };
 export const appContext = React.createContext(initialState);
 
@@ -217,6 +218,7 @@ export const AppContextProvider = ({ children }) => {
         toastMessage:state.toastMessage,
         prior_auth_desc:state.prior_auth_desc,
         currentTabSelected:state.currentTabSelected,
+        clinicalPolicy:state.clinicalPolicy,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,
