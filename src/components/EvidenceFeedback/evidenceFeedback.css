@@ -35,9 +35,16 @@
   height: 5rem;
   margin-top: 6%;
 }
+
+.evidence-lable{
+  display: flex;
+    align-items: center;
+    gap: 7px;
+}
 .attchClass{
   display: flex;
   gap: 2%;
+  margin-top: 2.5%;
   font-weight: 600;
   color: rgb(233, 79, 28);
 }
@@ -99,10 +106,10 @@
 .feedback-action-btn-contnr {
   display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 0;
     font-size: 0.9rem;
-    height: 5rem;
+    height: 13rem;
     gap: 5%;
 }
 

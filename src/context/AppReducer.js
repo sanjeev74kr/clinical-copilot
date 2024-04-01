@@ -81,7 +81,7 @@ export const AppReducer = (state, action) => {
         prior_auth_desc: action.payload,
       };
     case "SET_TAB_STATUS":
-      console.log("yehhhhh");
+      
       return {
         ...state,
         Tab_Status: action.payload,
@@ -91,6 +91,11 @@ export const AppReducer = (state, action) => {
         ...state,
         currentTabSelected: action.payload,
       };
+      case "SET_CLINICAL_POLICY_TAB":
+        return {
+          ...state,
+          clinicalPolicy: action.payload,
+        };
     default:
       return state;
   }

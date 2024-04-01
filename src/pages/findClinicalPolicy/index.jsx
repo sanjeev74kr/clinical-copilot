@@ -25,7 +25,7 @@ function FindClinicalPolicy() {
   const [clinicalDocument, setClinicalDocument] = useState([]);
   const [payer, setPayer] = useState("");
 
-  const { identifierDetails, prior_auth_desc, dispatch } =
+  const { identifierDetails, prior_auth_desc, dispatch, currentTabSelected } =
     useContext(appContext);
 
   useEffect(() => {
@@ -33,6 +33,18 @@ function FindClinicalPolicy() {
     setProvider(identifierDetails.provider);
     setClinicalDocument(identifierDetails.clinical_document);
   }, []);
+
+  useEffect(() => {
+    dispatch({
+      type: "SET_DECISION_SUPPORT_TAB",
+      payload: {
+        itemselected: false,
+        payer: payer,
+        prior_auth_desc: prior_auth_desc,
+        pdfFile: pdfFile,
+      },
+    });
+  }, [currentTabSelected]);
 
   function handleSelect(item) {
     setPdfFile(item.pdf_file);
@@ -48,11 +60,11 @@ function FindClinicalPolicy() {
         pdfFile: item.pdf_file,
       },
     });
-    //console.log(findPolicyTableData,"Find table")
-  }
 
-  function handleBack() {
-    setSelected(false);
+    dispatch({
+      type: "SET_CLINICAL_POLICY_TAB",
+      payload: false,
+    });
   }
 
   return (

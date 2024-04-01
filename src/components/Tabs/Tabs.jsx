@@ -9,21 +9,21 @@ import { appContext } from "../../context/AppContext";
 import DecisionSupport from "../DecisionSupport/DecisionSupport";
 
 const Tabs = () => {
-  const { Tab_Status, currentTabSelected } = useContext(appContext);
+  const { Tab_Status, currentTabSelected, clinicalPolicy } =
+    useContext(appContext);
   const [activeTab, setActiveTab] = useState("tab1");
 
   useEffect(() => {
-    if (
-      (activeTab === "tab1" || activeTab === "tab2") &&
-      !currentTabSelected.itemselected
-    ) {
+    if (activeTab === "tab2" && !currentTabSelected.itemselected) {
       //  dispatch({ type: "SET_DECISION_SUPPORT_TAB", payload: false })
-    } else {
+    } else if (currentTabSelected.itemselected) {
       setActiveTab("tab3");
     }
-  }, [currentTabSelected]);
 
- 
+    if (activeTab === "tab1" && clinicalPolicy) {
+      setActiveTab("tab2");
+    }
+  }, [currentTabSelected, clinicalPolicy]);
 
   return (
     <div className="Tabs">
@@ -45,11 +45,9 @@ const Tabs = () => {
           title="Step3: Decision Support"
           id="tab3"
           activeTab={activeTab}
-         
           disabled={!Tab_Status}
           className={!Tab_Status ? "disabled" : ""}
         />
-        
       </ul>
 
       <div className="outlet">

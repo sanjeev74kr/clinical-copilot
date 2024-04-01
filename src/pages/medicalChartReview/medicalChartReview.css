@@ -133,6 +133,7 @@
   background: #fafafa;
   width: 100%;
   margin: 18px 0px;
+  padding-right: 10px;
   border-radius: 5px;
 }
 
@@ -288,6 +289,11 @@
 .concept-heading {
   display: flex;
   align-items: center;
+}
+.btn-container{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
 }
 .evdBg{
   background: #fafafa;
