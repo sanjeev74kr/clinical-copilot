@@ -55,7 +55,8 @@
   background-color: green !important;
 }
 .bgcolor{
-  background: #cdd9d9;
+  background: rgb(233, 79, 28);
+  color: white;
 }
 .textAlignLeft{
   text-align: left !important;

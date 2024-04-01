@@ -51,7 +51,7 @@
   max-height: 1090px;
   overflow: auto;
   /*gap: 1rem;*/
-  background: #fafafa;
+  
   margin-left: 1rem;
   border-radius: 0.4rem;
   overflow-x: hidden;
@@ -130,8 +130,9 @@
 }
 .llm-box-container {
   border: 1px solid #cecece;
-  width: 96%;
-  margin: 18px 14px;
+  background: #fafafa;
+  width: 100%;
+  margin: 18px 0px;
   border-radius: 5px;
 }
 
@@ -213,6 +214,7 @@
 .evidence-container {
   display: flex;
   flex-direction: column;
+  background: #fafafa;
   gap: 0.5rem;
 }
 .box-container {
@@ -287,13 +289,17 @@
   display: flex;
   align-items: center;
 }
+.evdBg{
+  background: #fafafa;
+}
 .select-concept-container {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  background: #fafafa;
   font-size: 17px;
   font-weight: 700;
-  gap: 12%;
+  gap: 5%;
   margin: 2% 0% 2% 0%;
   padding: 1% 3%;
   margin-top: 0.5%;

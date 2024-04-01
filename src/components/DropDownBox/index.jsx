@@ -28,6 +28,7 @@ function DropDownBox(props) {
   };
 
   useEffect(() => {
+   
     if (type === "notes") {
       setSelectedOption({
         label: selectedValue.Concept_Review_Status,
@@ -70,22 +71,18 @@ function DropDownBox(props) {
             </select>
           </label>
         );
+      case "condtion":
+        return (
+          <Select
+            options={options}
+            value={{label:"True", value:"True"}}
+            onChange={handleChange}
+            placeholder="Select Review Status"
+            /*  isDisabled={selectedOption === null} */
+          />
+        );
       case "notes":
         return (
-          /*  <label>
-              {label}
-              <select
-                className="select-options-status"
-                onChange={handleSelectionChange}
-                multiple
-              >
-                {dropDownBoxData?.map((item, index) => (
-                  <option key={`select${index}`} value={item[index]}>
-                    {item[index]}
-                  </option>
-                ))}
-              </select>
-            </label> */
           <Select
             options={options}
             value={selectedOption}

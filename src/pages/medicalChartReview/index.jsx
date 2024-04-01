@@ -406,7 +406,7 @@ function MedicalChartReview() {
           </div>
            */}
           <div className="select-concept-container">
-            <div className="concept-heading">Concept </div>
+            <div className="concept-heading">Concept Name </div>
             {clinicalDocumentSummary && (
               <DropDownBox
                 label={""}
@@ -417,9 +417,9 @@ function MedicalChartReview() {
               />
             )}
           </div>
-          <div className="cardline-hr"></div>
+         
           {selectedCDS && evidenceResult.length > 0 && (
-            <div>
+            <div className="evdBg">
               <div className="PrntEvidence">
                 <span>Evidence(s) Of Concept </span>
               </div>

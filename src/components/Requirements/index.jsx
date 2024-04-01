@@ -15,7 +15,7 @@ const customStyles = {
     top: "10%",
     left: "15%",
     right: "15%",
-    bottom: "19%",
+    bottom: "21%",
     overflow: "none",
     padding: "0",
     outline: "none",

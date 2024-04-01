@@ -33,7 +33,25 @@
 }
 .notes-contnr{
   height: 5rem;
-  margin-top: 4%;
+  margin-top: 6%;
+}
+.attchClass{
+  display: flex;
+  gap: 2%;
+  font-weight: 600;
+  color: rgb(233, 79, 28);
+}
+.text{
+  color: black;
+}
+.select-notes-popup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 5%;
 }
 
 /* .description-contnr{
@@ -63,21 +81,29 @@
   width: 99%;
 
     margin-top: 1%;
-    height: 10rem;
+   
     overflow: auto;
     resize: none;
     padding: 1%;
 }
+.txtaracls{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.txtarawdth{
+  width: 100%;
+}
 .feedback-action-btn-contnr {
   display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+    font-size: 0.9rem;
+    height: 5rem;
     gap: 5%;
-    width: 70%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: auto;
-    margin-right: 1%;
 }
 
 .feedback-action-btn {
