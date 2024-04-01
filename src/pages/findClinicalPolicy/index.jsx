@@ -15,15 +15,24 @@ import { appContext } from "../../context/AppContext";
 import EvidenceCopy from "../../components/EvidenceCopy";
 import DecisionSupport from "../../components/DecisionSupport/DecisionSupport";
 import { faBullseye } from "@fortawesome/free-solid-svg-icons";
+import DetailsCard from "../../components/DetailsCard";
 
 function FindClinicalPolicy() {
   const [pdfFile, setPdfFile] = useState();
   const [selected, setSelected] = useState(false);
+  const [patient, setPatient] = useState([]);
+  const [provider, setProvider] = useState([]);
+  const [clinicalDocument, setClinicalDocument] = useState([]);
   const [payer, setPayer] = useState("");
-  const { prior_auth_desc } = useContext(appContext);
 
-  const { dispatch, getAllConceptEvidence, Tab_Status } =
+  const { identifierDetails, prior_auth_desc, dispatch } =
     useContext(appContext);
+
+  useEffect(() => {
+    setPatient(identifierDetails.patient);
+    setProvider(identifierDetails.provider);
+    setClinicalDocument(identifierDetails.clinical_document);
+  }, []);
 
   function handleSelect(item) {
     setPdfFile(item.pdf_file);
@@ -50,9 +59,28 @@ function FindClinicalPolicy() {
     <div className="findPolicy-main-contnr">
       {!selected && (
         <div className="findPolicy-first -screen">
-          <div className="prior-auth">
-            <h5>Prior Auth For : </h5>
-            <h5 className="data-value">{prior_auth_desc}</h5>
+          <div className="card-container">
+            {clinicalDocument && (
+              <DetailsCard
+                cardHeader={"Prior Auth Request Details"}
+                cardData={clinicalDocument}
+                type={"Auth"}
+              />
+            )}
+            {patient && (
+              <DetailsCard
+                cardHeader={"Patient Details"}
+                cardData={patient}
+                type={"Patient"}
+              />
+            )}
+            {provider && (
+              <DetailsCard
+                cardHeader={"Provider  Details"}
+                cardData={provider}
+                type={"Provider"}
+              />
+            )}
           </div>
           <div className="findPolicy-table-container">
             <table className="findPolicy-table">
