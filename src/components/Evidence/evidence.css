@@ -14,6 +14,7 @@
     background-color: #e4e2e2;
     padding: 10px;
     cursor: pointer;
+    color: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,9 +24,7 @@
     background-color: rgb(233, 79, 28, .3);
   }
   
-  .evidence-heading:active {
-    background-color: rgb(233, 79, 28);
-  }
+  
   .open {
     transform: rotate(180deg);
   }
@@ -34,7 +33,12 @@
     padding: 10px;
 
   }
-  
+
+  .opened-accordion{
+    background-color: rgb(233, 79, 28);
+    color: white;
+  }
  
+  
   
   

@@ -30,6 +30,8 @@ ul.nav li {
   width: 50%;
   padding: 1.3rem;
   list-style: none;
+  font-weight: 800;
+  color: black;
   border: 0.1rem solid #cecece;
   text-align: center;
   cursor: pointer;
@@ -48,6 +50,7 @@ ul.nav li:hover {
 
 ul.nav li.active {
   background: rgb(233, 79, 28);/* #e4e2e2; */
+  color: white;
   /* border-color: #ffffff; */
 }
 

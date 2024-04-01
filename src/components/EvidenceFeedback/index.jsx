@@ -18,7 +18,7 @@ function EvidenceFeedback(props) {
           </p>
         </div>
         <div className="description-contnr">
-          <h5 className="evidenece-status-label">Description</h5>
+          <h4 className="evidenece-status-label">Description</h4>
           <p className="description">
             Patient has been previously treated with a targeted immunomodulator
             FDAapproved for the treatment of rheumatoid arthritis .
@@ -26,8 +26,8 @@ function EvidenceFeedback(props) {
           </p>
         </div>
         <div className="notes-contnr">
-          <h5 className="evidenece-status-label">User-Notes</h5>
-          <textarea className="user-notes" placeholder="Please enter your feedback"></textarea>
+          <h4 className="evidenece-status-label">User-Notes</h4>
+          <textarea className="user-notes" height={50} placeholder="Please enter your feedback"></textarea>
         </div>
 
         <div className="feedback-action-btn-contnr">
@@ -36,14 +36,14 @@ function EvidenceFeedback(props) {
             id="approve"
             onClick={handleCancel}
           >
-            Approve
+           True
           </button>
           <button
             className="feedback-action-btn"
             id="reject"
             onClick={handleCancel}
           >
-            Reject
+            False
           </button>
           <button
             className="feedback-action-btn"

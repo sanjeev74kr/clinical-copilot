@@ -9,6 +9,9 @@
   flex-direction: column;
   gap: 1rem;
 }
+.linecolor{
+  color:cecece
+}
 
 .req-head {
   margin-bottom: 8%;
@@ -130,17 +133,20 @@
 
 .evidence-status-heading-contnr{
   display: flex;
-  padding-top: 1%;
-  padding-bottom: 1%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 .evidence-status-heading {
-  margin-left: 45%;
-  /* border-bottom: 0.1rem solid black; */
+  
 }
 
 .evidence-close-button {
-  font-size: 1.85rem;
+  font-size: 1.25rem;
   margin-left: auto;
   padding-right: 0.5%;
 }

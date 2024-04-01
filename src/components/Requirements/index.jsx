@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import EvidenceFeedback from "../EvidenceFeedback";
 import "./requirements.css";
-import { IoIosCloseCircleOutline } from "react-icons/io";
+
+import { FaTimes,  } from "react-icons/fa";
 import { evidenceValidationData } from "../../utils/sampleData";
 
 const customStyles = {
@@ -14,11 +15,11 @@ const customStyles = {
     top: "10%",
     left: "15%",
     right: "15%",
-    bottom: "22%",
+    bottom: "19%",
     overflow: "none",
     padding: "0",
     outline: "none",
-    borderRadius: "0.5rem",
+    borderRadius: "1.5rem",
   },
 };
 
@@ -58,14 +59,14 @@ function Requirements(props) {
         >
           <div className="evidence-status-feedback-container">
             <div className="evidence-status-heading-contnr">
-              <h4 className="evidence-status-heading">Evidence</h4>
-              <IoIosCloseCircleOutline
+              <h3 className="evidence-status-heading">Evidence</h3>
+              <FaTimes
                 className="evidence-close-button"
                 title="close"
                 onClick={closeModal}
               />
             </div>
-            <hr></hr>
+            <hr className="linecolor"></hr>
             <EvidenceFeedback closeModalFunc={closeModal} />
           </div>
         </Modal>

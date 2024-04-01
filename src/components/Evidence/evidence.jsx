@@ -92,9 +92,9 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
   return (
     <div className="evidence-container">
       {data?.map((item, index) => (
-        <div key={index} className={`evidence-item ${openIndex === index ? 'opened-accordion' : ''}`} >
+        <div key={index} className={`evidence-item `}>
           <div
-            className="evidence-heading"
+            className={`evidence-heading ${openIndex === index ? 'opened-accordion' : ''}`}
             onClick={() => toggleAccordion(index)}
           >
             Evidence {index + 1}{" "}
