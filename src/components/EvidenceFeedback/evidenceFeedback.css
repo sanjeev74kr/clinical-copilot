@@ -33,7 +33,7 @@
 }
 .notes-contnr{
   height: 5rem;
-  margin-top: 3%;
+  margin-top: 4%;
 }
 
 /* .description-contnr{
@@ -100,4 +100,47 @@
 
 #partial {
   background-color: rgb(233, 79, 28);
+}
+.save-btn{
+  width:80px;
+  height:30px;
+}
+.atch-cls{
+  font-size: 17px;
+}
+.attachment-container {
+  display: flex;
+  align-items: center;
+}
+
+.attachment-icon {
+  margin-left: 10px; /* Adjust margin as needed */
+  cursor: pointer;
+}
+.notes-container {
+  display: flex;
+  border: 1px solid #ccc;
+  background: white;
+  margin: 5px 5px;
+  border-radius: 0.5rem;
+  padding: 5px;
+  width:70%;
+  margin-left:0px;
+
+}
+.flexItem1{
+  flex-grow:8;
+}
+.flexItem2{
+  flex-grow:2;
+}
+.listwidth {
+  width: 98%;
+}
+.align-box {
+  display: flex;
+  align-items: center;
+}
+.textLayer{
+  z-index:-1;
 }
