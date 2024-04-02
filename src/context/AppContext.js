@@ -31,7 +31,8 @@ const initialState = {
   currentTabSelected:{},
   clinicalPolicy:false,
   FileSelected:'First',
-  identifier: null
+  identifier: null, 
+  scannedRecords:[] 
 };
 export const appContext = React.createContext(initialState);
 
@@ -192,6 +193,7 @@ export const AppContextProvider = ({ children }) => {
         clinicalPolicy:state.clinicalPolicy,
         FileSelected:state.FileSelected,
         identifier: state.identifier,
+        scannedRecords:state.scannedRecords,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

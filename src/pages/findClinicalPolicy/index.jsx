@@ -32,7 +32,7 @@ function FindClinicalPolicy() {
     setPatient(identifierDetails.patient);
     setProvider(identifierDetails.provider);
     setClinicalDocument(identifierDetails.clinical_document);
-  }, []);
+  }, [identifierDetails]);
 
   useEffect(() => {
     dispatch({
@@ -71,12 +71,13 @@ function FindClinicalPolicy() {
     <div className="findPolicy-main-contnr">
       {!selected && (
         <div className="findPolicy-first -screen">
-          <div className="card-container">
+          <div className="clinical-card-container">
             {clinicalDocument && (
               <DetailsCard
                 cardHeader={"Prior Auth Request Details"}
                 cardData={clinicalDocument}
                 type={"Auth"}
+                showLine={true}
               />
             )}
             {patient && (
@@ -84,6 +85,7 @@ function FindClinicalPolicy() {
                 cardHeader={"Patient Details"}
                 cardData={patient}
                 type={"Patient"}
+                showLine={true}
               />
             )}
             {provider && (
@@ -91,8 +93,10 @@ function FindClinicalPolicy() {
                 cardHeader={"Provider  Details"}
                 cardData={provider}
                 type={"Provider"}
+                showLine={false}
               />
             )}
+          
           </div>
           <div className="findPolicy-table-container">
             <table className="findPolicy-table">

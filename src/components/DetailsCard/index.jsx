@@ -3,7 +3,7 @@ import "./detailsCard.css";
 import { appContext } from "../../context/AppContext";
 
 function DetailsCard(props) {
-  const { cardHeader, cardData, type, documentStatus } = props;
+  const { cardHeader, cardData, type, documentStatus, showLine } = props;
   const { dispatch } = useContext(appContext);
   useEffect(() => {
     if (type === "Auth") {
@@ -75,6 +75,13 @@ function DetailsCard(props) {
             <div>{pageData.Prior_Auth_Description}</div>
           </div>
         );
+
+        case "Payer":
+          return (
+            <div className="text-subtitle-container">
+              <div>{cardData}</div>
+            </div>
+          );
       case "document":
         return (
           <div className="text-subtitle-container">
@@ -113,7 +120,7 @@ function DetailsCard(props) {
         </div>
         {cardData.length > 0 ? renderComponent(type) : <div>No data Found</div>}
       </div>
-      {type !== "status" ? <div className="card-line"></div> : null}
+      {(type !== "status" && showLine) ? <div className="card-line"></div> : null}
     </div>
   );
 }

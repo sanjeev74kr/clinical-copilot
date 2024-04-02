@@ -8,6 +8,7 @@
 .findPolicy-first-screen {
   display: flex;
   flex-direction: column;
+  background-color: #e4e2e2;
 }
 
 .findPolicy-table-container {
@@ -88,7 +89,17 @@
 .data-value {
   color: var(--brand-color);
 }
-
+.clinical-card-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  justify-content: space-evenly;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 1% 1%;
+  background: #fafafa;
+  border-radius: 0.4rem;
+}
 .prior-auth,
 .payer {
   display: flex;
@@ -122,7 +133,9 @@
 .expand-icon {
   cursor: pointer;
 }
-
+.clinical-card-container{
+  
+}
 .pdf-contnr,
 .requirements-contnr,
 .evidence-contnr {

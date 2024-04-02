@@ -336,6 +336,7 @@ function MedicalChartReview() {
             cardHeader={"Prior Auth Request Details"}
             cardData={clinicalDocument}
             type={"Auth"}
+            showLine={true}
           />
         )}
         {patient && (
@@ -343,6 +344,7 @@ function MedicalChartReview() {
             cardHeader={"Patient Details"}
             cardData={patient}
             type={"Patient"}
+            showLine={true}
           />
         )}
         {provider && (
@@ -350,6 +352,7 @@ function MedicalChartReview() {
             cardHeader={"Provider  Details"}
             cardData={provider}
             type={"Provider"}
+            showLine={true}
           />
         )}
         {clinicalDocument && (
@@ -357,6 +360,7 @@ function MedicalChartReview() {
             cardHeader={"Document Details"}
             cardData={clinicalDocument}
             type={"document"}
+            showLine={true}
           />
         )}
         {clinicalDocument && (
@@ -418,7 +422,7 @@ function MedicalChartReview() {
               storeReferenceTextInArray={storeReferenceTextInArray}
             />
           )}
-          {selectedConcept !== "" && (
+         {/*  {selectedConcept !== "" && (
             <div className="llm-box-container">
               <div className="user-box-container">
                 <div className="person-icon">
@@ -427,7 +431,7 @@ function MedicalChartReview() {
                 <div className="username">
                   {" "}
                   {userCredentials.email.split("@")[0]}
-                  {/* {userCredentials?.name} */}
+                 
                 </div>
                 <div className="time">
                   {converUTCtoLoacle(selectedCDS.Last_Updated_Dts)} ago
@@ -471,10 +475,10 @@ function MedicalChartReview() {
                 </div>
               )}
             </div>
-          )}
+          )} */}
           {selectedConcept !== "" && (
             <div className="btn-container">
-              <div className="save-btn-container">
+             {/*  <div className="save-btn-container">
                 <Button
                   type="button"
                   disabled={selectedConcept === ""}
@@ -491,7 +495,7 @@ function MedicalChartReview() {
                 >
                   Save
                 </Button>
-              </div>
+              </div> */}
               <div className="next-btn-container">
                 <Button
                   type="button"

@@ -14,3 +14,15 @@
     height: 100%;
     margin: 0 10px;
   }
+
+  .decision-card-container{
+    display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  justify-content: space-evenly;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 1% 1%;
+  background: #fafafa;
+  border-radius: 0.4rem;
+  }

@@ -57,7 +57,7 @@ const HomePage = () => {
     setPage(value);
   };
 
-  const { docs, getPdfDocuments, FileSelected, dispatch } =
+  const { docs, getPdfDocuments, FileSelected, dispatch, scannedRecords } =
     useContext(appContext);
   const dataLength = tableData?.length;
   const rowsPerPage = 10;
@@ -108,7 +108,13 @@ const HomePage = () => {
     const filterdRecords = docs.filter(
       (item) => !idstoFilter.includes(item.Identifier)
     );
-    setTableData(filterdRecords);
+   
+    if(scannedRecords.length >0){
+      setTableData([...filterdRecords, ...scannedRecords]);
+    } else{
+      setTableData(filterdRecords);
+    }
+   
   }, [docs]);
 
   function handleIdentifierClick(id, pdfPath, pdfName) {
@@ -143,8 +149,15 @@ const HomePage = () => {
         type: "SET_FILE_SELECTED_OCCURANCE",
         payload: "second",
       });
+
+      dispatch({
+        type:"UPDATE_SCANNED_RECORDS", payload:filterdTableData[0]
+      })
     } else {
       setTableData([...tableData, filterdTableData[1]]);
+      dispatch({
+        type:"UPDATE_SCANNED_RECORDS", payload:filterdTableData[1]
+      })
     }
   }
 

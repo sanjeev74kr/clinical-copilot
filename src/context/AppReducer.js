@@ -81,7 +81,6 @@ export const AppReducer = (state, action) => {
         prior_auth_desc: action.payload,
       };
     case "SET_TAB_STATUS":
-      
       return {
         ...state,
         Tab_Status: action.payload,
@@ -91,20 +90,26 @@ export const AppReducer = (state, action) => {
         ...state,
         currentTabSelected: action.payload,
       };
-      case "SET_CLINICAL_POLICY_TAB":
-        return {
-          ...state,
-          clinicalPolicy: action.payload,
-        };
-        case "SET_FILE_SELECTED_OCCURANCE":
-          return {
-            ...state,
-            FileSelected: action.payload,
-          }; 
-        case "SET_IDENTIFIER":
+    case "SET_CLINICAL_POLICY_TAB":
+      return {
+        ...state,
+        clinicalPolicy: action.payload,
+      };
+    case "SET_FILE_SELECTED_OCCURANCE":
+      return {
+        ...state,
+        FileSelected: action.payload,
+      };
+    case "SET_IDENTIFIER":
       return {
         ...state,
         identifier: action.payload,
+      };
+
+      case "UPDATE_SCANNED_RECORDS":
+      return {
+        ...state,
+        scannedRecords: [...state.scannedRecords,action.payload],
       };
     default:
       return state;
