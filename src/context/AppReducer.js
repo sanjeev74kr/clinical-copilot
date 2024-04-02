@@ -101,6 +101,11 @@ export const AppReducer = (state, action) => {
             ...state,
             FileSelected: action.payload,
           }; 
+        case "SET_IDENTIFIER":
+      return {
+        ...state,
+        identifier: action.payload,
+      };
     default:
       return state;
   }

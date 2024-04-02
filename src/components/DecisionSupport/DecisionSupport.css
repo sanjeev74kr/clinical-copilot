@@ -1,0 +1,16 @@
+.card-line{
+    border-left: 1px solid #cecece;
+    height: 80%;
+    margin: 8% 5% 8% 9%;
+
+}
+.Headingsection{
+    text-align:center;
+    font-size: 20px;
+    font-weight: 500;
+}
+.vertical-line {
+    border-left: 1px solid #cecece;
+    height: 100%;
+    margin: 0 10px;
+  }

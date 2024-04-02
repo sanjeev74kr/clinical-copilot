@@ -2,19 +2,78 @@ import React, { useContext } from "react";
 import { Requirements } from "../Requirements";
 import PdfViewer from "../PdfViewer";
 import { requirementsData } from "../../utils/sampleData";
-
+import {useState,useEffect} from 'react';
 import { appContext } from "../../context/AppContext";
+import DetailsCard from "../DetailsCard";
+import './DecisionSupport.css';
 
 const DecisionSupport = () => {
-
-  const { currentTabSelected } = useContext(appContext);
+  const { currentTabSelected, identifierDetails, prior_auth_desc, dispatch } = useContext(appContext);
+  const [patient, setPatient] = useState([]);
+  const [provider, setProvider] = useState([]);
+  const [clinicalDocument, setClinicalDocument] = useState([]);
+  const [documentStatus, setDocStatus] = useState("");
+  const[payername,setPayername]=useState('Cigna');
+  useEffect(() => {
+    setPatient(identifierDetails.patient);
+    setProvider(identifierDetails.provider);
+    setClinicalDocument(identifierDetails.clinical_document);
+  }, []);
+  
   
   return (
-    <div>
-      {
+     <>
+      
+        <div className="findPolicy-first -screen">
+          <div className="card-container">
+            {clinicalDocument && (
+              <DetailsCard
+                cardHeader={"Prior Auth Request Details"}
+                cardData={clinicalDocument}
+                type={"Auth"}
+              />
+            )}
+          
+            {patient && (
+              <DetailsCard
+                cardHeader={"Patient Details"}
+                cardData={patient}
+                type={"Patient"}
+              />
+            )}
+            {provider && (
+              <DetailsCard
+                cardHeader={"Provider  Details"}
+                cardData={provider}
+                type={"Provider"}
+              />
+            )}
+            {clinicalDocument && (
+          <DetailsCard
+            cardHeader={"Status"}
+            cardData={clinicalDocument}
+            documentStatus={documentStatus}
+            type={"status"}
+          />
+          
+        )}
+        <div className="vertical-line"></div>
+        {payername && (
+          <div >
+            <h3>Payer:</h3><span>{currentTabSelected.payer}</span>
+          </div>
+          )}
+
+         
+        
+          </div>
+          <div >
+          <p className="Headingsection">Probability of this prior authorization getting approved is 85%</p>
+
+          </div>
         <div className="findPolicy-second-screen">
         
-          <div className="data-contnr">
+          {/* <div className="data-contnr">
             <div className="prior-auth">
               <h5>Prior Auth For : </h5>
               <h5 className="data-value">{currentTabSelected.prior_auth_desc}</h5>
@@ -23,7 +82,7 @@ const DecisionSupport = () => {
               <h5>Payer : </h5>
               <h5 className="data-value">{currentTabSelected.payer}</h5>
             </div>
-          </div>
+          </div> */}
           <div className="findPolicy-card-contnr">
             <div className="pdf-contnr">
              
@@ -34,8 +93,9 @@ const DecisionSupport = () => {
             </div>
           </div>
         </div>
-      }
+      
     </div>
+    </>
   );
 };
 

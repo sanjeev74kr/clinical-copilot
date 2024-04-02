@@ -30,7 +30,8 @@ const initialState = {
   Tab_Status:false,
   currentTabSelected:{},
   clinicalPolicy:false,
-  FileSelected:'First'
+  FileSelected:'First',
+  identifier: null
 };
 export const appContext = React.createContext(initialState);
 
@@ -112,6 +113,7 @@ export const AppContextProvider = ({ children }) => {
   };
 
 
+
   const updateUserFeedback = async (data, ces_identifier) => {
     const URL = getCESURL + `${ces_identifier}`;
     try {
@@ -189,6 +191,7 @@ export const AppContextProvider = ({ children }) => {
         currentTabSelected:state.currentTabSelected,
         clinicalPolicy:state.clinicalPolicy,
         FileSelected:state.FileSelected,
+        identifier: state.identifier,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,
