@@ -56,6 +56,7 @@ function MedicalChartReview() {
     updateDocumentStatus,
     dispatch,
   } = useContext(appContext);
+  console.log(evidenceResult,"value from medicalchart review")
   const keyName = "userCredentials";
   let finalText = "";
 

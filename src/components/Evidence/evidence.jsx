@@ -14,6 +14,8 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
   const { dispatch, updateUserFeedback, userCredentials } =
     useContext(appContext);
 
+    console.log(data,"updateuserfeedback details")
+
   const onPageNumberClick = (pagenum) => {
     dispatch({ type: "SET_PAGENUMBER", payload: pagenum });
   };

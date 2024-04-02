@@ -1,12 +1,15 @@
 import "./evidenceFeedback.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaPaperclip } from "react-icons/fa";
 
 import DropDownBox from "../DropDownBox";
 import Button from "@mui/material/Button";
 import { conditions } from "../../utils/sampleData";
+import { appContext } from "../../context/AppContext";
 function EvidenceFeedback(props) {
   const { closeModalFunc } = props;
+  const{evidenceResult}=useContext(appContext);
+  console.log(evidenceResult,"evidenceresult value result h")
   function handleCancel() {
     closeModalFunc();
   }

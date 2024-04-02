@@ -82,7 +82,7 @@ function Requirements(props) {
         </h3>
       </div>
 
-     {tablestatus ==='24a620c948f040f989f6f06c6d946c81'  &&( <div>
+     {tablestatus ==='24a620c948f040f989f6f06c6d946c81' || tablestatus ==='a01e17b12c074e02ae7bfc234f617dfb'    &&( <div>
         <table className="custom-table">
           <thead className="bgcolor">
             <tr>
@@ -146,7 +146,7 @@ function Requirements(props) {
 
               <td className="custom-cell" rowSpan={3}>
                 <button
-                  className="custom-button true-color"
+                  className="custom-button false-color"
                   onClick={handleButtonClick}
                 >
                  False
@@ -198,7 +198,7 @@ function Requirements(props) {
 
               <td className="custom-cell" rowspan={5}>
                 <button
-                  className="custom-button partial-color"
+                  className="custom-button false-color"
                   onClick={handleButtonClick}
                 >
                   False
@@ -299,7 +299,7 @@ function Requirements(props) {
               <td className="custom-cell"></td>
 
               <td className="custom-cell">
-                Table two data 
+              Diagnosis of moderately to severely active rheumatoid arthritis
               </td>
               <td className="custom-cell">
                 <button
@@ -348,7 +348,7 @@ function Requirements(props) {
                   className="custom-button true-color"
                   onClick={handleButtonClick}
                 >
-                 False
+                 True
                 </button>
               </td>
             </tr>
@@ -400,7 +400,7 @@ function Requirements(props) {
                   className="custom-button partial-color"
                   onClick={handleButtonClick}
                 >
-                  False
+                  Partial
                 </button>
               </td>
             </tr>
@@ -467,7 +467,7 @@ function Requirements(props) {
               </td>
               <td className="custom-cell">
                 <button
-                  className="custom-button false-color"
+                  className="custom-button true-color"
                   onClick={handleButtonClick}
                 >
                   True
