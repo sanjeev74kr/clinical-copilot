@@ -77,7 +77,7 @@ function DropDownBox(props) {
 
           <Select
             options={options}
-            value={{label:"True", value:"True"}}
+            value={selectedOption}
             onChange={handleChange}
             placeholder="Select Review Status"
             /*  isDisabled={selectedOption === null} */

@@ -4,7 +4,10 @@
    align-items: center;
    background-color: White;
 }
-
+.pdfscnConatainer{
+   width: 90%;
+   padding: 10px;
+}
 .searchbar-and-table{
    background-color:white ; 
    margin: 2rem;
