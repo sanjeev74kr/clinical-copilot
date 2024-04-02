@@ -31,10 +31,14 @@ export const AppBar = () => {
   navigate('/');    
   }
 
+  function gotoHome(){
+    navigate('/home'); 
+  }
+
   return (
     <>
       <div className="main-container">
-        <img className="brand-logo" src={exlLogo} alt="exl" />
+        <img className="brand-logo" src={exlLogo} alt="exl" onClick={gotoHome} />
         <h3 className="project-title">Clinical CoPilot</h3>
         <div className="profile-icon-container" onClick={handleProfileClick}>
           <h4 className="user-name">{userCredentials?.email?.split("@")[0]}</h4>

@@ -12,6 +12,7 @@ import Pagination from "@mui/material/Pagination";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import "./homePage.css";
+import PdfScan from "../../components/pdfScan/pdfScan";
 
 const customStyles = {
   overlay: {
@@ -39,9 +40,15 @@ Modal.setAppElement("body");
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [tableData, setTableData] = useState([]);
+  const [filterdTableData, setFilterdTableData] = useState([]);
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [pdfPath, setPdfPath] = useState();
   const [pdfName, setPdfName] = useState("");
+
+  const idstoFilter = [
+    "24a620c948f040f989f6f06c6d946c81",
+    "2ae50dc04c7a4904a1982f18176323a6",
+  ];
 
   const [page, setPage] = React.useState(1);
 
@@ -49,7 +56,8 @@ const HomePage = () => {
     setPage(value);
   };
 
-  const { docs, getPdfDocuments } = useContext(appContext);
+  const { docs, getPdfDocuments, FileSelected, dispatch } =
+    useContext(appContext);
   const dataLength = tableData?.length;
   const rowsPerPage = 10;
   const pageCount = Math.ceil(dataLength / rowsPerPage);
@@ -90,7 +98,17 @@ const HomePage = () => {
     getPdfDocuments();
   }, []);
 
-  useEffect(() => setTableData(docs), [docs]);
+  useEffect(() => {
+    const records = docs.filter((item) =>
+      idstoFilter.includes(item.Identifier)
+    );
+    setFilterdTableData(records);
+
+    const filterdRecords = docs.filter(
+      (item) => !idstoFilter.includes(item.Identifier)
+    );
+    setTableData(filterdRecords);
+  }, [docs]);
 
   function handleIdentifierClick(id, pdfPath, pdfName) {
     navigate("/medicalChartReview", {
@@ -102,11 +120,7 @@ const HomePage = () => {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    //subtitle.style.color = '#f00';
-    //subtitle.style.color = '#f00';
-  }
+  function afterOpenModal() {}
 
   function closeModal() {
     setIsOpen(false);
@@ -118,14 +132,29 @@ const HomePage = () => {
     openModal();
   }
 
+  function onProcessComplete() {
+    if (FileSelected === "First") {
+      setTableData([...tableData, filterdTableData[0]]);
+      dispatch({
+        type: "SET_FILE_SELECTED_OCCURANCE",
+        payload: "second",
+      });
+    } else {
+      setTableData([...tableData, filterdTableData[1]]);
+    }
+  }
+
   return (
     <div className="homepage-main-container">
+      <div className="pdfscnConatainer">
+        <PdfScan processComplete={onProcessComplete} />
+      </div>
       <div className="searchbar-and-table">
         {/* // searchQuery={searchQuery} */}
         <SearchBar setSearchQuery={handleSearch} />
 
         {/* filterData(searchQuery, docs) */}
-        {docs?.length > 0 && (
+        {tableData && (
           <DataTable
             rows={tableData}
             page={page}

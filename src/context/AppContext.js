@@ -29,7 +29,8 @@ const initialState = {
   prior_auth_desc:"",
   Tab_Status:false,
   currentTabSelected:{},
-  clinicalPolicy:false
+  clinicalPolicy:false,
+  FileSelected:'First'
 };
 export const appContext = React.createContext(initialState);
 
@@ -111,38 +112,6 @@ export const AppContextProvider = ({ children }) => {
   };
 
 
-//manipulated getconceptevidence
-// const getAllConceptEvidence = async (cds_identifier) => {
- 
-
-//     const evidencURL = getEvidenceURL + `${cds_identifier}`;
-//     dispatch({ type: "GET_EVIDENCE_START", payload: true });
-
-//     conceptPerIdentifier.map(async (item) => {
-//       const evidencURL = getEvidenceURL + `${item.CDS_Identifier}`;
-//       const cds_identifier = item.CDS_Identifier;
-//       try {
-//         const res = await axios.get(evidencURL);
-//         const result = await res.data.res.clinical_evidence_summary;
-
-//         console.log("result of evidence_summary", result);
-
-//         let evidenceDetails;
-//         evidenceDetails = result?.filter(
-//           (item) => item.CDS_Identifier === cds_identifier
-//         );
-
-//         console.log("evidencedetails:", evidenceDetails);
-//         evidenceDetails.map((item) => (allEvidence = [...allEvidence, item]));
-
-//         console.log("all evidence:", allEvidence);
-//         dispatch({ type: "GET_EVIDENCE", payload: allEvidence });
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     });
-//   };
-
   const updateUserFeedback = async (data, ces_identifier) => {
     const URL = getCESURL + `${ces_identifier}`;
     try {
@@ -219,6 +188,7 @@ export const AppContextProvider = ({ children }) => {
         prior_auth_desc:state.prior_auth_desc,
         currentTabSelected:state.currentTabSelected,
         clinicalPolicy:state.clinicalPolicy,
+        FileSelected:state.FileSelected,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

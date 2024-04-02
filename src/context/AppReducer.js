@@ -96,6 +96,11 @@ export const AppReducer = (state, action) => {
           ...state,
           clinicalPolicy: action.payload,
         };
+        case "SET_FILE_SELECTED_OCCURANCE":
+          return {
+            ...state,
+            FileSelected: action.payload,
+          }; 
     default:
       return state;
   }

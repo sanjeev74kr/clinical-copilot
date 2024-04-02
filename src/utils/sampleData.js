@@ -1,5 +1,5 @@
-import file1 from "../assets/file1.pdf";
-import file2 from "../assets/file2.pdf";
+import Prior_Auth_Request_Actemera12mg from "../assets/Prior_Auth_Request_Actemera12mg.pdf";
+import Prior_Auth_Request_Actemera12mg_v2 from "../assets/Prior_Auth_Request_Actemera12mg_v2.pdf";
 import file3 from "../assets/file3.pdf";
 
 export const status = [
@@ -77,12 +77,12 @@ export const findPolicyTableData = [
   {
     payer: "Cigna",
     conference_number: "Actemera VI",
-    pdf_file: file1,
+    pdf_file: Prior_Auth_Request_Actemera12mg,
   },
   {
     payer: "Centene",
     conference_number: "Actemera",
-    pdf_file: file2,
+    pdf_file: Prior_Auth_Request_Actemera12mg_v2,
   },
   {
     payer: "UHG",

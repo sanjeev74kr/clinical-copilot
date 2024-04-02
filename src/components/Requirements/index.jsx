@@ -129,10 +129,10 @@ function Requirements(props) {
 
               <td className="custom-cell" rowSpan={3}>
                 <button
-                  className="custom-button true-color"
+                  className="custom-button false-color"
                   onClick={handleButtonClick}
                 >
-                  True
+                  False
                 </button>
               </td>
             </tr>
@@ -267,10 +267,10 @@ function Requirements(props) {
               </td>
               <td className="custom-cell">
                 <button
-                  className="custom-button false-color"
+                  className="custom-button true-color"
                   onClick={handleButtonClick}
                 >
-                  False
+                  True
                 </button>
               </td>
             </tr>

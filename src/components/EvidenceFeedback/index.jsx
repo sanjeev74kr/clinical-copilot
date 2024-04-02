@@ -10,10 +10,14 @@ function EvidenceFeedback(props) {
   function handleCancel() {
     closeModalFunc();
   }
-  const [selectedoptions, setSeletedoptions] = useState("");
+  const [selectedoptions, setSeletedoptions] = useState({
+    label: "True",
+    value: "True",
+  });
   const [fileName, setFileName] = useState("");
-  function handleDropDownSelection(e, notes) {
-    setSeletedoptions(e.target.value);
+  function handleDropDownSelection(e, field) {
+    
+    setSeletedoptions({ label: e, value: e });
   }
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -88,7 +92,7 @@ function EvidenceFeedback(props) {
                   label={"Evidence Status: "}
                   dropDownBoxData={conditions}
                   type="condtion"
-                  selectedValue="True"
+                  selectedValue={selectedoptions}
                   onSelect={(value) =>
                     handleDropDownSelection(value, "condition")
                   }
@@ -106,6 +110,7 @@ function EvidenceFeedback(props) {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+                  onClick={handleCancel}
                 >
                   Save
                 </Button>
