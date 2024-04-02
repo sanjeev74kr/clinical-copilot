@@ -65,7 +65,7 @@ const DecisionSupport = () => {
           )}
           {clinicalDocument && (
             <DetailsCard
-              cardHeader={"Status"}
+              cardHeader={"Review Status"}
               cardData={clinicalDocument}
               documentStatus={documentStatus}
               type={"status"}

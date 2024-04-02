@@ -85,7 +85,7 @@ export const findPolicyTableData = [
     pdf_file: Prior_Auth_Request_Actemera12mg_v2,
   },
   {
-    payer: "UHG",
+    payer: "UnitedHealth Group",
     conference_number: "Actemera",
     pdf_file: file3,
   },

@@ -8,8 +8,8 @@ import { conditions } from "../../utils/sampleData";
 import { appContext } from "../../context/AppContext";
 function EvidenceFeedback(props) {
   const { closeModalFunc } = props;
-  const{evidenceResult}=useContext(appContext);
-  console.log(evidenceResult,"evidenceresult value result")
+  const { evidenceResult } = useContext(appContext);
+  console.log(evidenceResult, "evidenceresult value result");
   function handleCancel() {
     closeModalFunc();
   }
@@ -19,7 +19,6 @@ function EvidenceFeedback(props) {
   });
   const [fileName, setFileName] = useState("");
   function handleDropDownSelection(e, field) {
-    
     setSeletedoptions({ label: e, value: e });
   }
   const handleFileChange = (event) => {
@@ -51,7 +50,9 @@ function EvidenceFeedback(props) {
               <span className="heading align-box">Condition</span>
               <div className="condition-line"></div>
               <span className="align-box">
-                <p>E78.1(Hypertriglyceridemia (disorder)) diagnosed on 1991-02-15</p>
+                <p>
+                  E78.1(Hypertriglyceridemia (disorder)) diagnosed on 1991-02-15
+                </p>
               </span>
             </div>
 
@@ -59,7 +60,10 @@ function EvidenceFeedback(props) {
               <span className="heading align-box">Condition</span>
               <div className="condition-line"></div>
               <span className="align-box">
-                <p>E88.810(Metabolic syndrome X (disorder)) diagnosed on 2017-02-18</p>
+                <p>
+                  E88.810(Metabolic syndrome X (disorder)) diagnosed on
+                  2017-02-18
+                </p>
               </span>
             </div>
             <div className="notes-container">
@@ -73,7 +77,10 @@ function EvidenceFeedback(props) {
               <span className="heading align-box">Condition</span>
               <div className="condition-line"></div>
               <span className="align-box">
-                <p>M06.9(Rheumatoid Arthritis) diagnosed on 2019-02-21R70.0(Elevated ESR) diagnosed on 2019-02-05</p>
+                <p>
+                  M06.9(Rheumatoid Arthritis) diagnosed on
+                  2019-02-21R70.0(Elevated ESR) diagnosed on 2019-02-05
+                </p>
               </span>
             </div>
             <div className="notes-container">
@@ -84,7 +91,7 @@ function EvidenceFeedback(props) {
               </span>
             </div>
           </div>
-          
+
           <div className="notes-contnr">
             <h4 className="evidenece-status-label">User-Notes</h4>
 
@@ -96,35 +103,22 @@ function EvidenceFeedback(props) {
                 ></textarea>
               </div>
               <div>
-                {/* <div className="btn-atchcls" onClick={handleAttachmentClick}>
-                  <FaPaperclip />
-                </div> */}
+               
               </div>
             </div>
           </div>
           <div>
-            {/* <input
-              id="fileInput"
-              type="file"
-              style={{ display: "none" }}
-              onChange={handleFileChange}
-            /> */}
+            
           </div>
 
           <div className="feedback-action-btn-contnr">
-            {/* <div className="attchClass">
-              Attachement(s):{" "}
-              <span className="text">
-                <p>{fileName}</p>
-              </span>
-            </div> */}
             <div className="select-notes-popup">
               <div className="evidence-lable">
                 <div>Evidence Status:</div>
                 <DropDownBox
                   label={"Evidence Status: "}
                   dropDownBoxData={conditions}
-                  type="condtion"
+                  type="condition"
                   selectedValue={selectedoptions}
                   onSelect={(value) =>
                     handleDropDownSelection(value, "condition")

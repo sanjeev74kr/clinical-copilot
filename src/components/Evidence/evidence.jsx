@@ -147,11 +147,11 @@ const Evidence = ({ data, storeReferenceTextInArray }) => {
                 </div>
                 <div className="icon-container">
                   <div className="feedback-container">
-                    <Tooltip title="Copy" placement="top-start">
+                  {/*   <Tooltip title="Copy" placement="top-start">
                       <span onClick={() => copyText(item.Concept_LLM_Summary)}>
                         <FaCopy />
                       </span>
-                    </Tooltip>
+                    </Tooltip> */}
                   </div>
                   <div className="feedback-container">
                     <span className="page-font">Document Page</span>

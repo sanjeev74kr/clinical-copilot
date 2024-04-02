@@ -165,7 +165,7 @@ export const AppContextProvider = ({ children }) => {
 
       const payLoadObject = {
         loading: false,
-        toastMessage: "Record Updated SuccessFully",
+        toastMessage: "Prior Authorization Successfully Submitted to Payer.",
         taostType: "Success",
       };
       dispatch({

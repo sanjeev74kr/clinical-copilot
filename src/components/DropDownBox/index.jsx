@@ -13,7 +13,6 @@ function DropDownBox(props) {
     value: "",
   });
   const options = dropDownBoxData.map((item, index) => {
-    
     return {
       label: item[index],
       value: item[index],
@@ -29,13 +28,18 @@ function DropDownBox(props) {
   };
 
   useEffect(() => {
-   
-     if (type === "notes") {
-      
-       setSelectedOption({
+    if (type === "notes") {
+      setSelectedOption({
         label: selectedValue?.Document_Review_Status,
         value: selectedValue?.Document_Review_Status,
-      }); 
+      });
+    }
+    if (type === "condition") {
+      console.log(selectedValue, "type");
+      setSelectedOption({
+        label: selectedValue?.value,
+        value: selectedValue?.value,
+      });
     }
   }, [selectedValue]);
 
@@ -73,9 +77,8 @@ function DropDownBox(props) {
             </select>
           </label>
         );
-      case "condtion":
+      case "condition":
         return (
-
           <Select
             options={options}
             value={selectedOption}
