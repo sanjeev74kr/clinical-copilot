@@ -9,7 +9,7 @@ import { appContext } from "../../context/AppContext";
 function EvidenceFeedback(props) {
   const { closeModalFunc } = props;
   const{evidenceResult}=useContext(appContext);
-  console.log(evidenceResult,"evidenceresult value result h")
+  console.log(evidenceResult,"evidenceresult value result")
   function handleCancel() {
     closeModalFunc();
   }
@@ -51,10 +51,40 @@ function EvidenceFeedback(props) {
               <span className="heading align-box">Condition</span>
               <div className="condition-line"></div>
               <span className="align-box">
-                <p>R70.0(Elevated ESR) diagnosed on 2019-02-05</p>
+                <p>E78.1(Hypertriglyceridemia (disorder)) diagnosed on 1991-02-15</p>
+              </span>
+            </div>
+
+            <div className="notes-container">
+              <span className="heading align-box">Condition</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>E88.810(Metabolic syndrome X (disorder)) diagnosed on 2017-02-18</p>
+              </span>
+            </div>
+            <div className="notes-container">
+              <span className="heading align-box">Condition</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>I82.4(DVT) diagnosed on 2019-02-18</p>
+              </span>
+            </div>
+            <div className="notes-container">
+              <span className="heading align-box">Condition</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>M06.9(Rheumatoid Arthritis) diagnosed on 2019-02-21R70.0(Elevated ESR) diagnosed on 2019-02-05</p>
+              </span>
+            </div>
+            <div className="notes-container">
+              <span className="heading align-box">Condition</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>I82.4(DVT) diagnosed on 2019-02-18</p>
               </span>
             </div>
           </div>
+          
           <div className="notes-contnr">
             <h4 className="evidenece-status-label">User-Notes</h4>
 
@@ -66,28 +96,28 @@ function EvidenceFeedback(props) {
                 ></textarea>
               </div>
               <div>
-                <div className="btn-atchcls" onClick={handleAttachmentClick}>
+                {/* <div className="btn-atchcls" onClick={handleAttachmentClick}>
                   <FaPaperclip />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
           <div>
-            <input
+            {/* <input
               id="fileInput"
               type="file"
               style={{ display: "none" }}
               onChange={handleFileChange}
-            />
+            /> */}
           </div>
 
           <div className="feedback-action-btn-contnr">
-            <div className="attchClass">
+            {/* <div className="attchClass">
               Attachement(s):{" "}
               <span className="text">
                 <p>{fileName}</p>
               </span>
-            </div>
+            </div> */}
             <div className="select-notes-popup">
               <div className="evidence-lable">
                 <div>Evidence Status:</div>

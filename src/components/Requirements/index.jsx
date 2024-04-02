@@ -34,9 +34,7 @@ function Requirements(props) {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [selectedConcept, setSelectedConcept] = useState("");
 
-  const handleDropdownChange = (event, item) => {
-    setDropdownValues({ ...dropdownValues, [item]: event.target.value });
-  };
+ 
 
   // Function to handle button click
   const handleButtonClick = () => {
@@ -61,6 +59,7 @@ function Requirements(props) {
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={customStyles}
+          className="modalHeight"
         >
           <div className="evidence-status-feedback-container">
             <div className="evidence-status-heading-contnr">

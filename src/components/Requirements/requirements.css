@@ -131,6 +131,10 @@
   display: flex;
   flex-direction: column;
 }
+.modalHeight{
+  height:600px;
+  background-color: #fff;
+}
 
 .evidence-status-heading-contnr{
   display: flex;
