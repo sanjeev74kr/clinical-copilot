@@ -9,7 +9,7 @@ import "./DecisionSupport.css";
 import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const DecisionSupport = () => {
-  const { currentTabSelected, identifierDetails, prior_auth_desc, dispatch } =
+  const { currentTabSelected, identifierDetails, prior_auth_desc, dispatch, currentSelctedDocument } =
     useContext(appContext);
   const [patient, setPatient] = useState([]);
   const [provider, setProvider] = useState([]);
@@ -20,8 +20,12 @@ const DecisionSupport = () => {
     setPatient(identifierDetails.patient);
     setProvider(identifierDetails.provider);
     setClinicalDocument(identifierDetails.clinical_document);
+    setDocStatus(currentSelctedDocument.Document_Review_Status)
   }, []);
 
+  const onStatusChange = (status)=>{
+    setDocStatus(status)
+  }
   return (
     <>
       <div className="findPolicy-first-screen">
@@ -71,22 +75,13 @@ const DecisionSupport = () => {
         </div>
         
         <div className="findPolicy-second-screen">
-          {/* <div className="data-contnr">
-            <div className="prior-auth">
-              <h5>Prior Auth For : </h5>
-              <h5 className="data-value">{currentTabSelected.prior_auth_desc}</h5>
-            </div>
-            <div className="payer">
-              <h5>Payer : </h5>
-              <h5 className="data-value">{currentTabSelected.payer}</h5>
-            </div>
-          </div> */}
+         
           <div className="findPolicy-card-contnr">
             <div className="pdf-contnr">
               <PdfViewer pdfurl={currentTabSelected.pdfFile} />
             </div>
             <div className="requirements-contnr">
-              <Requirements requirementTable={requirementsData} />
+              <Requirements requirementTable={requirementsData} statusChange={onStatusChange} />
             </div>
           </div>
         </div>

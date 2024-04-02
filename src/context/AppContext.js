@@ -32,7 +32,8 @@ const initialState = {
   clinicalPolicy:false,
   FileSelected:'First',
   identifier: null, 
-  scannedRecords:[] 
+  scannedRecords:[],
+   currentSelctedDocument:{} 
 };
 export const appContext = React.createContext(initialState);
 
@@ -157,7 +158,7 @@ export const AppContextProvider = ({ children }) => {
 
   const updateDocumentStatus = async (data, identifier) => {
     const URL = getMainDocumentURL + `${identifier}`;
-
+    resetMsg();
     try {
       const res = await axios.put(URL, data);
       const result = await res.data;
@@ -173,6 +174,18 @@ export const AppContextProvider = ({ children }) => {
       });
     } catch (error) {}
   };
+
+  const resetMsg = ()=>{
+    const payLoadObject = {
+      loading: true,
+      toastMessage: "",
+      taostType: "",
+    };
+    dispatch({
+      type: "UPDATE_CLINICAL_DOCUMENT_SUCCESS",
+      payload: payLoadObject,
+    });
+  }
 
   return (
     <appContext.Provider
@@ -194,6 +207,7 @@ export const AppContextProvider = ({ children }) => {
         FileSelected:state.FileSelected,
         identifier: state.identifier,
         scannedRecords:state.scannedRecords,
+        currentSelctedDocument:state.currentSelctedDocument,
         setLoggedInState,
         getPdfDocuments,
         getDocumentDataPerIdentifier,

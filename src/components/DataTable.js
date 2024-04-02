@@ -40,13 +40,13 @@ const DataTable = (props) => {
     handleIdentifierClick,
     handleFilePathClick,
   } = props;
-console.log(rows)
-  const identifierClickHandler = (id, documentPath, documentName) => {
-    handleIdentifierClick(id, documentPath, documentName);
+
+  const identifierClickHandler = (id, documentPath, documentName, data) => {
+    handleIdentifierClick(id, documentPath, documentName, data);
   };
 
   const filePathClickHandler = (documentPath, documentName) => {
-    console.log("document path", documentPath);
+    
     handleFilePathClick(documentPath, documentName);
   };
 
@@ -86,7 +86,8 @@ console.log(rows)
                       identifierClickHandler(
                         row.Identifier,
                         row.Document_Path,
-                        row.Document_Name
+                        row.Document_Name, 
+                        row
                       )
                     }
                   >

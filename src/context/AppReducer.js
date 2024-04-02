@@ -111,6 +111,12 @@ export const AppReducer = (state, action) => {
         ...state,
         scannedRecords: [...state.scannedRecords,action.payload],
       };
+
+      case "CURRENT_SELECTED_DOCUMENT":
+        return {
+          ...state,
+          currentSelctedDocument: action.payload,
+        };
     default:
       return state;
   }

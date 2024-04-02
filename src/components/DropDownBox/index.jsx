@@ -30,13 +30,14 @@ function DropDownBox(props) {
 
   useEffect(() => {
    
-    if (type === "notes") {
-      setSelectedOption({
-        label: selectedValue.Concept_Review_Status,
-        value: selectedValue.Concept_Review_Status,
-      });
+     if (type === "notes") {
+      
+       setSelectedOption({
+        label: selectedValue?.Document_Review_Status,
+        value: selectedValue?.Document_Review_Status,
+      }); 
     }
-  }, [selectedValue?.Concept_Review_Status]);
+  }, [selectedValue]);
 
   const renderComponent = (type) => {
     switch (type) {

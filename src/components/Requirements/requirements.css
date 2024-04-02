@@ -136,6 +136,10 @@
   background-color: #fff;
 }
 
+.footrcls{
+  display: flex;
+  gap: 2%;
+}
 .evidence-status-heading-contnr{
   display: flex;
     width: 100%;
@@ -146,7 +150,12 @@
     padding-bottom: 1%;
 }
 
-
+.decision-btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
 
 .evidence-close-button {
   font-size: 1.25rem;

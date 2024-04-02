@@ -117,12 +117,13 @@ const HomePage = () => {
    
   }, [docs]);
 
-  function handleIdentifierClick(id, pdfPath, pdfName) {
+  function handleIdentifierClick(id, pdfPath, pdfName, data) {
     navigate("/medicalChartReview", {
       state: { identifier: id, documentPath: pdfPath, documentName: pdfName },
     });
 
     dispatch({ type: "SET_IDENTIFIER", payload: id });
+    dispatch({ type: "CURRENT_SELECTED_DOCUMENT", payload: data});
    
   }
 
