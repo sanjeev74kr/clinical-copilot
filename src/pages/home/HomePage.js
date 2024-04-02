@@ -38,7 +38,7 @@ const customStyles = {
 Modal.setAppElement("body");
 
 const HomePage = () => {
-  const { dispatch } = useContext(appContext);
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [tableData, setTableData] = useState([]);
   const [filterdTableData, setFilterdTableData] = useState([]);

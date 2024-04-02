@@ -279,7 +279,7 @@ function Requirements(props) {
         </table>
       </div>
      )}
-     {tablestatus=== '2ae50dc04c7a4904a1982f18176323a6 ' &&(
+     {tablestatus=== '2ae50dc04c7a4904a1982f18176323a6' || tablestatus=== 'b7c228a6d8bb442eacadc11736b49537'  &&(
                   
       <div>
         <table className="custom-table">
