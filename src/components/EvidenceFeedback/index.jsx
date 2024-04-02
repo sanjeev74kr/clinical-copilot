@@ -7,9 +7,15 @@ import Button from "@mui/material/Button";
 import { conditions } from "../../utils/sampleData";
 import { appContext } from "../../context/AppContext";
 function EvidenceFeedback(props) {
-  const { closeModalFunc } = props;
-  const { evidenceResult } = useContext(appContext);
-  console.log(evidenceResult, "evidenceresult value result");
+
+  
+  const { closeModalFunc,Btnstatus,Btnids } = props;
+  const[flag,setFlag]=useState(null);
+  
+  const{evidenceResult,identifier}=useContext(appContext);
+  console.log(Btnstatus,Btnids,identifier,"Btnstatus from Evidence feedback")
+  console.log(identifier,"id value from Evidence feedback ")
+  console.log(evidenceResult,"evidenceresult value result")
   function handleCancel() {
     closeModalFunc();
   }
@@ -21,23 +27,24 @@ function EvidenceFeedback(props) {
   function handleDropDownSelection(e, field) {
     setSeletedoptions({ label: e, value: e });
   }
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
-    }
-  };
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setFileName(file.name);
+  //   }
+  // };
 
-  const handleAttachmentClick = () => {
-    document.getElementById("fileInput").click();
-  };
+  // const handleAttachmentClick = () => {
+  //   document.getElementById("fileInput").click();
+  // };
 
   return (
     <>
       <div className="evidence-status-modal">
-        <div className="evidence-status-data-container">
+        { (Btnstatus==='True'&& (identifier==='b7c228a6d8bb442eacadc11736b49537'||identifier==='a01e17b12c074e02ae7bfc234f617dfb')&&(Btnids==='btntableone' || Btnids==='btntabletwo') )&&(
+          <div className="evidence-status-data-container">
           <div className="summary-contnr">
-            <h4 className="evidenece-status-label">Summary</h4>
+            <h4 className="evidenece-status-labelsummary">Summary</h4>
             <p className="summary">
               This is the list of all ICD Codes present in patient's Medical
               History
@@ -93,7 +100,7 @@ function EvidenceFeedback(props) {
           </div>
 
           <div className="notes-contnr">
-            <h4 className="evidenece-status-label">User-Notes</h4>
+            <h4 className="evidenece-status-labelUserNotes">User-Notes</h4>
 
             <div className="txtaracls">
               <div className="txtarawdth">
@@ -144,8 +151,198 @@ function EvidenceFeedback(props) {
               </div>
             </div>
           </div>
+        </div>)}
+       {Btnstatus==='False'   &&( <div className="evidence-status-data-container">
+          <div className="summary-contnr">
+            <h4 className="evidenece-status-labelsummary">Summary</h4>
+            <p className="summary">
+             No Evidence data available
+            </p>
+          </div>
+          <div className="description-contnr">
+            <h4 className="evidenece-status-label">Evidence</h4>
+
+            
+          </div>
+          <div className="notes-contnr">
+            <h4 className="evidenece-status-labelUserNotes">User-Notes</h4>
+
+            <div className="txtaracls">
+              <div className="txtarawdth">
+                <textarea
+                  className="user-notes"
+                  placeholder="Please enter your feedback"
+                ></textarea>
+              </div>
+              <div>
+                {/* <div className="btn-atchcls" onClick={handleAttachmentClick}>
+                  <FaPaperclip />
+                </div> */}
+              </div>
+            </div>
+          </div>
+          <div className="select-notes-popup">
+              <div className="evidence-lable">
+                <div>Evidence Status:</div>
+                <DropDownBox
+                  label={"Evidence Status: "}
+                  dropDownBoxData={conditions}
+                  type="condtion"
+                  selectedValue={selectedoptions}
+                  onSelect={(value) =>
+                    handleDropDownSelection(value, "condition")
+                  }
+                />
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  style={{
+                    backgroundColor: "rgb(233, 79, 28)",
+                    borderRadius: "20px",
+                    fontWeight: "700",
+                    width: "20%",
+                  }}
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={handleCancel}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          </div>)}
+          { (Btnstatus==='True'|| Btnstatus==='Partial')&& (identifier==='b7c228a6d8bb442eacadc11736b49537')&&(Btnids==='tablebtnthreepartial' || Btnids==='tablebtn2true') &&(
+          <div className="evidence-status-data-container">
+          <div className="summary-contnr">
+            <h4 className="evidenece-status-labelsummary">Summary</h4>
+            <p className="summary">
+            Patient's Current Medications
+            </p>
+          </div>
+          <div className="description-contnr">
+            <h4 className="evidenece-status-label">Evidence</h4>
+
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 316049(Hydrochlorothiazide 25 MG) prescribed on 2019-05-27</p>
+              </span>
+            </div>
+
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 860975(24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet) prescribed on 2019-06-12</p>
+              </span>
+            </div>
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 7244811(certolizumab pegol 200 MG Injection [Cimzia]) prescribed on 2019-07-12</p>
+              </span>
+            </div>
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>M06.9(Rheumatoid Arthritis) diagnosed on 2019-02-21R70.0(Elevated ESR) diagnosed on 2019-02-05</p>
+              </span>
+            </div>
+            
+          </div>
+          
+          <div className="notes-contnr">
+            <h4 className="evidenece-status-labelUserNotes">User-Notes</h4>
+
+            <div className="txtaracls">
+              <div className="txtarawdth">
+                <textarea
+                  className="user-notes"
+                  placeholder="Please enter your feedback"
+                ></textarea>
+              </div>
+              <div>
+                {/* <div className="btn-atchcls" onClick={handleAttachmentClick}>
+                  <FaPaperclip />
+                </div> */}
+              </div>
+            </div>
+          </div>
+          <div>
+            {/* <input
+              id="fileInput"
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            /> */}
+          </div>
+
+          <div className="feedback-action-btn-contnr">
+            {/* <div className="attchClass">
+              Attachement(s):{" "}
+              <span className="text">
+                <p>{fileName}</p>
+              </span>
+            </div> */}
+            <div className="select-notes-popup">
+              <div className="evidence-lable">
+                <div>Evidence Status:</div>
+                <DropDownBox
+                  label={"Evidence Status: "}
+                  dropDownBoxData={conditions}
+                  type="condtion"
+                  selectedValue={selectedoptions}
+                  onSelect={(value) =>
+                    handleDropDownSelection(value, "condition")
+                  }
+                />
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  style={{
+                    backgroundColor: "rgb(233, 79, 28)",
+                    borderRadius: "20px",
+                    fontWeight: "700",
+                    width: "20%",
+                  }}
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={handleCancel}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>)}
+          
+          <div>
+            {/* <input
+              id="fileInput"
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            /> */}
+          </div>
+
+          <div className="feedback-action-btn-contnr">
+            {/* <div className="attchClass">
+              Attachement(s):{" "}
+              <span className="text">
+                <p>{fileName}</p>
+              </span>
+            </div> */}
+          
+          </div>
         </div>
-      </div>
+      
     </>
   );
 }

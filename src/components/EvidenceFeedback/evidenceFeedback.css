@@ -32,7 +32,7 @@
 }
 .notes-contnr{
   height: 5rem;
-  margin-top: 6%;
+ margin-top:15px;
 }
 
 .evidence-lable{
@@ -75,6 +75,20 @@
   min-width: fit-content;
   font-weight: 600;
   color: rgb(233, 79, 28);
+  margin-top:15px;
+}
+.evidenece-status-labelsummary{
+  width: 10%;
+  min-width: fit-content;
+  font-weight: 600;
+  color: rgb(233, 79, 28);
+}
+.evidenece-status-labelUserNotes{
+  width: 10%;
+  min-width: fit-content;
+  font-weight: 600;
+  color: rgb(233, 79, 28);
+  
 }
 
 .summary,
@@ -158,6 +172,7 @@
   padding: 5px;
   width:70%;
   margin-left:0px;
+  margin-top:10px;
 
 }
 .flexItem1{

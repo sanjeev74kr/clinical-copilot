@@ -41,6 +41,10 @@ function Requirements({ statusChange, requirementTable }) {
   const keyName = "userCredentials";
   const value = window.localStorage.getItem(keyName);
   const userCredentials = JSON.parse(value);
+  const [selectedConcept, setSelectedConcept] = useState("");
+  const[statusbutton,setStatusbutton]=useState(null);
+  const[btnid,setBtnid]=useState(null);
+
 
  
 
@@ -70,8 +74,25 @@ function Requirements({ statusChange, requirementTable }) {
     updateDocumentStatus(postData, currentSelctedDocument.Identifier);
   };
   // Function to handle button click
-  const handleButtonClick = () => {
+ 
+  const handleButtonClick = (status) => {
+    // Perform actions when the button is clicked
+   
+  
+    
+    setBtnid(null);
+     setStatusbutton(status);
     openModal();
+   
+  };
+  const handleButtonClickothers = (status,id) => {
+    // Perform actions when the button is clicked
+
+    console.log(status,"status values")
+    setBtnid(id);
+     setStatusbutton(status);
+    openModal();
+   
   };
 
   function handleDropDownSelection(value, field) {
@@ -108,7 +129,7 @@ function Requirements({ statusChange, requirementTable }) {
               />
             </div>
             <hr className="linecolor"></hr>
-            <EvidenceFeedback closeModalFunc={closeModal} />
+            <EvidenceFeedback closeModalFunc={closeModal}  Btnstatus={statusbutton} Btnids={btnid}/>
           </div>
         </Modal>
       }
@@ -119,43 +140,45 @@ function Requirements({ statusChange, requirementTable }) {
         </h3>
       </div>
 
-      {tablestatus === "24a620c948f040f989f6f06c6d946c81" ||
-        (tablestatus === "a01e17b12c074e02ae7bfc234f617dfb" && (
-          <div>
-            <table className="custom-table">
-              <thead className="bgcolor">
-                <tr>
-                  <th className="custom-cell">Item</th>
-                  <th className="custom-cell">AND/OR</th>
-                  <th className="custom-cell">Description</th>
-                  <th className="custom-cell">Requirement Met</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="custom-cell" rowSpan={2}>
-                    1
-                  </td>
-                  <td className="custom-cell"></td>
+     { tablestatus ==='a01e17b12c074e02ae7bfc234f617dfb' &&( <div>
+   
+        <table className="custom-table">
+          <thead className="bgcolor">
+            <tr>
+              <th className="custom-cell">Item</th>
+              <th className="custom-cell">AND/OR</th>
+              <th className="custom-cell">Description</th>
+              <th className="custom-cell">Requirement Met</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                1
+              </td>
+              <td className="custom-cell"></td>
 
-                  <td className="custom-cell">
-                    Diagnosis of moderately to severely active rheumatoid
-                    arthritis
-                  </td>
-                  <td className="custom-cell">
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-                <tr></tr>
-                <tr>
-                  <td className="custom-cell" rowSpan={3}>
-                    2
-                  </td>
+              <td className="custom-cell">
+                Diagnosis of moderately to severely active rheumatoid arthritis
+              </td>
+              <td className="custom-cell">
+                <button
+                 id='btntableone'
+                  className="custom-button true-color"
+                  onClick={()=>handleButtonClickothers('True','btntableone')}
+                 
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+             
+            </tr>
+            <tr>
+              <td className="custom-cell" rowSpan={3}>
+                2
+              </td>
 
                   <td className="custom-cell">AND</td>
 
@@ -184,17 +207,28 @@ function Requirements({ statusChange, requirementTable }) {
                     </p>
                   </td>
 
-                  <td className="custom-cell" rowSpan={3}>
-                    <button
-                      className="custom-button false-color"
-                      onClick={handleButtonClick}
-                    >
-                      False
-                    </button>
-                  </td>
-                </tr>
-                <tr></tr>
-                <tr></tr>
+              <td className="custom-cell" rowSpan={3}>
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('False')}
+                >
+                 False
+                </button>
+              </td>
+            </tr>
+            <tr>
+            
+            
+            </tr>
+            <tr>
+            </tr>
+           
+            
+            <tr>
+              <td className="custom-cell" rowSpan={5}>
+                3
+              </td>
+              <td className="custom-cell">AND</td>
 
                 <tr>
                   <td className="custom-cell" rowSpan={5}>
@@ -221,20 +255,21 @@ function Requirements({ statusChange, requirementTable }) {
                       by claims history OR submission of medical records
                       (Document date and duration of therapy)
                     </p>
+                    </td>
 
-                    <br></br>
-                    <p> AND</p>
-                    <br></br>
-                    <p className="cellcolors">
-                      {" "}
-                      ii. Patient has not received a manufacturer supplied
-                      sample at no cost in the prescriber’s office, or any form
-                      of assistance from the Genentech sponsored Actemra Access
-                      Solutions program (e.g., sample card which can be redeemed
-                      at a pharmacy for a free supply of medication) as a means
-                      to establish as a current user of Actemra*
-                    </p>
-                  </td>
+              <td className="custom-cell" rowspan={5}>
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('False')}
+                >
+                  False
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {" "}
+              
+            </tr>
 
                   <td className="custom-cell" rowspan={5}>
                     <button
@@ -250,78 +285,101 @@ function Requirements({ statusChange, requirementTable }) {
                 <tr></tr>
                 <tr> </tr>
 
-                <tr> </tr>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                4
+              </td>
+              <td className="custom-cell">AND</td>
+              <td className="custom-cell">
+              <p >
+                Patient is not receiving Actemra in combination with another
+                targeted immunomodulator [e.g., Enbrel (etanercept), Cimzia
+                (certolizumab), Simponi (golimumab), Orencia (abatacept),
+                adalimumab, Xeljanz (tofacitinib), Olumiant (baricitinib),
+                Rinvoq (upadacitinib)]
+                </p>
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button true-color"
+                 
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {" "}
+              
+            </tr>
+            <tr>
+              <td className="custom-cell">5</td>
+              <td className="custom-cell"> AND</td>
+              <td className="custom-cell">
+              <p className="cellcolors">
+                Prescribed by or in consultation with a rheumatologist *
+                Patients requesting initial authorization who were established
+                on therapy via the receipt of a manufacturer supplied sample at
+                no cost in the prescriber’s office or any form of assistance
+                from the Genentech sponsored Actemra Access Solutions program
+                shall be required to meet initial authorization criteria as if
+                patient were new to therapy. Authorization will be issued for 12
+                months
+                </p>
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button true-color"
+                 
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     )}
+     {tablestatus=== '2ae50dc04c7a4904a1982f18176323a6' &&(
+                  
+      <div>
+      
+        <table className="custom-table">
+          <thead className="bgcolor">
+            <tr>
+              <th className="custom-cell">Item</th>
+              <th className="custom-cell">AND/OR</th>
+              <th className="custom-cell">Description</th>
+              <th className="custom-cell">Requirement Met</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                1
+              </td>
+              <td className="custom-cell"></td>
 
-                <tr>
-                  <td className="custom-cell" rowSpan={2}>
-                    4
-                  </td>
-                  <td className="custom-cell">AND</td>
-                  <td className="custom-cell">
-                    <p>
-                      Patient is not receiving Actemra in combination with
-                      another targeted immunomodulator [e.g., Enbrel
-                      (etanercept), Cimzia (certolizumab), Simponi (golimumab),
-                      Orencia (abatacept), adalimumab, Xeljanz (tofacitinib),
-                      Olumiant (baricitinib), Rinvoq (upadacitinib)]
-                    </p>
-                  </td>
-                  <td className="custom-cell">
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-                <tr> </tr>
-                <tr>
-                  <td className="custom-cell">5</td>
-                  <td className="custom-cell"> AND</td>
-                  <td className="custom-cell">
-                    <p className="cellcolors">
-                      Prescribed by or in consultation with a rheumatologist *
-                      Patients requesting initial authorization who were
-                      established on therapy via the receipt of a manufacturer
-                      supplied sample at no cost in the prescriber’s office or
-                      any form of assistance from the Genentech sponsored
-                      Actemra Access Solutions program shall be required to meet
-                      initial authorization criteria as if patient were new to
-                      therapy. Authorization will be issued for 12 months
-                    </p>
-                  </td>
-                  <td className="custom-cell">
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        ))}
-      {tablestatus === "2ae50dc04c7a4904a1982f18176323a6" ||
-        (tablestatus === "b7c228a6d8bb442eacadc11736b49537" && (
-          <div>
-            <table className="custom-table">
-              <thead className="bgcolor">
-                <tr>
-                  <th className="custom-cell">Item</th>
-                  <th className="custom-cell">AND/OR</th>
-                  <th className="custom-cell">Description</th>
-                  <th className="custom-cell">Requirement Met</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="custom-cell" rowSpan={2}>
-                    1
-                  </td>
-                  <td className="custom-cell"></td>
+              <td className="custom-cell">
+              Diagnosis of moderately to severely active rheumatoid arthritis
+              </td>
+              <td className="custom-cell">
+                <button
+                 id='btntabletwo'
+                  className="custom-button true-color"
+                  onClick={()=>handleButtonClickothers('True','btntabletwo')}
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+             
+            </tr>
+            <tr>
+              <td className="custom-cell" rowSpan={3}>
+                2
+              </td>
 
                   <td className="custom-cell">
                     Diagnosis of moderately to severely active rheumatoid
@@ -344,30 +402,23 @@ function Requirements({ statusChange, requirementTable }) {
 
                   <td className="custom-cell">AND</td>
 
-                  <td className="custom-cell">
-                    <p className="cellcolors">
-                      History of failure to a 3 month trial of one non-biologic
-                      disease modifying anti-rheumatic drug (DMARD) [e.g.,
-                      methotrexate, leflunomide, sulfasalazine,
-                      hydroxychloroquine] at maximally indicated doses, unless
-                      contraindicated or clinically significant adverse effects
-                      are experienced (document drug, date, and duration of
-                      trial).
-                    </p>
-                    <br></br>
-                    <p>OR</p>
-                    <br></br>
-                    <p className="cellcolors">
-                      Patient has been previously treated with a targeted
-                      immunomodulator FDAapproved for the treatment of
-                      rheumatoid arthritis as documented by claims history or
-                      submission of medical records (Document drug, date, and
-                      duration of therapy) [e.g., Enbrel (etanercept), Cimzia
-                      (certolizumab), Simponi (golimumab), Orencia (abatacept),
-                      adalimumab, Xeljanz (tofacitinib), Olumiant (baricitinib),
-                      Rinvoq (upadacitinib)]
-                    </p>
-                  </td>
+              <td className="custom-cell" rowSpan={3}>
+                <button
+                  id='tablebtn2true'
+                  className="custom-button true-color"
+                  onClick={()=>handleButtonClickothers('True','tablebtn2true')}
+                >
+                 True
+                </button>
+              </td>
+            </tr>
+            <tr>
+            
+            
+            </tr>
+            <tr>
+            </tr>
+            <tr>
 
                   <td className="custom-cell" rowSpan={3}>
                     <button
@@ -406,21 +457,22 @@ function Requirements({ statusChange, requirementTable }) {
                       by claims history OR submission of medical records
                       (Document date and duration of therapy)
                     </p>
-
-                    <br></br>
-                    <p> AND</p>
-                    <br></br>
-                    <p className="cellcolors">
-                      {" "}
-                      ii. Patient has not received a manufacturer supplied
-                      sample at no cost in the prescriber’s office, or any form
-                      of assistance from the Genentech sponsored Actemra Access
-                      Solutions program (e.g., sample card which can be redeemed
-                      at a pharmacy for a free supply of medication) as a means
-                      to establish as a current user of Actemra*
-                    </p>
-                  </td>
-
+                        </td>
+              <td className="custom-cell" rowspan={5}>
+                <button
+                id='tablebtnthreepartial'
+                  className="custom-button partial-color"
+                  onClick={()=>handleButtonClickothers('Partial','tablebtnthreepartial')}
+                >
+                  Partial
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {" "}
+              
+            </tr>
+                        <tr>
                   <td className="custom-cell" rowspan={5}>
                     <button
                       className="custom-button partial-color"
@@ -435,60 +487,258 @@ function Requirements({ statusChange, requirementTable }) {
                 <tr></tr>
                 <tr> </tr>
 
-                <tr> </tr>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                4
+              </td>
+              <td className="custom-cell">AND</td>
+              <td className="custom-cell">
+              <p >
+                Patient is not receiving Actemra in combination with another
+                targeted immunomodulator [e.g., Enbrel (etanercept), Cimzia
+                (certolizumab), Simponi (golimumab), Orencia (abatacept),
+                adalimumab, Xeljanz (tofacitinib), Olumiant (baricitinib),
+                Rinvoq (upadacitinib)]
+                </p>
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button true-color"
+                  
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {" "}
+              
+            </tr>
+            <tr>
+              <td className="custom-cell">5</td>
+              <td className="custom-cell"> AND</td>
+              <td className="custom-cell">
+              <p className="cellcolors">
+                Prescribed by or in consultation with a rheumatologist *
+                Patients requesting initial authorization who were established
+                on therapy via the receipt of a manufacturer supplied sample at
+                no cost in the prescriber’s office or any form of assistance
+                from the Genentech sponsored Actemra Access Solutions program
+                shall be required to meet initial authorization criteria as if
+                patient were new to therapy. Authorization will be issued for 12
+                months
+                </p>
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button true-color"
+                  
+                >
+                  True
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>)}
+      {tablestatus===null || (tablestatus!=='a01e17b12c074e02ae7bfc234f617dfb') &&( <div>
+        
+        <table className="custom-table">
+          <thead className="bgcolor">
+            <tr>
+              <th className="custom-cell">Item</th>
+              <th className="custom-cell">AND/OR</th>
+              <th className="custom-cell">Description</th>
+              <th className="custom-cell">Requirement Met</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                1
+              </td>
+              <td className="custom-cell"></td>
 
-                <tr>
-                  <td className="custom-cell" rowSpan={2}>
-                    4
-                  </td>
-                  <td className="custom-cell">AND</td>
-                  <td className="custom-cell">
-                    <p>
-                      Patient is not receiving Actemra in combination with
-                      another targeted immunomodulator [e.g., Enbrel
-                      (etanercept), Cimzia (certolizumab), Simponi (golimumab),
-                      Orencia (abatacept), adalimumab, Xeljanz (tofacitinib),
-                      Olumiant (baricitinib), Rinvoq (upadacitinib)]
-                    </p>
-                  </td>
-                  <td className="custom-cell">
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-                <tr> </tr>
-                <tr>
-                  <td className="custom-cell">5</td>
-                  <td className="custom-cell"> AND</td>
-                  <td className="custom-cell">
-                    <p className="cellcolors">
-                      Prescribed by or in consultation with a rheumatologist *
-                      Patients requesting initial authorization who were
-                      established on therapy via the receipt of a manufacturer
-                      supplied sample at no cost in the prescriber’s office or
-                      any form of assistance from the Genentech sponsored
-                      Actemra Access Solutions program shall be required to meet
-                      initial authorization criteria as if patient were new to
-                      therapy. Authorization will be issued for 12 months
-                    </p>
-                  </td>
-                  <td className="custom-cell">
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        ))}
+              <td className="custom-cell">
+                Diagnosis of moderately to severely active rheumatoid arthritis
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('False')}
+                >
+                  False
+                </button>
+              </td>
+            </tr>
+            <tr>
+             
+            </tr>
+            <tr>
+              <td className="custom-cell" rowSpan={3}>
+                2
+              </td>
+
+              <td className="custom-cell">AND</td>
+
+              <td className="custom-cell" >
+              <p className="cellcolors">
+                History of failure to a 3 month trial of one non-biologic
+                disease modifying anti-rheumatic drug (DMARD) [e.g.,
+                methotrexate, leflunomide, sulfasalazine, hydroxychloroquine] at
+                maximally indicated doses, unless contraindicated or clinically
+                significant adverse effects are experienced (document drug,
+                date, and duration of trial).
+                </p>
+                <br></br>
+                <p>OR</p>
+                <br></br>
+                <p className="cellcolors">
+                Patient has been previously treated with a targeted
+                immunomodulator FDAapproved for the treatment of rheumatoid
+                arthritis as documented by claims history or submission of
+                medical records (Document drug, date, and duration of therapy)
+                [e.g., Enbrel (etanercept), Cimzia (certolizumab), Simponi
+                (golimumab), Orencia (abatacept), adalimumab, Xeljanz
+                (tofacitinib), Olumiant (baricitinib), Rinvoq (upadacitinib)]
+                </p>
+              </td>
+
+              <td className="custom-cell" rowSpan={3}>
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('False')}
+                >
+                 False
+                </button>
+              </td>
+            </tr>
+            <tr>
+            
+            
+            </tr>
+            <tr>
+            </tr>
+           
+            
+            <tr>
+              <td className="custom-cell" rowSpan={5}>
+                3
+              </td>
+              <td className="custom-cell">AND</td>
+
+              <td className="custom-cell">
+              <p >
+                (a) History of failure, contraindication, or intolerance to two
+                of the following preferred products (Document drug, date, and
+                duration of trial) i. Cimzia (certolizumab) ii. One of the
+                preferred adalimumab products iii. Simponi (golimumab) iv.
+                Olumiant (baricitinib) v. Rinvoq (upadacitinib) vi.
+                Xeljanz/Xeljanz XR (tofacitinib)vii. Enbrel (etanercept)
+                </p>
+                <br>
+                </br>
+                <p>OR</p>
+                <br>
+                </br>
+                <p className="cellcolors"> i. Patient is currently on Actemra therapy as documented by
+                claims history OR submission of medical records (Document date
+                and duration of therapy)</p>
+
+                <br></br>
+                <p> AND</p>
+                <br></br>
+                <p className="cellcolors"> ii. Patient has not received a manufacturer supplied sample at
+                no cost in the prescriber’s office, or any form of assistance
+                from the Genentech sponsored Actemra Access Solutions program
+                (e.g., sample card which can be redeemed at a pharmacy for a
+                free supply of medication) as a means to establish as a current
+                user of Actemra*</p>
+              </td>
+
+              <td className="custom-cell" rowspan={5}>
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('True')}
+                >
+                  False
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {" "}
+              
+            </tr>
+
+            <tr>
+             
+              
+            </tr>
+            <tr>
+              {" "}
+             
+            </tr>
+
+            <tr>
+              {" "}
+            
+            </tr>
+
+            <tr>
+              <td className="custom-cell" rowSpan={2}>
+                4
+              </td>
+              <td className="custom-cell">AND</td>
+              <td className="custom-cell">
+              <p >
+                Patient is not receiving Actemra in combination with another
+                targeted immunomodulator [e.g., Enbrel (etanercept), Cimzia
+                (certolizumab), Simponi (golimumab), Orencia (abatacept),
+                adalimumab, Xeljanz (tofacitinib), Olumiant (baricitinib),
+                Rinvoq (upadacitinib)]
+                </p>
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('False')}
+                >
+                 False
+                </button>
+              </td>
+            </tr>
+            <tr>
+              {" "}
+              
+            </tr>
+            <tr>
+              <td className="custom-cell">5</td>
+              <td className="custom-cell"> AND</td>
+              <td className="custom-cell">
+              <p className="cellcolors">
+                Prescribed by or in consultation with a rheumatologist *
+                Patients requesting initial authorization who were established
+                on therapy via the receipt of a manufacturer supplied sample at
+                no cost in the prescriber’s office or any form of assistance
+                from the Genentech sponsored Actemra Access Solutions program
+                shall be required to meet initial authorization criteria as if
+                patient were new to therapy. Authorization will be issued for 12
+                months
+                </p>
+              </td>
+              <td className="custom-cell">
+                <button
+                  className="custom-button false-color"
+                  onClick={()=>handleButtonClick('False')}
+                >
+                  False
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     )}
       <div className="footrcls">
         <div className="select-notes-dd">
           <DropDownBox
