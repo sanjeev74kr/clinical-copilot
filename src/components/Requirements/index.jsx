@@ -43,14 +43,23 @@ function Requirements({ statusChange, requirementTable }) {
   const userCredentials = JSON.parse(value);
   const [selectedConcept, setSelectedConcept] = useState("");
   const[statusbutton,setStatusbutton]=useState(null);
+  const[probablity,setProbablity]=useState(0);
   const[btnid,setBtnid]=useState(null);
 
 
- console.log("identifer",identifier)
+ 
 
   useEffect(() => {
     setSelectedCDS(currentSelctedDocument);
   }, []);
+
+  useEffect(()=>{
+if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7a4904a1982f18176323a6'){
+  setProbablity(95)
+} else{
+  setProbablity(85)
+}
+  }, [identifier])
 
   const buildDocumentPostObject = (data, docStatus) => {
     return {
@@ -133,7 +142,7 @@ function Requirements({ statusChange, requirementTable }) {
           </div>
         </Modal>
       }
-      <AlertDialog onSubmit={onSubmit} isOpen={isOpen} />
+      <AlertDialog onSubmit={onSubmit} isOpen={isOpen} probablity={probablity} />
       <div className="prntheader">
         <h3>
           <span>Clinical Policy Decision Tree</span>

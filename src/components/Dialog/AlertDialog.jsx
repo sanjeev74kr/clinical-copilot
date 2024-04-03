@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useEffect } from "react";
 
-export default function AlertDialog({ isOpen, onSubmit }) {
+export default function AlertDialog({ isOpen, onSubmit, probablity }) {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function AlertDialog({ isOpen, onSubmit }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"This Prior Authorization has 85% chance of getting Approved"}
+          {`This Prior Authorization has ${probablity}% chance of getting Approved`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

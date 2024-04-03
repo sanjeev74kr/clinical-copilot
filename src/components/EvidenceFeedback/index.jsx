@@ -121,9 +121,9 @@ function EvidenceFeedback(props) {
           <div className="feedback-action-btn-contnr">
             <div className="select-notes-popup">
               <div className="evidence-lable">
-                <div>Evidence Status:</div>
+              <div>Requirement Met</div>
                 <DropDownBox
-                  label={"Evidence Status: "}
+                  label={" "}
                   dropDownBoxData={conditions}
                   type="condition"
                   selectedValue={selectedoptions}
@@ -200,9 +200,9 @@ function EvidenceFeedback(props) {
           </div>
           <div className="select-notes-popup">
               <div className="evidence-lable">
-                <div>Evidence Status:</div>
+              <div>Requirement Met</div>
                 <DropDownBox
-                  label={"Evidence Status: "}
+                  label={""}
                   dropDownBoxData={conditions}
                   type="condtion"
                   selectedValue={selectedoptions}
@@ -260,16 +260,16 @@ function EvidenceFeedback(props) {
               <span className="heading align-box">medication</span>
               <div className="condition-line"></div>
               <span className="align-box">
-                <p>RxNorm 7244811(certolizumab pegol 200 MG Injection [Cimzia]) prescribed on 2019-07-12</p>
+                <p>RxNorm 1655959(Methotrexate 250 MG in 10 ML Inj) prescribed on 2019-07-27</p>
               </span>
             </div>
-            <div className="notes-container">
+            {/* <div className="notes-container">
               <span className="heading align-box">medication</span>
               <div className="condition-line"></div>
               <span className="align-box">
                 <p>M06.9(Rheumatoid Arthritis) diagnosed on 2019-02-21R70.0(Elevated ESR) diagnosed on 2019-02-05</p>
               </span>
-            </div>
+            </div> */}
             
           </div>
           
@@ -308,9 +308,9 @@ function EvidenceFeedback(props) {
             </div> */}
             <div className="select-notes-popup">
               <div className="evidence-lable">
-                <div>Evidence Status:</div>
+              <div>Requirement Met</div>
                 <DropDownBox
-                  label={"Evidence Status: "}
+                  label={""}
                   dropDownBoxData={conditions}
                   type="condtion"
                   selectedValue={selectedoptions}
