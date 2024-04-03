@@ -1,28 +1,15 @@
-import {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-  useLayoutEffect,
-} from "react";
+import { useContext, useEffect, useState, useRef, useCallback } from "react";
 import "./medicalChartReview.css";
 import DetailsCard from "../../components/DetailsCard";
 import PdfViewer from "../../components/PdfViewer";
-import pdfFile from "../../assets/ActemraPrior_Auth.pdf";
+import pdfFile1 from "../../assets/Prior_Auth_Request_Actemera12mg_v2.pdf";
+import pdfFile2 from "../../assets/ActemraPrior_Auth.pdf";
 import DropDownBox from "../../components/DropDownBox";
-import { status } from "../../utils/sampleData";
 
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { CgProfile } from "react-icons/cg";
-import { FaPaste } from "react-icons/fa";
 import { appContext } from "../../context/AppContext";
 import { useLocation } from "react-router-dom";
 import Evidence from "../../components/Evidence/evidence";
-import FilterButton from "../../components/FilterButton";
-import Tooltip from "@mui/material/Tooltip";
-import { converUTCtoLoacle } from "../../utils/dateUtils";
 import Modal from "react-modal";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import Accordion from "../../components/Accordion";
@@ -51,12 +38,12 @@ function MedicalChartReview() {
     getDocumentDataPerIdentifier,
     getConceptEvidence,
     evidenceResult,
-
+    identifier,
     updateClinicalDocumentSummary,
     updateDocumentStatus,
     dispatch,
   } = useContext(appContext);
-  
+
   const keyName = "userCredentials";
   let finalText = "";
 
@@ -65,6 +52,7 @@ function MedicalChartReview() {
   const value = window.localStorage.getItem(keyName);
   const userCredentials = JSON.parse(value);
 
+  const [pdfFile, setPdfFile] = useState("");
   const [selectedCDS, setSelectedCDS] = useState(undefined);
   const [documentStatus, setDocStatus] = useState("");
   const [notStarted, setNotStarted] = useState(
@@ -106,6 +94,16 @@ function MedicalChartReview() {
     setMaxHeight(newMaxHeight);
   }, [child1Ref.current, child2Ref.current]);
 
+  useEffect(() => {
+    if (
+      identifier === "2ae50dc04c7a4904a1982f18176323a6" ||
+      identifier === "2740f7023a414936a1481f1c2e8474a5"
+    ) {
+      setPdfFile(pdfFile1);
+    } else {
+      setPdfFile(pdfFile2);
+    }
+  }, [identifier]);
   useEffect(() => {
     const resizeObserver = new ResizeObserver(resizeCallback);
     if (child1Ref.current) {
@@ -157,8 +155,7 @@ function MedicalChartReview() {
     setClinicalDocument(identifierDetails.clinical_document);
     dispatch({
       type: "SET_CLINICAL_POLICY_TAB",
-      payload:  false, 
-      
+      payload: false,
     });
     const cds = identifierDetails.clinical_document_summary;
     if (identifierDetails?.clinical_document_summary !== undefined) {
@@ -320,13 +317,12 @@ function MedicalChartReview() {
       });
   };
 
-  const goToNextTab = ()=>{
+  const goToNextTab = () => {
     dispatch({
       type: "SET_CLINICAL_POLICY_TAB",
-      payload:  true, 
-      
+      payload: true,
     });
-  }
+  };
 
   return (
     <div className="page-main-container">
@@ -403,7 +399,7 @@ function MedicalChartReview() {
               />
             )}
           </div>
-         
+
           {selectedCDS && evidenceResult.length > 0 && (
             <div className="evdBg">
               <div className="PrntEvidence">
@@ -422,7 +418,7 @@ function MedicalChartReview() {
               storeReferenceTextInArray={storeReferenceTextInArray}
             />
           )}
-         {/*  {selectedConcept !== "" && (
+          {/*  {selectedConcept !== "" && (
             <div className="llm-box-container">
               <div className="user-box-container">
                 <div className="person-icon">
@@ -478,7 +474,7 @@ function MedicalChartReview() {
           )} */}
           {selectedConcept !== "" && (
             <div className="btn-container">
-             {/*  <div className="save-btn-container">
+              {/*  <div className="save-btn-container">
                 <Button
                   type="button"
                   disabled={selectedConcept === ""}
@@ -509,7 +505,7 @@ function MedicalChartReview() {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
-                 onClick={goToNextTab}
+                  onClick={goToNextTab}
                 >
                   Next Step
                 </Button>

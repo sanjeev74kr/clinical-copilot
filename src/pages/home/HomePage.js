@@ -164,9 +164,11 @@ const HomePage = () => {
 
   return (
     <div className="homepage-main-container">
+     
       <div className="pdfscnConatainer">
         <PdfScan processComplete={onProcessComplete} />
       </div>
+      <div className="table-heading">Processed Documents</div>
       <div className="searchbar-and-table">
         {/* // searchQuery={searchQuery} */}
         <SearchBar setSearchQuery={handleSearch} />

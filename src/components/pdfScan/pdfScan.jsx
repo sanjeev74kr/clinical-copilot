@@ -99,11 +99,11 @@ function PdfScan({ processComplete }) {
         />
       </div>
       <div className="uploadContainer">
-        <div>Upload Clinical Documents</div>
+       
         <div>
           {" "}
           <button className="upload-button" onClick={handleButtonClick}>
-            Analyze Scan Document
+            Upload Document
           </button>
         </div>
       </div>

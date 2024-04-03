@@ -6,14 +6,21 @@
 }
 .pdfscnConatainer{
    width: 90%;
-   padding: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.table-heading{
+   display: flex;
+    font-weight: 700;
+    width: 90%;
 }
 .searchbar-and-table{
    background-color:white ; 
-   margin: 2rem;
+   margin: 1rem 2rem;
    width:90%;
    border-radius: 0.8rem;
-   box-shadow:0rem 0rem 1rem 0.6rem rgb(226, 223, 223);
+   box-shadow:0rem 0rem .5rem 0.2rem rgb(226, 223, 223);
 }
 
 .pagination-container{
