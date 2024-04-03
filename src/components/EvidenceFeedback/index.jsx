@@ -41,7 +41,7 @@ function EvidenceFeedback(props) {
   return (
     <>
       <div className="evidence-status-modal">
-        { (Btnstatus==='True'&& (identifier==='a01e17b12c074e02ae7bfc234f617dfb')&&(Btnids==='btntableone' || Btnids==='btntabletwo') )&&(
+        { (Btnstatus==='True'&& (identifier!=='2740f7023a414936a1481f1c2e8474a5'||identifier!=='2ae50dc04c7a4904a1982f18176323a6')&&(Btnids==='btntableone' || Btnids==='btntabletwo') )&&(
           <div className="evidence-status-data-container">
           <div className="summary-contnr">
             <h4 className="evidenece-status-labelsummary">Summary</h4>
@@ -156,12 +156,29 @@ function EvidenceFeedback(props) {
           <div className="summary-contnr">
             <h4 className="evidenece-status-labelsummary">Summary</h4>
             <p className="summary">
-             No Evidence data available
+             Patient's Current Medications
             </p>
           </div>
           <div className="description-contnr">
             <h4 className="evidenece-status-label">Evidence</h4>
 
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 316049(Hydrochlorothiazide 25 MG) prescribed on 2019-05-27</p>
+              </span>
+            </div>
+
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 860975(24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet) prescribed on 2019-06-12</p>
+              </span>
+            </div>
+            
+            
             
           </div>
           <div className="notes-contnr">
@@ -213,7 +230,7 @@ function EvidenceFeedback(props) {
               </div>
             </div>
           </div>)}
-          { (Btnstatus==='True'|| Btnstatus==='Partial')&& (identifier==='b7c228a6d8bb442eacadc11736b49537')&&(Btnids==='tablebtnthreepartial' || Btnids==='tablebtn2true') &&(
+          { (Btnstatus==='True')&& (identifier==='2740f7023a414936a1481f1c2e8474a5'||identifier==='2ae50dc04c7a4904a1982f18176323a6')&&(Btnids==='tablebtnthreepartial' || Btnids==='tablebtn2true') &&(
           <div className="evidence-status-data-container">
           <div className="summary-contnr">
             <h4 className="evidenece-status-labelsummary">Summary</h4>
