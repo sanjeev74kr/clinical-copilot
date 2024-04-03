@@ -142,7 +142,7 @@ function Requirements({ statusChange, requirementTable }) {
 
      { tablestatus ==='a01e17b12c074e02ae7bfc234f617dfb' &&( <div>
    
-        <table className="custom-table">
+      <table className="custom-table">
           <thead className="bgcolor">
             <tr>
               <th className="custom-cell">Item</th>
@@ -163,10 +163,9 @@ function Requirements({ statusChange, requirementTable }) {
               </td>
               <td className="custom-cell">
                 <button
-                 id='btntableone'
+                  id='btntableone'
                   className="custom-button true-color"
                   onClick={()=>handleButtonClickothers('True','btntableone')}
-                 
                 >
                   True
                 </button>
@@ -180,32 +179,30 @@ function Requirements({ statusChange, requirementTable }) {
                 2
               </td>
 
-                  <td className="custom-cell">AND</td>
+              <td className="custom-cell">AND</td>
 
-                  <td className="custom-cell">
-                    <p className="cellcolors">
-                      History of failure to a 3 month trial of one non-biologic
-                      disease modifying anti-rheumatic drug (DMARD) [e.g.,
-                      methotrexate, leflunomide, sulfasalazine,
-                      hydroxychloroquine] at maximally indicated doses, unless
-                      contraindicated or clinically significant adverse effects
-                      are experienced (document drug, date, and duration of
-                      trial).
-                    </p>
-                    <br></br>
-                    <p>OR</p>
-                    <br></br>
-                    <p className="cellcolors">
-                      Patient has been previously treated with a targeted
-                      immunomodulator FDAapproved for the treatment of
-                      rheumatoid arthritis as documented by claims history or
-                      submission of medical records (Document drug, date, and
-                      duration of therapy) [e.g., Enbrel (etanercept), Cimzia
-                      (certolizumab), Simponi (golimumab), Orencia (abatacept),
-                      adalimumab, Xeljanz (tofacitinib), Olumiant (baricitinib),
-                      Rinvoq (upadacitinib)]
-                    </p>
-                  </td>
+              <td className="custom-cell" >
+              <p className="cellcolors">
+                History of failure to a 3 month trial of one non-biologic
+                disease modifying anti-rheumatic drug (DMARD) [e.g.,
+                methotrexate, leflunomide, sulfasalazine, hydroxychloroquine] at
+                maximally indicated doses, unless contraindicated or clinically
+                significant adverse effects are experienced (document drug,
+                date, and duration of trial).
+                </p>
+                <br></br>
+                <p>OR</p>
+                <br></br>
+                <p className="cellcolors">
+                Patient has been previously treated with a targeted
+                immunomodulator FDAapproved for the treatment of rheumatoid
+                arthritis as documented by claims history or submission of
+                medical records (Document drug, date, and duration of therapy)
+                [e.g., Enbrel (etanercept), Cimzia (certolizumab), Simponi
+                (golimumab), Orencia (abatacept), adalimumab, Xeljanz
+                (tofacitinib), Olumiant (baricitinib), Rinvoq (upadacitinib)]
+                </p>
+              </td>
 
               <td className="custom-cell" rowSpan={3}>
                 <button
@@ -230,32 +227,34 @@ function Requirements({ statusChange, requirementTable }) {
               </td>
               <td className="custom-cell">AND</td>
 
-                <tr>
-                  <td className="custom-cell" rowSpan={5}>
-                    3
-                  </td>
-                  <td className="custom-cell">AND</td>
+              <td className="custom-cell">
+              <p >
+                (a) History of failure, contraindication, or intolerance to two
+                of the following preferred products (Document drug, date, and
+                duration of trial) i. Cimzia (certolizumab) ii. One of the
+                preferred adalimumab products iii. Simponi (golimumab) iv.
+                Olumiant (baricitinib) v. Rinvoq (upadacitinib) vi.
+                Xeljanz/Xeljanz XR (tofacitinib)vii. Enbrel (etanercept)
+                </p>
+                <br>
+                </br>
+                <p>OR</p>
+                <br>
+                </br>
+                <p className="cellcolors"> i. Patient is currently on Actemra therapy as documented by
+                claims history OR submission of medical records (Document date
+                and duration of therapy)</p>
 
-                  <td className="custom-cell">
-                    <p>
-                      (a) History of failure, contraindication, or intolerance
-                      to two of the following preferred products (Document drug,
-                      date, and duration of trial) i. Cimzia (certolizumab) ii.
-                      One of the preferred adalimumab products iii. Simponi
-                      (golimumab) iv. Olumiant (baricitinib) v. Rinvoq
-                      (upadacitinib) vi. Xeljanz/Xeljanz XR (tofacitinib)vii.
-                      Enbrel (etanercept)
-                    </p>
-                    <br></br>
-                    <p>OR</p>
-                    <br></br>
-                    <p className="cellcolors">
-                      {" "}
-                      i. Patient is currently on Actemra therapy as documented
-                      by claims history OR submission of medical records
-                      (Document date and duration of therapy)
-                    </p>
-                    </td>
+                <br></br>
+                <p> AND</p>
+                <br></br>
+                <p className="cellcolors"> ii. Patient has not received a manufacturer supplied sample at
+                no cost in the prescriber’s office, or any form of assistance
+                from the Genentech sponsored Actemra Access Solutions program
+                (e.g., sample card which can be redeemed at a pharmacy for a
+                free supply of medication) as a means to establish as a current
+                user of Actemra*</p>
+              </td>
 
               <td className="custom-cell" rowspan={5}>
                 <button
@@ -271,19 +270,19 @@ function Requirements({ statusChange, requirementTable }) {
               
             </tr>
 
-                  <td className="custom-cell" rowspan={5}>
-                    <button
-                      className="custom-button false-color"
-                      onClick={handleButtonClick}
-                    >
-                      False
-                    </button>
-                  </td>
-                </tr>
-                <tr> </tr>
+            <tr>
+             
+              
+            </tr>
+            <tr>
+              {" "}
+             
+            </tr>
 
-                <tr></tr>
-                <tr> </tr>
+            <tr>
+              {" "}
+            
+            </tr>
 
             <tr>
               <td className="custom-cell" rowSpan={2}>
@@ -304,7 +303,7 @@ function Requirements({ statusChange, requirementTable }) {
                   className="custom-button true-color"
                  
                 >
-                  True
+                 True
                 </button>
               </td>
             </tr>
@@ -340,11 +339,11 @@ function Requirements({ statusChange, requirementTable }) {
         </table>
       </div>
      )}
-     {tablestatus=== '2ae50dc04c7a4904a1982f18176323a6' &&(
+     {tablestatus=== '2740f7023a414936a1481f1c2e8474a5'  &&(
                   
       <div>
       
-        <table className="custom-table">
+      <table className="custom-table">
           <thead className="bgcolor">
             <tr>
               <th className="custom-cell">Item</th>
@@ -361,13 +360,13 @@ function Requirements({ statusChange, requirementTable }) {
               <td className="custom-cell"></td>
 
               <td className="custom-cell">
-              Diagnosis of moderately to severely active rheumatoid arthritis
+                Diagnosis of moderately to severely active rheumatoid arthritis
               </td>
               <td className="custom-cell">
                 <button
-                 id='btntabletwo'
+                  id='btntableone'
                   className="custom-button true-color"
-                  onClick={()=>handleButtonClickothers('True','btntabletwo')}
+                  onClick={()=>handleButtonClickothers('True','btntableone')}
                 >
                   True
                 </button>
@@ -381,32 +380,35 @@ function Requirements({ statusChange, requirementTable }) {
                 2
               </td>
 
-                  <td className="custom-cell">
-                    Diagnosis of moderately to severely active rheumatoid
-                    arthritis
-                  </td>
-                  <td className="custom-cell">
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-                <tr></tr>
-                <tr>
-                  <td className="custom-cell" rowSpan={3}>
-                    2
-                  </td>
+              <td className="custom-cell">AND</td>
 
-                  <td className="custom-cell">AND</td>
+              <td className="custom-cell" >
+              <p className="cellcolors">
+                History of failure to a 3 month trial of one non-biologic
+                disease modifying anti-rheumatic drug (DMARD) [e.g.,
+                methotrexate, leflunomide, sulfasalazine, hydroxychloroquine] at
+                maximally indicated doses, unless contraindicated or clinically
+                significant adverse effects are experienced (document drug,
+                date, and duration of trial).
+                </p>
+                <br></br>
+                <p>OR</p>
+                <br></br>
+                <p className="cellcolors">
+                Patient has been previously treated with a targeted
+                immunomodulator FDAapproved for the treatment of rheumatoid
+                arthritis as documented by claims history or submission of
+                medical records (Document drug, date, and duration of therapy)
+                [e.g., Enbrel (etanercept), Cimzia (certolizumab), Simponi
+                (golimumab), Orencia (abatacept), adalimumab, Xeljanz
+                (tofacitinib), Olumiant (baricitinib), Rinvoq (upadacitinib)]
+                </p>
+              </td>
 
               <td className="custom-cell" rowSpan={3}>
                 <button
-                  id='tablebtn2true'
                   className="custom-button true-color"
-                  onClick={()=>handleButtonClickothers('True','tablebtn2true')}
+                  onClick={()=>handleButtonClick('True')}
                 >
                  True
                 </button>
@@ -418,53 +420,49 @@ function Requirements({ statusChange, requirementTable }) {
             </tr>
             <tr>
             </tr>
+           
+            
             <tr>
+              <td className="custom-cell" rowSpan={5}>
+                3
+              </td>
+              <td className="custom-cell">AND</td>
 
-                  <td className="custom-cell" rowSpan={3}>
-                    <button
-                      className="custom-button true-color"
-                      onClick={handleButtonClick}
-                    >
-                      True
-                    </button>
-                  </td>
-                </tr>
-                <tr></tr>
-                <tr></tr>
+              <td className="custom-cell">
+              <p >
+                (a) History of failure, contraindication, or intolerance to two
+                of the following preferred products (Document drug, date, and
+                duration of trial) i. Cimzia (certolizumab) ii. One of the
+                preferred adalimumab products iii. Simponi (golimumab) iv.
+                Olumiant (baricitinib) v. Rinvoq (upadacitinib) vi.
+                Xeljanz/Xeljanz XR (tofacitinib)vii. Enbrel (etanercept)
+                </p>
+                <br>
+                </br>
+                <p>OR</p>
+                <br>
+                </br>
+                <p className="cellcolors"> i. Patient is currently on Actemra therapy as documented by
+                claims history OR submission of medical records (Document date
+                and duration of therapy)</p>
 
-                <tr>
-                  <td className="custom-cell" rowSpan={5}>
-                    3
-                  </td>
-                  <td className="custom-cell">AND</td>
+                <br></br>
+                <p> AND</p>
+                <br></br>
+                <p className="cellcolors"> ii. Patient has not received a manufacturer supplied sample at
+                no cost in the prescriber’s office, or any form of assistance
+                from the Genentech sponsored Actemra Access Solutions program
+                (e.g., sample card which can be redeemed at a pharmacy for a
+                free supply of medication) as a means to establish as a current
+                user of Actemra*</p>
+              </td>
 
-                  <td className="custom-cell">
-                    <p>
-                      (a) History of failure, contraindication, or intolerance
-                      to two of the following preferred products (Document drug,
-                      date, and duration of trial) i. Cimzia (certolizumab) ii.
-                      One of the preferred adalimumab products iii. Simponi
-                      (golimumab) iv. Olumiant (baricitinib) v. Rinvoq
-                      (upadacitinib) vi. Xeljanz/Xeljanz XR (tofacitinib)vii.
-                      Enbrel (etanercept)
-                    </p>
-                    <br></br>
-                    <p>OR</p>
-                    <br></br>
-                    <p className="cellcolors">
-                      {" "}
-                      i. Patient is currently on Actemra therapy as documented
-                      by claims history OR submission of medical records
-                      (Document date and duration of therapy)
-                    </p>
-                        </td>
               <td className="custom-cell" rowspan={5}>
                 <button
-                id='tablebtnthreepartial'
-                  className="custom-button partial-color"
-                  onClick={()=>handleButtonClickothers('Partial','tablebtnthreepartial')}
+                  className="custom-button true-color"
+                  onClick={()=>handleButtonClick('Partial')}
                 >
-                  Partial
+                True
                 </button>
               </td>
             </tr>
@@ -472,20 +470,20 @@ function Requirements({ statusChange, requirementTable }) {
               {" "}
               
             </tr>
-                        <tr>
-                  <td className="custom-cell" rowspan={5}>
-                    <button
-                      className="custom-button partial-color"
-                      onClick={handleButtonClick}
-                    >
-                      Partial
-                    </button>
-                  </td>
-                </tr>
-                <tr> </tr>
 
-                <tr></tr>
-                <tr> </tr>
+            <tr>
+             
+              
+            </tr>
+            <tr>
+              {" "}
+             
+            </tr>
+
+            <tr>
+              {" "}
+            
+            </tr>
 
             <tr>
               <td className="custom-cell" rowSpan={2}>
@@ -504,9 +502,9 @@ function Requirements({ statusChange, requirementTable }) {
               <td className="custom-cell">
                 <button
                   className="custom-button true-color"
-                  
+                 
                 >
-                  True
+                 True
                 </button>
               </td>
             </tr>
@@ -532,7 +530,7 @@ function Requirements({ statusChange, requirementTable }) {
               <td className="custom-cell">
                 <button
                   className="custom-button true-color"
-                  
+                 
                 >
                   True
                 </button>
@@ -541,7 +539,7 @@ function Requirements({ statusChange, requirementTable }) {
           </tbody>
         </table>
       </div>)}
-      {tablestatus===null || (tablestatus!=='a01e17b12c074e02ae7bfc234f617dfb') &&( <div>
+      {tablestatus!==null && (tablestatus!=='a01e17b12c074e02ae7bfc234f617dfb') && (tablestatus!=='2740f7023a414936a1481f1c2e8474a5') &&( <div>
         
         <table className="custom-table">
           <thead className="bgcolor">

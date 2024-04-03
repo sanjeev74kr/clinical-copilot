@@ -41,7 +41,7 @@ function EvidenceFeedback(props) {
   return (
     <>
       <div className="evidence-status-modal">
-        { (Btnstatus==='True'&& (identifier==='b7c228a6d8bb442eacadc11736b49537'||identifier==='a01e17b12c074e02ae7bfc234f617dfb')&&(Btnids==='btntableone' || Btnids==='btntabletwo') )&&(
+        { (Btnstatus==='True'&& (identifier==='a01e17b12c074e02ae7bfc234f617dfb')&&(Btnids==='btntableone' || Btnids==='btntabletwo') )&&(
           <div className="evidence-status-data-container">
           <div className="summary-contnr">
             <h4 className="evidenece-status-labelsummary">Summary</h4>
