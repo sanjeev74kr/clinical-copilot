@@ -31,7 +31,7 @@ export default function AlertDialog({ isOpen, onSubmit, probablity }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {`This Prior Authorization has ${probablity}% chance of getting Approved`}
+          {``}
         </DialogTitle>
         {/* <DialogTitle id="alert-dialog-title">
           {"This Prior Authorization has 85% chance of getting Approved"}

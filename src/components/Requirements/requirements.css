@@ -170,5 +170,7 @@
   background-color: lavender;
 }
 .aprvdcls{
-  text-align: center;
+    font-weight:700;
+    color: rgb(233, 79, 28);
+
 }

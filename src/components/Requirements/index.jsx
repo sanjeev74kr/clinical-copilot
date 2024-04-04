@@ -57,7 +57,7 @@ function Requirements({ statusChange, requirementTable }) {
 if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7a4904a1982f18176323a6'){
   setProbablity(95)
 } else{
-  setProbablity(85)
+  setProbablity(30)
 }
   }, [identifier])
 
@@ -759,10 +759,10 @@ if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7
         <p className="aprvdcls">This Prior Authorization has 95% chance of getting approved</p>
       )}
       {tablestatus==='2740f7023a414936a1481f1c2e8474a5'&&(
-        <p className="aprvdcls">This Prior Authorization has 95% chance of getting approved</p>
+        <p className="aprvdcls">This Prior Authorization has {probablity}% chance of getting approved</p>
       )}
       {tablestatus!==null && (tablestatus!== '2740f7023a414936a1481f1c2e8474a5') &&(tablestatus!=='2ae50dc04c7a4904a1982f18176323a6')&&(
-        <p className="aprvdcls">This Prior Authorization has 30% chance of getting approved</p>
+        <p className="aprvdcls">This Prior Authorization has {probablity}% chance of getting approved</p>
       )}
 
       
