@@ -33,6 +33,9 @@ export default function AlertDialog({ isOpen, onSubmit, probablity }) {
         <DialogTitle id="alert-dialog-title">
           {`This Prior Authorization has ${probablity}% chance of getting Approved`}
         </DialogTitle>
+        {/* <DialogTitle id="alert-dialog-title">
+          {"This Prior Authorization has 85% chance of getting Approved"}
+        </DialogTitle> */}
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Do you want to submit it to a payer?

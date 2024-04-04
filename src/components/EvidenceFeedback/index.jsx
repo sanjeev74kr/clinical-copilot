@@ -1,7 +1,6 @@
 import "./evidenceFeedback.css";
 import { useContext, useState } from "react";
 import { FaPaperclip } from "react-icons/fa";
-
 import DropDownBox from "../DropDownBox";
 import Button from "@mui/material/Button";
 import { conditions } from "../../utils/sampleData";
@@ -22,6 +21,10 @@ function EvidenceFeedback(props) {
   const [selectedoptions, setSeletedoptions] = useState({
     label: "True",
     value: "True",
+  });
+  const [selectedfalse, setSeletedfalse] = useState({
+    label: "False",
+    value: "False",
   });
   const [fileName, setFileName] = useState("");
   function handleDropDownSelection(e, field) {
@@ -122,6 +125,8 @@ function EvidenceFeedback(props) {
             <div className="select-notes-popup">
               <div className="evidence-lable">
               <div>Requirement Met</div>
+                <div>Evidence Status:</div>
+                
                 <DropDownBox
                   label={" "}
                   dropDownBoxData={conditions}
@@ -152,7 +157,7 @@ function EvidenceFeedback(props) {
             </div>
           </div>
         </div>)}
-       {Btnstatus==='False'   &&( <div className="evidence-status-data-container">
+       {(Btnstatus==='True' && Btnids==='trueexcep')  &&( <div className="evidence-status-data-container">
           <div className="summary-contnr">
             <h4 className="evidenece-status-labelsummary">Summary</h4>
             <p className="summary">
@@ -206,6 +211,84 @@ function EvidenceFeedback(props) {
                   dropDownBoxData={conditions}
                   type="condtion"
                   selectedValue={selectedoptions}
+                  onSelect={(value) =>
+                    handleDropDownSelection(value, "condition")
+                  }
+                />
+              </div>
+              <div>
+                <Button
+                  type="button"
+                  style={{
+                    backgroundColor: "rgb(233, 79, 28)",
+                    borderRadius: "20px",
+                    fontWeight: "700",
+                    width: "20%",
+                  }}
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  onClick={handleCancel}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          </div>)}
+          {Btnstatus==='False'   &&( <div className="evidence-status-data-container">
+          <div className="summary-contnr">
+            <h4 className="evidenece-status-labelsummary">Summary</h4>
+            <p className="summary">
+             Patient's Current Medications
+            </p>
+          </div>
+          <div className="description-contnr">
+            <h4 className="evidenece-status-label">Evidence</h4>
+
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 316049(Hydrochlorothiazide 25 MG) prescribed on 2019-05-27</p>
+              </span>
+            </div>
+
+            <div className="notes-container">
+              <span className="heading align-box">medication</span>
+              <div className="condition-line"></div>
+              <span className="align-box">
+                <p>RxNorm 860975(24 HR Metformin hydrochloride 500 MG Extended Release Oral Tablet) prescribed on 2019-06-12</p>
+              </span>
+            </div>
+            
+            
+            
+          </div>
+          <div className="notes-contnr">
+            <h4 className="evidenece-status-labelUserNotes">User-Notes</h4>
+
+            <div className="txtaracls">
+              <div className="txtarawdth">
+                <textarea
+                  className="user-notes"
+                  placeholder="Please enter your feedback"
+                ></textarea>
+              </div>
+              <div>
+                {/* <div className="btn-atchcls" onClick={handleAttachmentClick}>
+                  <FaPaperclip />
+                </div> */}
+              </div>
+            </div>
+          </div>
+          <div className="select-notes-popup">
+              <div className="evidence-lable">
+                <div>Evidence Status:</div>
+                <DropDownBox
+                  label={"Evidence Status: "}
+                  dropDownBoxData={conditions}
+                  type="condition"
+                  selectedValue={selectedfalse}
                   onSelect={(value) =>
                     handleDropDownSelection(value, "condition")
                   }

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 function DropDownBox(props) {
   const { label, cssName, dropDownBoxData, onSelect, type, selectedValue } =
     props;
+    
   const [selectedOption, setSelectedOption] = useState({
     label: "",
     value: "",
@@ -78,16 +79,18 @@ function DropDownBox(props) {
           </label>
         );
       case "condition":
+       
         return (
           <Select
             options={options}
-            value={selectedOption}
+            value={selectedValue}
             onChange={handleChange}
             placeholder="Select Review Status"
             /*  isDisabled={selectedOption === null} */
           />
         );
       case "notes":
+        
         return (
           <Select
             options={options}

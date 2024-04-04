@@ -215,8 +215,9 @@ if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7
 
               <td className="custom-cell" rowSpan={3}>
                 <button
+                  id='falseidone'
                   className="custom-button false-color"
-                  onClick={()=>handleButtonClick('False')}
+                  onClick={()=>handleButtonClickothers('False','falseidone')}
                 >
                  False
                 </button>
@@ -267,10 +268,11 @@ if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7
 
               <td className="custom-cell" rowspan={5}>
                 <button
-                  className="custom-button false-color"
-                  onClick={()=>handleButtonClick('False')}
+                id='trueexcep'
+                  className="custom-button true-color"
+                  onClick={()=>handleButtonClickothers('True','trueexcep')}
                 >
-                  False
+                  True
                 </button>
               </td>
             </tr>
@@ -752,6 +754,17 @@ if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7
                       </tbody>
                     </table>
                   </div>)}
+
+      {tablestatus==='2ae50dc04c7a4904a1982f18176323a6'&&(
+        <p className="aprvdcls">This Prior Authorization has 95% chance of getting approved</p>
+      )}
+      {tablestatus==='2740f7023a414936a1481f1c2e8474a5'&&(
+        <p className="aprvdcls">This Prior Authorization has 95% chance of getting approved</p>
+      )}
+      {tablestatus!==null && (tablestatus!== '2740f7023a414936a1481f1c2e8474a5') &&(tablestatus!=='2ae50dc04c7a4904a1982f18176323a6')&&(
+        <p className="aprvdcls">This Prior Authorization has 30% chance of getting approved</p>
+      )}
+
       
       <div className="footrcls">
         <div className="select-notes-dd">
@@ -772,6 +785,8 @@ if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7
                 borderRadius: "20px",
                 fontWeight: "700",
                 width: "100%",
+                textTransform: 'none',
+                marginTop:'10px'
               }}
               fullWidth
               variant="contained"
