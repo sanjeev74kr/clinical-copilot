@@ -756,10 +756,10 @@ if(identifier=== '2740f7023a414936a1481f1c2e8474a5' || identifier==='2ae50dc04c7
                   </div>)}
 
       {tablestatus==='2ae50dc04c7a4904a1982f18176323a6'&&(
-        <p className="aprvdcls">This Prior Authorization has 95% chance of getting approved</p>
+        <p className="aprvdclstrue">This Prior Authorization has 95% chance of getting approved</p>
       )}
       {tablestatus==='2740f7023a414936a1481f1c2e8474a5'&&(
-        <p className="aprvdcls">This Prior Authorization has {probablity}% chance of getting approved</p>
+        <p className="aprvdclstrue">This Prior Authorization has {probablity}% chance of getting approved</p>
       )}
       {tablestatus!==null && (tablestatus!== '2740f7023a414936a1481f1c2e8474a5') &&(tablestatus!=='2ae50dc04c7a4904a1982f18176323a6')&&(
         <p className="aprvdcls">This Prior Authorization has {probablity}% chance of getting approved</p>

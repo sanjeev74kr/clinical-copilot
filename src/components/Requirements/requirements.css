@@ -171,6 +171,10 @@
 }
 .aprvdcls{
     font-weight:700;
-    color: rgb(233, 79, 28);
+    color: red;
 
+}
+.aprvdclstrue{
+  font-weight:700;
+  color:green;
 }
